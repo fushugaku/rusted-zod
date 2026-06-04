@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+client/dist/
+target/
+web/
+zod-bevy-native.png
+*.tsbuildinfo
+
+# Generated atlases (run `npm run pack-atlases` to regenerate)
+assets/atlases/
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local

@@ -1,0 +1,7 @@
+---
+alwaysApply: true
+---
+
+You are a Lead C and C++ and Typescript developer.
+Your goal is to translate C code to Typescript and reimplement the game.
+You MUST always first look at the source implementation in C before implementing something in Typescript.

@@ -1,0 +1,1938 @@
+2025-12-10 20:06:49  [notice] admin login success from 127.0.0.1 lo by GUI.
+2025-12-10 20:06:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 20:04:14  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 20:01:43  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:59:13  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:56:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:56:11  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 19:54:34  [notice] Time synchronized at 2025/12/10, 19:54:34.
+2025-12-10 19:54:13  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:51:42  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:49:12  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:46:43  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:44:41  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 19:44:12  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:44:09  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 19:43:37  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 19:43:04  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 19:42:32  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 19:42:02  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 19:41:51  [notice] DHCP:[Assign IP 192.168.1.22 to device aa:e6:6e:0b:e2:9d].
+2025-12-10 19:41:49  [notice] WiFi user aa:e6:6e:0b:e2:9d has associated to SSID 5
+2025-12-10 19:41:41  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:40:55  [notice] DHCP:[Assign IP 192.168.1.19 to device 8e:e4:6b:5a:1b:b9].
+2025-12-10 19:40:54  [notice] WiFi user 8e:e4:6b:5a:1b:b9 has associated to SSID 5
+2025-12-10 19:40:01  [notice] DHCP:[Assign IP 192.168.1.4 to device 06:60:d8:b3:64:32].
+2025-12-10 19:40:00  [notice] WiFi user 06:60:d8:b3:64:32 has associated to SSID 5
+2025-12-10 19:39:11  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:36:41  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:34:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:31:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:29:09  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:26:40  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:25:35  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 19:25:02  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 19:24:30  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 19:24:09  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:23:58  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 19:23:24  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 19:21:38  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:19:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:16:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:14:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:11:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:09:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:07:32  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 19:06:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:04:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:01:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 19:00:01  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 18:59:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:56:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:54:34  [notice] Time synchronized at 2025/12/10, 18:54:34.
+2025-12-10 18:54:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:51:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:49:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:46:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:44:31  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 18:44:03  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:43:58  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 18:43:26  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 18:42:54  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 18:42:19  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 18:41:49  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 18:41:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:39:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:36:33  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:34:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:31:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:29:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:26:34  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 18:26:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:26:02  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 18:25:29  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 18:24:56  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 18:24:24  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 18:24:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:23:54  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 18:21:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:19:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:16:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:14:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:12:38  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-10 18:11:29  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:08:59  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:06:32  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 18:06:29  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:03:58  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:01:58  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 18:01:27  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 18:01:25  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 18:00:53  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 18:00:20  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 17:59:48  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 17:59:17  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 17:58:57  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:56:28  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:54:34  [notice] Time synchronized at 2025/12/10, 17:54:34.
+2025-12-10 17:53:57  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:51:26  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:48:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:46:26  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:43:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:43:19  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 17:42:46  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 17:42:14  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 17:41:41  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 17:41:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:41:09  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 17:40:39  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 17:38:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:36:26  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:33:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:31:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:28:54  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:26:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:23:54  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:23:14  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 17:22:42  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 17:22:09  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 17:21:37  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 17:21:23  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:21:04  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 17:18:52  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:16:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:13:53  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:11:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:08:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:06:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:05:32  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 17:03:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 17:03:08  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 17:01:20  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:58:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:56:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:54:33  [notice] Time synchronized at 2025/12/10, 16:54:33.
+2025-12-10 16:53:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:51:19  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:48:48  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:46:18  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:45:48  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:45:16  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:44:43  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:44:06  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:43:48  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:43:34  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:43:03  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:42:50  [notice] WiFi user 44:a3:bb:57:e4:28 has disassociated from SSID 5
+2025-12-10 16:41:18  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:38:47  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:36:16  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:33:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:31:16  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:28:45  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:26:14  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:25:33  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:25:01  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:24:29  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:24:01  [notice] WiFi user 44:a3:bb:57:e4:28 has associated to SSID 5
+2025-12-10 16:23:56  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:23:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:23:24  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:22:54  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:21:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:21:01  [notice] WiFi user 44:a3:bb:57:e4:28 has disassociated from SSID 5
+2025-12-10 16:19:01  [notice] WiFi user 44:a3:bb:57:e4:28 has associated to SSID 5
+2025-12-10 16:18:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:16:13  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:16:00  [notice] WiFi user 44:a3:bb:57:e4:28 has disassociated from SSID 5
+2025-12-10 16:13:59  [notice] WiFi user 44:a3:bb:57:e4:28 has associated to SSID 5
+2025-12-10 16:13:43  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:12:37  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-10 16:11:13  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:10:59  [notice] WiFi user 44:a3:bb:57:e4:28 has disassociated from SSID 5
+2025-12-10 16:08:59  [notice] WiFi user 44:a3:bb:57:e4:28 has associated to SSID 5
+2025-12-10 16:08:43  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:07:30  [notice] WiFi user 44:a3:bb:57:e4:28 has disassociated from SSID 5
+2025-12-10 16:07:24  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:06:51  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:06:16  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:06:12  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:05:42  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:05:05  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:04:32  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 16:03:58  [notice] WiFi user 44:a3:bb:57:e4:28 has associated to SSID 5
+2025-12-10 16:03:41  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:01:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 16:00:58  [notice] WiFi user 44:a3:bb:57:e4:28 has disassociated from SSID 5
+2025-12-10 15:58:57  [notice] WiFi user 44:a3:bb:57:e4:28 has associated to SSID 5
+2025-12-10 15:58:40  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:56:11  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:55:57  [notice] WiFi user 44:a3:bb:57:e4:28 has disassociated from SSID 5
+2025-12-10 15:54:33  [notice] Time synchronized at 2025/12/10, 15:54:33.
+2025-12-10 15:53:56  [notice] WiFi user 44:a3:bb:57:e4:28 has associated to SSID 5
+2025-12-10 15:53:56  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 15:53:40  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:51:09  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:50:56  [notice] WiFi user 44:a3:bb:57:e4:28 has disassociated from SSID 5
+2025-12-10 15:48:56  [notice] WiFi user 44:a3:bb:57:e4:28 has associated to SSID 5
+2025-12-10 15:48:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:46:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:45:55  [notice] WiFi user 44:a3:bb:57:e4:28 has disassociated from SSID 5
+2025-12-10 15:43:55  [notice] WiFi user 44:a3:bb:57:e4:28 has associated to SSID 5
+2025-12-10 15:43:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:43:21  [notice] WiFi user 44:a3:bb:57:e4:28 has disassociated from SSID 5
+2025-12-10 15:41:09  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:41:07  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 15:40:35  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 15:40:01  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 15:39:29  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 15:39:28  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 15:38:56  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 15:38:40  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:38:26  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 15:36:09  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:33:38  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:31:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:28:38  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:26:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:23:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:22:03  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 15:21:30  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 15:21:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:20:58  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 15:20:25  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 15:19:53  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 15:19:23  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 15:18:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:16:18  [notice] WiFi user 44:a3:bb:57:e4:28 has associated to SSID 5
+2025-12-10 15:16:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:15:50  [notice] WiFi user 44:a3:bb:57:e4:28 has disassociated from SSID 5
+2025-12-10 15:13:50  [notice] WiFi user 44:a3:bb:57:e4:28 has associated to SSID 5
+2025-12-10 15:13:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:13:29  [notice] WiFi user 44:a3:bb:57:e4:28 has disassociated from SSID 5
+2025-12-10 15:11:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:08:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:06:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:03:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 15:03:32  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 15:01:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:58:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:57:51  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:57:19  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:56:46  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:56:22  [notice] WiFi user ca:7e:94:43:9e:2d has disassociated from SSID 5
+2025-12-10 14:56:10  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:56:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:55:48  [notice] DHCP:[Assign IP 192.168.1.8 to device 44:a3:bb:57:e4:28].
+2025-12-10 14:55:48  [notice] DHCP:[No valid ARP reply for 192.168.1.8, 192.168.1.8 is available.].
+2025-12-10 14:55:48  [notice] WiFi user 44:a3:bb:57:e4:28 has associated to SSID 5
+2025-12-10 14:55:38  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:55:08  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:54:33  [notice] Time synchronized at 2025/12/10, 14:54:33.
+2025-12-10 14:53:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:51:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:48:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:46:04  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:43:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:41:04  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:38:33  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:38:29  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:37:56  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:37:23  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:36:48  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:36:16  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:36:03  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:35:46  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:33:33  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:31:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:28:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:26:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:23:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:21:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:20:25  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:19:53  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:19:20  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:18:48  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:18:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:18:15  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:16:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:13:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:12:35  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-10 14:11:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:08:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:05:59  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:03:28  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 14:02:32  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 14:00:58  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:58:59  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:58:28  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:58:27  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:57:55  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:57:22  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:56:52  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:55:57  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:54:33  [notice] Time synchronized at 2025/12/10, 13:54:33.
+2025-12-10 13:53:26  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:50:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:48:27  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:45:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:43:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:40:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:39:55  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:39:23  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:38:51  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:38:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:38:18  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:37:46  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:37:16  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:35:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:33:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:30:54  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:28:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:25:54  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:23:23  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:21:08  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:20:53  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:20:36  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:20:03  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:19:28  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:18:56  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:18:25  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:18:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:17:13  [notice] WiFi user ca:7e:94:43:9e:2d has associated to SSID 5
+2025-12-10 13:17:13  [notice] DHCP:[Assign IP 192.168.1.10 to device ca:7e:94:43:9e:2d].
+2025-12-10 13:17:13  [notice] DHCP:[No valid ARP reply for 192.168.1.10, 192.168.1.10 is available.].
+2025-12-10 13:15:53  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:13:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:10:52  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:08:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:05:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:03:20  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 13:01:32  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 13:00:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:58:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:56:19  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:55:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:55:47  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:55:15  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:54:42  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:54:33  [notice] Time synchronized at 2025/12/10, 12:54:33.
+2025-12-10 12:54:10  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:53:40  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:53:19  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:50:49  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:48:19  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:45:49  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:43:18  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:40:47  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:38:28  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:38:18  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:37:56  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:37:23  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:36:46  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:36:14  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:35:47  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:35:44  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:33:16  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:30:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:28:17  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:25:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:23:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:20:45  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:18:46  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:18:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:18:14  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:17:42  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:17:09  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:16:37  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:16:07  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 12:15:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:13:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:12:34  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-10 12:10:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:08:14  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:05:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:03:14  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:00:43  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 12:00:32  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:58:13  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:55:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:54:33  [notice] Time synchronized at 2025/12/10, 11:54:33.
+2025-12-10 11:53:30  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:53:13  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:52:57  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:52:25  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:51:53  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:51:20  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:50:50  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:50:42  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:48:12  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:45:42  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:43:11  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:40:40  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:38:09  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:35:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:35:07  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:34:35  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:34:00  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:33:28  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:33:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:32:55  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:32:25  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:30:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:28:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:25:38  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:23:09  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:20:38  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:18:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:16:41  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:16:05  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:15:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:15:33  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:15:00  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:14:28  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:13:58  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 11:13:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:10:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:08:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:05:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:03:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 11:00:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:58:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:56:24  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:55:52  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:55:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:55:19  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:54:47  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:54:33  [notice] Time synchronized at 2025/12/10, 10:54:33.
+2025-12-10 10:54:15  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:53:45  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:53:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:50:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:48:04  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:45:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:43:04  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:40:33  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:38:07  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:38:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:37:35  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:36:58  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:36:22  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:35:50  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:35:33  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:35:20  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:33:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:30:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:28:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:25:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:23:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:20:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:18:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:17:47  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:17:14  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:16:42  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:16:42  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:16:10  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:15:37  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 10:15:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:13:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:12:33  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-10 10:10:40  [notice] WiFi user 8e:e4:6b:5a:1b:b9 has disassociated from SSID 5
+2025-12-10 10:10:33  [notice] WiFi user 06:60:d8:b3:64:32 has disassociated from SSID 5
+2025-12-10 10:10:31  [notice] WiFi user aa:e6:6e:0b:e2:9d has disassociated from SSID 5
+2025-12-10 10:10:29  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:07:59  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:05:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:02:59  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:00:28  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 10:00:01  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 09:57:58  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:55:28  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:54:32  [notice] Time synchronized at 2025/12/10, 09:54:32.
+2025-12-10 09:52:57  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:50:26  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:47:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:45:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:42:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:40:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:40:00  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 09:37:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:37:29  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 09:35:26  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:32:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:30:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:28:47  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 09:28:14  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 09:27:54  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:27:42  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 09:27:09  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 09:26:37  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 09:25:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:22:54  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:20:23  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:17:53  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:15:23  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:12:54  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:10:42  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 09:10:23  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:07:52  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:05:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:02:53  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 09:00:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:57:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:55:27  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 08:55:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:54:57  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 08:54:32  [notice] Time synchronized at 2025/12/10, 08:54:32.
+2025-12-10 08:52:52  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:50:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:47:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:45:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:42:52  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:40:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:38:39  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 08:38:38  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 08:38:06  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 08:37:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:37:33  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 08:37:02  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 08:37:01  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 08:37:00  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 08:36:28  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 08:35:58  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 08:35:20  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:32:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:30:20  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:27:49  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:25:18  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:22:48  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:20:19  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:18:12  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 08:17:48  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:17:40  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 08:17:08  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 08:16:35  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 08:16:03  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 08:15:33  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 08:15:17  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:12:47  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:12:32  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-10 08:10:17  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:07:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:05:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:02:45  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 08:00:16  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:59:04  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 07:58:32  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 07:57:59  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 07:57:45  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:57:27  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 07:56:53  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 07:55:14  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:54:32  [notice] Time synchronized at 2025/12/10, 07:54:32.
+2025-12-10 07:52:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:50:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:47:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:45:13  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:42:43  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:40:57  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 07:40:13  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:37:42  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:35:11  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:34:22  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 07:33:50  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 07:33:17  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 07:32:47  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 07:32:41  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:30:12  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:27:41  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:25:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:22:40  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:20:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:17:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:15:49  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 07:15:17  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 07:15:09  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:14:44  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 07:14:06  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 07:13:34  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 07:13:04  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 07:12:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:10:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:07:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:05:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:02:38  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 07:00:09  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:57:38  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:56:13  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:55:41  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:55:09  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:55:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:54:36  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:54:32  [notice] Time synchronized at 2025/12/10, 06:54:32.
+2025-12-10 06:54:04  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:53:34  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:52:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:50:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:47:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:45:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:42:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:40:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:37:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:36:44  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:36:11  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:35:39  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:35:06  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:35:04  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:34:34  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:34:04  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:32:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:30:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:27:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:25:03  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:22:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:20:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:18:45  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:18:12  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:17:40  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:17:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:17:07  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:16:35  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:16:05  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:15:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:12:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:12:31  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-10 06:10:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:07:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:05:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:02:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 06:00:59  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:00:26  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 06:00:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:59:54  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 05:59:21  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 05:58:49  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 05:57:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:54:59  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:54:32  [notice] Time synchronized at 2025/12/10, 05:54:32.
+2025-12-10 05:52:29  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:50:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:47:29  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:44:58  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:42:55  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 05:42:49  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 05:42:28  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:39:58  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:37:27  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:34:57  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:32:28  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:29:57  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:27:26  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:26:20  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 05:25:48  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 05:25:16  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 05:24:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:24:43  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 05:24:11  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 05:23:41  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 05:22:26  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:19:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:17:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:14:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:12:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:09:54  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:08:02  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 05:07:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:04:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 05:02:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:59:53  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:57:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:54:53  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:54:32  [notice] Time synchronized at 2025/12/10, 04:54:32.
+2025-12-10 04:52:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:51:48  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 04:51:18  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 04:49:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:47:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:44:52  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:42:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:39:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:37:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:34:52  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:33:24  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 04:33:23  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 04:32:51  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 04:32:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:32:19  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 04:31:46  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 04:31:14  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 04:30:44  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 04:29:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:27:20  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:24:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:22:20  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:19:49  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:17:18  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:14:48  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:14:33  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 04:14:01  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 04:13:28  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 04:12:56  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 04:12:30  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-10 04:12:21  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 04:12:20  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 04:12:19  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:11:50  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 04:09:49  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:07:18  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:04:47  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 04:02:18  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:59:47  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:57:16  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:56:02  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:55:29  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:54:57  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:54:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:54:31  [notice] Time synchronized at 2025/12/10, 03:54:31.
+2025-12-10 03:54:24  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:53:52  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:53:22  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:52:17  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:49:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:47:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:44:45  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:42:16  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:39:45  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:37:48  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:37:15  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:37:14  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:36:43  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:36:10  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:35:38  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:35:07  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:34:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:32:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:29:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:27:13  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:24:43  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:22:13  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:19:42  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:17:56  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:17:24  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:17:11  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:16:52  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:16:20  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:15:47  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:15:17  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 03:14:41  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:12:12  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:09:41  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:07:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:04:40  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 03:02:11  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:59:40  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:58:31  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:57:59  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:57:26  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:57:09  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:56:54  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:56:22  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:55:52  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:54:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:54:31  [notice] Time synchronized at 2025/12/10, 02:54:31.
+2025-12-10 02:52:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:50:54  [notice] DHCP:[Assign IP 192.168.1.19 to device 8e:e4:6b:5a:1b:b9].
+2025-12-10 02:50:53  [notice] WiFi user 8e:e4:6b:5a:1b:b9 has associated to SSID 5
+2025-12-10 02:50:49  [notice] WiFi user 8e:e4:6b:5a:1b:b9 has disassociated from SSID 5
+2025-12-10 02:49:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:47:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:44:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:42:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:39:39  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:39:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:37:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:34:49  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:34:38  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:34:16  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:33:41  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:33:04  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:32:32  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:32:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:32:02  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:29:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:27:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:24:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:22:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:19:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:17:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:15:19  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:14:47  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:14:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:14:12  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:14:12  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:13:40  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:13:05  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:12:35  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 02:12:29  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-10 02:12:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:10:11  [notice] DHCP:[Assign IP 192.168.1.22 to device aa:e6:6e:0b:e2:9d].
+2025-12-10 02:10:10  [notice] DHCP:[Renew IP 192.168.1.22 to device aa:e6:6e:0b:e2:9d].
+2025-12-10 02:09:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:07:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:04:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 02:02:04  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:59:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:57:04  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:56:20  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:55:46  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:55:14  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:54:39  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:54:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:54:31  [notice] Time synchronized at 2025/12/10, 01:54:31.
+2025-12-10 01:54:07  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:53:37  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:52:03  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:49:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:47:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:44:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:42:03  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:39:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:38:00  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:37:26  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:37:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:36:52  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:36:19  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:35:45  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:35:15  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:34:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:32:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:29:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:27:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:24:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:22:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:19:29  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:18:46  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:18:14  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:17:40  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:17:07  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:16:59  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:16:35  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:16:05  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 01:14:29  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:11:59  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:09:28  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:06:57  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:04:28  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:01:57  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 01:00:01  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 00:59:26  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:56:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:56:29  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 00:55:55  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 00:55:22  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 00:54:48  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 00:54:31  [notice] Time synchronized at 2025/12/10, 00:54:31.
+2025-12-10 00:54:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:54:12  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-10 00:51:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:49:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:46:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:44:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:41:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:39:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:36:54  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:34:58  [notice] DHCP:[Assign IP 192.168.1.4 to device 06:60:d8:b3:64:32].
+2025-12-10 00:34:58  [notice] DHCP:[Renew IP 192.168.1.4 to device 06:60:d8:b3:64:32].
+2025-12-10 00:34:46  [notice] DHCP:[Assign IP 192.168.1.19 to device 8e:e4:6b:5a:1b:b9].
+2025-12-10 00:34:45  [notice] DHCP:[Renew IP 192.168.1.19 to device 8e:e4:6b:5a:1b:b9].
+2025-12-10 00:34:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:31:54  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:29:23  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:26:53  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:24:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:21:53  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:19:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:16:52  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:14:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:12:28  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-10 00:11:52  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:09:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:06:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:04:20  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-10 00:01:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:59:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:56:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:54:31  [notice] Time synchronized at 2025/12/09, 23:54:31.
+2025-12-09 23:54:19  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:51:49  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:49:19  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:46:49  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:44:18  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:41:47  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:39:17  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:36:47  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:34:16  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:31:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:29:17  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:26:47  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:24:16  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:21:45  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:19:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:16:45  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:14:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:11:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:09:13  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:06:42  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:04:12  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 23:01:43  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:59:12  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:56:41  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:54:31  [notice] Time synchronized at 2025/12/09, 22:54:31.
+2025-12-09 22:54:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:51:40  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:49:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:46:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:44:09  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:41:40  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:39:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:36:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:34:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:31:38  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:29:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:26:38  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:24:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:21:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:19:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:16:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:14:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:12:27  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-09 22:12:20  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 22:12:18  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 22:12:18  [notice] DHCP:[No valid ARP reply for 192.168.1.7, 192.168.1.7 is available.].
+2025-12-09 22:12:18  [notice] WiFi user bc:d0:74:5b:c3:7f has associated to SSID 5
+2025-12-09 22:12:18  [notice] WiFi user 52:d0:5a:be:b1:3b has disassociated from SSID 1
+2025-12-09 22:11:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:09:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:06:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:04:04  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 22:01:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:59:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:56:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:54:25  [notice] Time synchronized at 2025/12/09, 21:54:25.
+2025-12-09 21:54:03  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:51:33  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:49:04  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:46:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:44:03  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:41:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:39:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:36:33  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:34:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:31:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:29:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:26:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:24:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:21:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:19:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:16:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:14:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:11:29  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:08:59  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:06:29  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:03:59  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 21:01:28  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:58:58  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:56:29  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:54:25  [notice] Time synchronized at 2025/12/09, 20:54:25.
+2025-12-09 20:53:58  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:51:27  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:48:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:46:26  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:43:57  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:41:26  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:38:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:36:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:33:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:31:26  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:28:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:26:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:25:55  [notice] WiFi user 52:d0:5a:be:b1:3b has associated to SSID 1
+2025-12-09 20:25:53  [notice] DHCP:[Assign IP 192.168.1.9 to device 52:d0:5a:be:b1:3b].
+2025-12-09 20:25:53  [notice] DHCP:[No valid ARP reply for 192.168.1.9, 192.168.1.9 is available.].
+2025-12-09 20:25:53  [notice] WiFi user bc:d0:74:5b:c3:7f has disassociated from SSID 5
+2025-12-09 20:23:54  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:21:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:18:53  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:16:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:13:52  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:12:25  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-09 20:11:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:08:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:06:20  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:03:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 20:01:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:58:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:56:19  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:54:25  [notice] Time synchronized at 2025/12/09, 19:54:25.
+2025-12-09 19:53:49  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:51:20  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:48:49  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:46:18  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:43:48  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:41:19  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:38:48  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:36:17  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:33:47  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:31:17  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:28:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:26:16  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:23:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:21:16  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:18:47  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:16:16  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:13:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:11:16  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:08:47  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:06:16  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:03:45  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 19:01:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:58:45  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:56:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:54:25  [notice] Time synchronized at 2025/12/09, 18:54:25.
+2025-12-09 18:53:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:51:13  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:48:42  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:46:12  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:43:43  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:41:12  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:38:41  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:36:11  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:33:42  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:31:11  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:28:40  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:26:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:23:41  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:21:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:18:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:16:09  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:13:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:12:24  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-09 18:11:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:08:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:06:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:03:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 18:01:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:58:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:56:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:54:25  [notice] Time synchronized at 2025/12/09, 17:54:25.
+2025-12-09 17:53:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:51:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:48:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:46:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:43:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:41:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:38:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:36:04  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:33:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:31:04  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:28:33  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:26:03  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:23:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:21:03  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:18:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:16:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:13:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:11:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:08:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:06:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:03:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 17:01:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:58:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:56:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:54:25  [notice] Time synchronized at 2025/12/09, 16:54:25.
+2025-12-09 16:53:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:50:59  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:48:28  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:45:59  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:43:28  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:40:57  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:38:27  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:35:58  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:33:27  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:30:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:28:27  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:25:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:23:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:20:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:18:26  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:15:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:13:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:12:23  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-09 16:10:53  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:08:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:05:53  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:03:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 16:00:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:58:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:55:52  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:54:25  [notice] Time synchronized at 2025/12/09, 15:54:25.
+2025-12-09 15:53:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:50:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:48:20  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:45:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:43:20  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:40:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:38:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:35:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:33:19  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:30:49  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:28:19  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:25:49  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:23:18  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:20:48  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:18:19  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:15:48  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:13:17  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:10:47  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:08:18  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:05:47  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:03:16  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 15:00:45  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:58:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:55:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:54:24  [notice] Time synchronized at 2025/12/09, 14:54:24.
+2025-12-09 14:53:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:50:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:48:13  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:45:43  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:43:14  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:40:43  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:38:12  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:35:42  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:33:12  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:30:41  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:28:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:25:40  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:23:11  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:20:40  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:18:09  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:15:38  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:13:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:12:22  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-09 14:10:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:08:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:05:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:03:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 14:00:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:59:22  [notice] DHCP:[Assign IP 192.168.1.22 to device aa:e6:6e:0b:e2:9d].
+2025-12-09 13:59:22  [notice] DHCP:[Renew IP 192.168.1.22 to device aa:e6:6e:0b:e2:9d].
+2025-12-09 13:58:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:55:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:54:24  [notice] Time synchronized at 2025/12/09, 13:54:24.
+2025-12-09 13:53:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:50:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:48:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:45:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:43:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:40:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:38:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:35:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:33:04  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:30:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:28:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:25:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:23:04  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:20:33  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:18:03  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:15:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:13:03  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:10:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:08:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:05:33  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:03:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 13:00:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:58:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:55:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:54:24  [notice] Time synchronized at 2025/12/09, 12:54:24.
+2025-12-09 12:53:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:50:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:48:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:45:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:43:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:40:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:37:59  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:35:29  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:34:58  [notice] DHCP:[Assign IP 192.168.1.4 to device 06:60:d8:b3:64:32].
+2025-12-09 12:34:57  [notice] DHCP:[Renew IP 192.168.1.4 to device 06:60:d8:b3:64:32].
+2025-12-09 12:34:45  [notice] DHCP:[Assign IP 192.168.1.19 to device 8e:e4:6b:5a:1b:b9].
+2025-12-09 12:34:45  [notice] DHCP:[Renew IP 192.168.1.19 to device 8e:e4:6b:5a:1b:b9].
+2025-12-09 12:32:59  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:30:28  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:27:57  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:25:27  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:22:58  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:20:28  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:17:57  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:15:26  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:12:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:12:21  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-09 12:10:26  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:07:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:05:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:02:54  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 12:00:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:57:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:55:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:54:24  [notice] Time synchronized at 2025/12/09, 11:54:24.
+2025-12-09 11:52:53  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:50:23  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:47:54  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:45:23  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:44:02  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 11:44:01  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 11:44:01  [notice] DHCP:[No valid ARP reply for 192.168.1.7, 192.168.1.7 is available.].
+2025-12-09 11:44:01  [notice] WiFi user bc:d0:74:5b:c3:7f has associated to SSID 5
+2025-12-09 11:43:47  [notice] WiFi user bc:d0:74:5b:c3:7f has disassociated from SSID 5
+2025-12-09 11:42:52  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:40:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:37:53  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:35:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:32:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:30:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:27:52  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:25:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:22:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:21:14  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 11:20:20  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:18:03  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 11:17:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:15:20  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:12:49  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:10:19  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:07:49  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:05:18  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:02:48  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 11:01:33  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 11:01:00  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 11:00:30  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 11:00:19  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:57:48  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:55:17  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:54:24  [notice] Time synchronized at 2025/12/09, 10:54:24.
+2025-12-09 10:52:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:50:17  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:47:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:45:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:44:04  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 10:43:32  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 10:42:57  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 10:42:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:42:25  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 10:41:51  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 10:41:19  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 10:40:14  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:37:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:35:13  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:34:54  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 10:32:42  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:30:12  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:27:43  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:25:12  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:22:41  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:20:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:18:12  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 10:17:40  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:17:40  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 10:17:05  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 10:16:33  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 10:15:59  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 10:15:11  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:12:40  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:12:20  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-09 10:10:09  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:07:38  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:05:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:02:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:00:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 10:00:01  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 09:57:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:55:51  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 09:55:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:54:24  [notice] Time synchronized at 2025/12/09, 09:54:24.
+2025-12-09 09:52:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:50:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:47:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:45:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:42:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:40:17  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 09:40:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:37:53  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 09:37:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:35:04  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:32:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:30:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:29:27  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 09:28:53  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 09:28:20  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 09:27:46  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 09:27:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:27:14  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 09:26:44  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 09:25:03  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:22:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:20:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:17:33  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:15:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:12:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:11:22  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 09:10:49  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 09:10:15  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 09:10:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:09:43  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 09:09:09  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 09:07:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:05:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 09:02:29  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:59:59  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:57:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:54:59  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:54:24  [notice] Time synchronized at 2025/12/09, 08:54:24.
+2025-12-09 08:53:20  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 08:52:47  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 08:52:28  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:52:13  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 08:51:32  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 08:51:02  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 08:49:57  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:47:27  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:44:58  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:42:27  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:39:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:37:27  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:35:43  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 08:35:07  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 08:34:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:34:36  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 08:32:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:29:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:27:26  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:24:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:22:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:19:54  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:17:41  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 08:17:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:17:06  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 08:16:34  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 08:16:00  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 08:15:24  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 08:14:53  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:12:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:12:19  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-09 08:09:52  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:07:23  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:04:52  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 08:02:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:59:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:59:31  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 07:58:59  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 07:58:29  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 07:57:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:54:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:54:23  [notice] Time synchronized at 2025/12/09, 07:54:23.
+2025-12-09 07:52:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:49:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:47:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:44:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:42:20  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:42:02  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 07:41:30  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 07:40:57  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 07:40:23  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 07:39:50  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 07:39:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:39:17  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 07:37:20  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:34:49  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:32:18  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:29:47  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:27:17  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:26:08  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 07:24:47  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:22:16  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:19:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:17:17  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:14:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:12:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:10:11  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 07:09:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:07:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:04:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 07:02:14  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:59:45  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:57:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:54:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:54:18  [notice] Time synchronized at 2025/12/09, 06:54:18.
+2025-12-09 06:52:47  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 06:52:14  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:52:13  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 06:51:41  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 06:51:08  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 06:50:34  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 06:50:04  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 06:49:45  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:47:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:44:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:42:13  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:39:43  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:37:13  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:34:42  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:34:29  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 06:32:11  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:29:40  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:27:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:24:41  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:22:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:19:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:17:39  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 06:17:09  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:17:07  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 06:16:36  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 06:14:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:12:18  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-09 06:12:09  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:09:38  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:07:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:04:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:02:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 06:01:06  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 06:00:34  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 06:00:02  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 05:59:38  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:59:27  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 05:58:55  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 05:57:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:54:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:54:18  [notice] Time synchronized at 2025/12/09, 05:54:18.
+2025-12-09 05:52:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:49:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:47:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:44:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:43:19  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 05:42:36  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 05:42:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:39:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:37:04  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:34:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:32:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:29:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:27:03  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 05:27:03  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:26:27  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 05:25:55  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 05:25:21  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 05:24:50  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 05:24:33  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:22:04  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:19:33  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:17:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:14:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:12:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:09:31  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:09:13  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 05:07:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:04:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 05:02:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:59:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:57:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:54:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:54:18  [notice] Time synchronized at 2025/12/09, 04:54:18.
+2025-12-09 04:53:42  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 04:53:09  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 04:52:37  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 04:52:02  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 04:51:59  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:51:29  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 04:49:29  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:47:00  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:44:29  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:41:58  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:39:28  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:36:59  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:35:36  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 04:35:03  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 04:34:28  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:34:27  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 04:33:53  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 04:31:57  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:29:26  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:26:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:24:27  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:21:56  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:19:25  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:17:58  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 04:16:54  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:14:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:12:17  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-09 04:11:55  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:09:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:06:53  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:04:24  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:02:08  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 04:01:53  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 04:01:34  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 04:01:04  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 03:59:22  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:56:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:54:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:54:18  [notice] Time synchronized at 2025/12/09, 03:54:18.
+2025-12-09 03:51:52  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:49:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:46:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:45:38  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 03:45:04  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 03:44:27  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 03:44:20  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:43:52  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 03:43:16  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 03:41:51  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:39:20  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:36:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:34:21  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:31:50  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:29:19  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:26:53  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 03:26:49  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:26:21  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 03:25:48  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 03:25:16  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 03:24:42  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 03:24:19  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:21:48  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:19:18  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:16:49  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:14:18  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:11:47  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:09:17  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:08:47  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 03:08:12  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 03:07:38  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 03:07:03  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 03:06:48  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:04:17  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 03:01:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:59:16  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:56:46  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:54:18  [notice] Time synchronized at 2025/12/09, 02:54:18.
+2025-12-09 02:54:15  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:51:45  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:51:28  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 02:50:51  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 02:50:18  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 02:49:44  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 02:49:16  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:46:45  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:44:14  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:41:44  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:39:14  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:36:43  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:34:12  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:34:11  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 02:33:39  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 02:32:56  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 02:32:26  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 02:31:41  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:29:11  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:26:41  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:24:11  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:21:40  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:19:09  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:17:05  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 02:16:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:16:33  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 02:15:51  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 02:15:19  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 02:14:48  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 02:14:10  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:12:16  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-09 02:11:39  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:09:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:06:38  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:04:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 02:01:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:59:35  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 01:59:22  [notice] DHCP:[Assign IP 192.168.1.22 to device aa:e6:6e:0b:e2:9d].
+2025-12-09 01:59:21  [notice] WiFi user aa:e6:6e:0b:e2:9d has associated to SSID 5
+2025-12-09 01:59:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:58:56  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 01:58:24  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 01:57:50  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 01:56:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:54:17  [notice] Time synchronized at 2025/12/09, 01:54:17.
+2025-12-09 01:54:08  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:51:37  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:49:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:46:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:44:07  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:42:14  [notice] WiFi user aa:e6:6e:0b:e2:9d has disassociated from SSID 5
+2025-12-09 01:41:36  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:39:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:36:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:34:06  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:31:35  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:29:04  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:26:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:24:05  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:21:34  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:19:03  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:16:33  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:14:03  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:11:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:09:02  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:06:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:04:03  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 01:01:32  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 00:59:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 00:56:30  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 00:54:17  [notice] Time synchronized at 2025/12/09, 00:54:17.
+2025-12-09 00:54:01  [notice] IPoE(DHCP): Client received ip address 100.117.187.134 via nas1(HSI).
+2025-12-09 00:48:59  [notice] IPoE(DHCP): Client received ip address 100.123.222.132 via nas1(HSI).
+2025-12-09 00:46:29  [notice] IPoE(DHCP): Client received ip address 100.123.222.132 via nas1(HSI).
+2025-12-09 00:43:59  [notice] IPoE(DHCP): Client received ip address 100.123.222.132 via nas1(HSI).
+2025-12-09 00:41:28  [notice] IPoE(DHCP): Client received ip address 100.123.222.132 via nas1(HSI).
+2025-12-09 00:38:58  [notice] IPoE(DHCP): Client received ip address 100.123.222.132 via nas1(HSI).
+2025-12-09 00:36:29  [notice] IPoE(DHCP): Client received ip address 100.123.222.132 via nas1(HSI).
+2025-12-09 00:35:21  [notice] DHCP:[Assign IP 192.168.1.22 to device aa:e6:6e:0b:e2:9d].
+2025-12-09 00:35:20  [notice] WiFi user aa:e6:6e:0b:e2:9d has associated to SSID 5
+2025-12-09 00:35:18  [notice] WiFi user aa:e6:6e:0b:e2:9d has disassociated from SSID 5
+2025-12-09 00:34:57  [notice] DHCP:[Assign IP 192.168.1.4 to device 06:60:d8:b3:64:32].
+2025-12-09 00:34:56  [notice] WiFi user 06:60:d8:b3:64:32 has associated to SSID 5
+2025-12-09 00:34:47  [notice] DHCP:[Assign IP 192.168.1.22 to device aa:e6:6e:0b:e2:9d].
+2025-12-09 00:34:47  [notice] WiFi user aa:e6:6e:0b:e2:9d has associated to SSID 5
+2025-12-09 00:34:45  [notice] WiFi user aa:e6:6e:0b:e2:9d has disassociated from SSID 5
+2025-12-09 00:34:44  [notice] DHCP:[Assign IP 192.168.1.19 to device 8e:e4:6b:5a:1b:b9].
+2025-12-09 00:34:43  [notice] WiFi user 8e:e4:6b:5a:1b:b9 has associated to SSID 5
+2025-12-09 00:34:38  [notice] WiFi user bc:d0:74:5b:c3:7f has associated to SSID 5
+2025-12-09 00:34:35  [notice] WiFi user 06:60:d8:b3:64:32 has disassociated from SSID 5
+2025-12-09 00:34:34  [notice] WiFi user aa:e6:6e:0b:e2:9d has associated to SSID 5
+2025-12-09 00:34:34  [notice] WiFi user bc:d0:74:5b:c3:7f has disassociated from SSID 5
+2025-12-09 00:34:33  [notice] WiFi user aa:e6:6e:0b:e2:9d has disassociated from SSID 5
+2025-12-09 00:34:32  [notice] WiFi user 8e:e4:6b:5a:1b:b9 has disassociated from SSID 5
+2025-12-09 00:33:58  [notice] IPoE(DHCP): Client received ip address 100.123.222.132 via nas1(HSI).
+2025-12-09 00:32:20  [notice] DHCP:[Assign IP 192.168.1.19 to device 8e:e4:6b:5a:1b:b9].
+2025-12-09 00:31:27  [notice] IPoE(DHCP): Client received ip address 100.123.222.132 via nas1(HSI).
+2025-12-09 00:28:57  [notice] IPoE(DHCP): Client received ip address 100.123.222.132 via nas1(HSI).
+2025-12-09 00:28:42  [notice] DHCP:[Assign IP 192.168.1.19 to device 8e:e4:6b:5a:1b:b9].
+2025-12-09 00:27:04  [notice] admin login success from 192.168.1.22 SSID 5 by GUI.
+2025-12-09 00:26:28  [notice] IPoE(DHCP): Client received ip address 100.123.222.132 via nas1(HSI).
+2025-12-09 00:23:57  [notice] IPoE(DHCP): Client received ip address 100.123.222.132 via nas1(HSI).
+2025-12-09 00:21:32  [notice] Time synchronized at 2025/12/09, 00:21:32.
+2025-12-09 00:21:25  [notice] IPoE(DHCP): Client received ip address 100.123.222.132 via nas1(HSI).
+2025-12-09 00:21:10  [notice] PON:Link state change to up.
+2025-12-09 00:21:08  [notice] PON:Link state change to down.
+2025-12-09 00:21:00  [notice] WiFi user 06:60:d8:b3:64:32 has associated to SSID 5
+2025-12-09 00:20:27  [notice] IPoE(DHCP): Client received ip address 100.123.4.170 via nas1(HSI).
+2025-12-09 00:17:56  [notice] IPoE(DHCP): Client received ip address 100.123.4.170 via nas1(HSI).
+2025-12-09 00:15:26  [notice] IPoE(DHCP): Client received ip address 100.123.4.170 via nas1(HSI).
+2025-12-09 00:13:49  [notice] DHCP:[Assign IP 192.168.1.7 to device bc:d0:74:5b:c3:7f].
+2025-12-09 00:13:49  [notice] DHCP:[No valid ARP reply for 192.168.1.7, 192.168.1.7 is available.].
+2025-12-09 00:13:49  [notice] WiFi user bc:d0:74:5b:c3:7f has associated to SSID 5
+2025-12-09 00:13:31  [notice] WiFi user aa:e6:6e:0b:e2:9d has associated to SSID 5
+2025-12-09 00:13:12  [notice] DHCP:[Assign IP 192.168.1.19 to device 8e:e4:6b:5a:1b:b9].
+2025-12-09 00:13:12  [notice] WiFi user 8e:e4:6b:5a:1b:b9 has associated to SSID 5
+2025-12-09 00:13:02  [notice] Time synchronized at 2025/12/09, 00:13:02.
+2025-12-09 00:12:57  [notice] IPoE(DHCP): Client received ip address 100.123.4.170 via nas1(HSI).
+2025-12-09 00:12:42  [notice] WiFi user 8e:e4:6b:5a:1b:b9 has disassociated from SSID 5
+2025-12-09 00:12:40  [notice] WiFi user 44:a3:bb:57:e4:28 has disassociated from SSID 5
+1970-01-01 03:01:15  [notice] PON:Link state change to up.
+1970-01-01 03:01:14  [notice] WiFi user 44:a3:bb:57:e4:28 has associated to SSID 5
+1970-01-01 03:01:12  [notice] Domain blocking disabled.
+1970-01-01 03:01:11  [notice] URL blocking disabled.
+1970-01-01 03:01:05  [notice] WiFi user 8e:e4:6b:5a:1b:b9 has associated to SSID 5
+1970-01-01 03:00:57  [notice] 5G Auto-channel scan finished, switch to best channel 36.
+1970-01-01 03:00:57  [notice] 5G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+1970-01-01 03:00:48  [notice] 5G Auto-channel mode is Air Busy Time.
+1970-01-01 03:00:43  [notice] 2.4G Auto-channel scan finished, switch to best channel 6.
+1970-01-01 03:00:34  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+1970-01-01 03:00:33  [notice] 2.4G Auto-channel mode is Air Busy Time.
+1970-01-01 00:00:20  [notice] System started.
+2025-12-08 23:44:47  [notice] 2.4G Auto-channel scan finished, switch to best channel 5.
+2025-12-08 23:44:42  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-08 23:44:40  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-08 21:44:41  [notice] 2.4G Auto-channel scan finished, switch to best channel 6.
+2025-12-08 21:44:39  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-08 21:44:36  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-08 19:44:38  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-08 19:44:30  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-08 17:44:37  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-08 17:44:24  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-08 15:44:36  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-08 15:44:24  [notice] 2.4G Auto-channel scan finished, switch to best channel 5.
+2025-12-08 15:44:18  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-08 13:44:35  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-08 13:44:12  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+1970-01-01 03:01:15  [notice] PON:Link state change to up.
+1970-01-01 03:01:10  [notice] Domain blocking disabled.
+1970-01-01 03:01:09  [notice] URL blocking disabled.
+1970-01-01 03:00:57  [notice] 5G Auto-channel scan finished, switch to best channel 48.
+1970-01-01 03:00:57  [notice] 5G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+1970-01-01 03:00:48  [notice] 5G Auto-channel mode is Air Busy Time.
+1970-01-01 03:00:43  [notice] 2.4G Auto-channel scan finished, switch to best channel 6.
+1970-01-01 03:00:34  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+1970-01-01 03:00:33  [notice] 2.4G Auto-channel mode is Air Busy Time.
+2025-12-08 10:21:49  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-08 09:49:31  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-08 08:21:48  [notice] 2.4G Auto-channel scan finished, switch to best channel 6.
+2025-12-08 08:21:43  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-08 07:49:30  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-08 06:21:37  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-08 05:49:28  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-08 04:21:31  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-08 03:49:27  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-08 02:21:26  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-08 01:49:26  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-08 00:21:20  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-07 23:49:25  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-07 22:21:19  [notice] 2.4G Auto-channel scan finished, switch to best channel 5.
+2025-12-07 22:21:14  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-07 21:49:24  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-07 20:21:08  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-07 19:49:23  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-07 18:21:07  [notice] 2.4G Auto-channel scan finished, switch to best channel 6.
+2025-12-07 18:21:02  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-07 17:49:22  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-07 16:21:02  [notice] 2.4G Auto-channel scan finished, switch to best channel 8.
+2025-12-07 16:20:56  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-07 15:49:21  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-07 14:20:56  [notice] 2.4G Auto-channel scan finished, switch to best channel 9.
+2025-12-07 14:20:50  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-07 13:49:20  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-07 12:20:44  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-07 11:49:19  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-07 10:20:39  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-07 09:49:18  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-07 08:20:33  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-07 07:49:17  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-07 06:20:27  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-07 05:49:16  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-07 04:20:26  [notice] 2.4G Auto-channel scan finished, switch to best channel 8.
+2025-12-07 04:20:21  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-07 03:49:15  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-07 02:20:20  [notice] 2.4G Auto-channel scan finished, switch to best channel 7.
+2025-12-07 02:20:15  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-07 01:49:13  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-07 00:20:09  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-06 23:49:12  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-06 22:20:09  [notice] 2.4G Auto-channel scan finished, switch to best channel 9.
+2025-12-06 22:20:04  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-06 21:49:11  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-06 20:20:03  [notice] 2.4G Auto-channel scan finished, switch to best channel 10.
+2025-12-06 20:19:58  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-06 19:49:10  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-06 18:19:52  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-06 17:49:09  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-06 16:19:46  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-06 15:49:08  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-06 14:19:45  [notice] 2.4G Auto-channel scan finished, switch to best channel 8.
+2025-12-06 14:19:40  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-06 13:49:07  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-06 12:19:34  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-06 11:49:06  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-06 10:19:28  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-06 09:49:05  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-06 08:19:22  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-06 07:49:04  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-06 06:19:17  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-06 05:49:03  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-06 04:19:11  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-06 03:49:02  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-06 02:19:05  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-06 01:49:01  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-06 00:19:04  [notice] 2.4G Auto-channel scan finished, switch to best channel 5.
+2025-12-06 00:18:59  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-05 23:48:59  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-05 22:18:53  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-05 21:48:58  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-05 20:18:48  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-05 19:48:57  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-05 18:18:47  [notice] 2.4G Auto-channel scan finished, switch to best channel 8.
+2025-12-05 18:18:42  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-05 17:48:56  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-05 16:18:36  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-05 15:48:55  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-05 14:18:35  [notice] 2.4G Auto-channel scan finished, switch to best channel 10.
+2025-12-05 14:18:30  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-05 13:48:54  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-05 12:18:24  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-05 11:48:53  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-05 10:18:18  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-05 09:48:52  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-05 08:18:17  [notice] 2.4G Auto-channel scan finished, switch to best channel 8.
+2025-12-05 08:18:12  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-05 07:48:51  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-05 06:18:06  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-05 05:48:50  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-05 04:18:00  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-05 03:48:49  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-05 02:17:54  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-05 01:48:48  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-05 00:17:54  [notice] 2.4G Auto-channel scan finished, switch to best channel 7.
+2025-12-05 00:17:48  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-04 23:48:47  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-04 22:17:48  [notice] 2.4G Auto-channel scan finished, switch to best channel 9.
+2025-12-04 22:17:42  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-04 21:48:45  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-04 20:17:42  [notice] 2.4G Auto-channel scan finished, switch to best channel 10.
+2025-12-04 20:17:36  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-04 19:48:44  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-04 18:17:31  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-04 17:48:43  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-04 16:17:25  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-04 15:48:42  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-04 14:17:19  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-04 13:48:41  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-04 12:17:18  [notice] 2.4G Auto-channel scan finished, switch to best channel 8.
+2025-12-04 12:17:13  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-04 11:48:40  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-04 10:17:12  [notice] 2.4G Auto-channel scan finished, switch to best channel 10.
+2025-12-04 10:17:07  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-04 09:48:39  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-04 08:17:06  [notice] 2.4G Auto-channel scan finished, switch to best channel 9.
+2025-12-04 08:17:01  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-04 07:48:38  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-04 06:16:55  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-04 05:48:37  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-04 04:16:49  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-04 03:48:36  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-04 02:16:49  [notice] 2.4G Auto-channel scan finished, switch to best channel 8.
+2025-12-04 02:16:43  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-04 01:48:34  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-04 00:16:43  [notice] 2.4G Auto-channel scan finished, switch to best channel 9.
+2025-12-04 00:16:37  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-03 23:48:33  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-03 22:16:37  [notice] 2.4G Auto-channel scan finished, switch to best channel 8.
+2025-12-03 22:16:31  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-03 21:48:32  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-03 20:16:31  [notice] 2.4G Auto-channel scan finished, switch to best channel 9.
+2025-12-03 20:16:25  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-03 19:48:31  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-03 18:16:19  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-03 17:48:30  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-03 16:16:19  [notice] 2.4G Auto-channel scan finished, switch to best channel 8.
+2025-12-03 16:16:13  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-03 15:48:29  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-03 14:16:07  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-03 13:48:28  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-03 12:16:02  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-03 11:48:27  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-03 10:16:01  [notice] 2.4G Auto-channel scan finished, switch to best channel 9.
+2025-12-03 10:15:56  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-03 09:48:26  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-03 08:15:50  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-03 07:48:25  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-03 06:15:44  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-03 05:48:24  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-03 04:15:44  [notice] 2.4G Auto-channel scan finished, switch to best channel 8.
+2025-12-03 04:15:38  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-03 03:48:22  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-03 02:15:38  [notice] 2.4G Auto-channel scan finished, switch to best channel 7.
+2025-12-03 02:15:33  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-03 01:48:21  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-03 00:15:32  [notice] 2.4G Auto-channel scan finished, switch to best channel 8.
+2025-12-03 00:15:27  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-02 23:48:20  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-02 22:15:26  [notice] 2.4G Auto-channel scan finished, switch to best channel 7.
+2025-12-02 22:15:21  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-02 21:48:19  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-02 20:15:15  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-02 19:48:18  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-02 18:15:09  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-02 17:48:17  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-02 16:15:03  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-02 15:48:16  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-02 14:14:57  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-02 13:48:15  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-02 12:14:51  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-02 11:48:14  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-02 10:14:46  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-02 09:48:13  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-02 08:14:40  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-02 07:48:11  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-02 06:14:34  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-02 05:48:10  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-02 04:14:28  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-02 03:48:09  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-02 02:14:27  [notice] 2.4G Auto-channel scan finished, switch to best channel 8.
+2025-12-02 02:14:22  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-02 01:48:08  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-02 00:14:21  [notice] 2.4G Auto-channel scan finished, switch to best channel 9.
+2025-12-02 00:14:16  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-01 23:48:07  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-01 22:14:10  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-01 21:48:06  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-01 20:14:04  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-01 19:48:05  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-01 18:13:58  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-01 17:48:04  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-01 16:13:58  [notice] 2.4G Auto-channel scan finished, switch to best channel 8.
+2025-12-01 16:13:52  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-01 15:48:03  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-01 14:13:52  [notice] 2.4G Auto-channel scan finished, switch to best channel 9.
+2025-12-01 14:13:47  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-01 13:48:02  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-01 12:13:41  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-01 11:48:01  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-01 10:13:40  [notice] 2.4G Auto-channel scan finished, switch to best channel 8.
+2025-12-01 10:13:35  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-01 09:48:00  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-01 08:13:34  [notice] 2.4G Auto-channel scan finished, switch to best channel 7.
+2025-12-01 08:13:29  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-01 07:47:59  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-01 06:13:23  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-01 05:47:57  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-01 04:13:23  [notice] 2.4G Auto-channel scan finished, switch to best channel 8.
+2025-12-01 04:13:17  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-01 03:47:56  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-01 02:13:17  [notice] 2.4G Auto-channel scan finished, switch to best channel 9.
+2025-12-01 02:13:11  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-12-01 01:47:55  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-12-01 00:13:11  [notice] 2.4G Auto-channel scan finished, switch to best channel 7.
+2025-12-01 00:13:06  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-11-30 23:47:54  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-11-30 22:13:05  [notice] 2.4G Auto-channel scan finished, switch to best channel 9.
+2025-11-30 22:13:00  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-11-30 21:47:53  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-11-30 20:12:59  [notice] 2.4G Auto-channel scan finished, switch to best channel 8.
+2025-11-30 20:12:54  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-11-30 19:47:52  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-11-30 18:12:53  [notice] 2.4G Auto-channel scan finished, switch to best channel 9.
+2025-11-30 18:12:48  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-11-30 17:47:51  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-11-30 16:12:47  [notice] 2.4G Auto-channel scan finished, switch to best channel 8.
+2025-11-30 16:12:42  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-11-30 15:47:50  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-11-30 14:12:36  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-11-30 13:47:49  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.
+2025-11-30 12:12:35  [notice] 2.4G Auto-channel scan finished, switch to best channel 9.
+2025-11-30 12:12:30  [notice] 2.4G Auto-channel scan timer expired. Wi-Fi scan was performed successfully.
+2025-11-30 11:47:48  [notice] 5G Auto-channel scan timer expired. Wi-Fi is in use, scan was not performed.

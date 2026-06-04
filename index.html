@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zod Rust Bevy Port</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #050505;
+        display: grid;
+        place-items: center;
+      }
+
+      #bevy-root {
+        width: 800px;
+        height: 600px;
+      }
+
+      canvas {
+        display: block;
+        width: 100% !important;
+        height: 100% !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="bevy-root">
+      <canvas id="bevy"></canvas>
+    </div>
+    <script type="module">
+      const root = document.querySelector("#bevy-root");
+      const canvas = document.querySelector("#bevy");
+
+      function fitBevyRoot() {
+        const devicePixelRatio = window.devicePixelRatio || 1;
+        const maxSurfaceSide = 2048;
+        const maxCssWidth = maxSurfaceSide / devicePixelRatio;
+        const maxCssHeight = maxSurfaceSide / devicePixelRatio;
+        const scale = Math.min(
+          window.innerWidth / 800,
+          window.innerHeight / 600,
+          maxCssWidth / 800,
+          maxCssHeight / 600,
+          1,
+        );
+        const cssWidth = Math.floor(800 * scale);
+        const cssHeight = Math.floor(600 * scale);
+        root.style.width = `${cssWidth}px`;
+        root.style.height = `${cssHeight}px`;
+        canvas.width = Math.max(1, Math.floor(cssWidth * devicePixelRatio));
+        canvas.height = Math.max(1, Math.floor(cssHeight * devicePixelRatio));
+      }
+
+      fitBevyRoot();
+      window.addEventListener("resize", fitBevyRoot);
+
+      function setBootState(state, detail = "") {
+        document.body.dataset.zodBootState = state;
+        document.body.dataset.zodBootDetail = detail;
+      }
+
+      try {
+        const buildStamp = Date.now().toString();
+        setBootState("importing");
+        const { default: init } = await import(`./pkg/zod-source-rust.js?v=${buildStamp}`);
+        setBootState("initializing");
+        await init(`./pkg/zod-source-rust_bg.wasm?v=${buildStamp}`);
+        setBootState("started");
+      } catch (error) {
+        setBootState("failed", error instanceof Error ? error.message : String(error));
+        console.error("Zod wasm init failed", error);
+      }
+    </script>
+  </body>
+</html>
