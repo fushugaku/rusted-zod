@@ -1,0 +1,2 @@
+[      64ms] [WARNING] using deprecated parameters for the initialization function; pass a single object instead @ http://127.0.0.1:4173/pkg/zod-source-rust.js?v=1783683668212:2144
+[      70ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:4173/favicon.ico:0

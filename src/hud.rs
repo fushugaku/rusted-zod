@@ -1,16 +1,25 @@
 use bevy::{camera::visibility::RenderLayers, prelude::*};
 
 use crate::{
+    account::LoginPromptState,
+    account_ui::{AccountMenuState, account_menu_contains_cursor},
     camera::game_view_size,
+    chat::ChatInputState,
     components::*,
     constants::*,
     grenades::can_have_grenades,
+    news::{NEWS_MAX_HISTORY, NewsLog},
     original::{
-        map::{MapObjectType, ZMap},
-        objects::{CannonType, ItemType, ObjectKind, RobotType},
-        settings::MAX_UNIT_HEALTH,
+        map::ZMap,
+        objects::{BuildingType, ObjectKind},
         types::TeamType,
     },
+    portrait::{PortraitAssets, spawn_hud_portrait},
+    selectable_maps::SelectableMapListState,
+    units,
+    units::buildings::production_logic::MAX_STORED_CANNONS,
+    units::unit_stats::MAX_UNIT_HEALTH,
+    vote::{GameVoteState, LocalVotePlayers, VoteDisplaySnapshot, vote_display_snapshot},
 };
 
 const GRENADE_ICON_TOP_LEFT: Vec2 = Vec2::new(575.0, 185.0);
@@ -18,14 +27,42 @@ const GRENADE_ICON_SIZE: Vec2 = Vec2::new(24.0, 20.0);
 const GRENADE_TEXT_TOP_LEFT: Vec2 = Vec2::new(600.0, 187.0);
 const COMPUTER_MESSAGE_TOP_Y: f32 = 20.0;
 const COMPUTER_MESSAGE_SIZE: Vec2 = Vec2::new(128.0, 14.0);
+const RESUME_PROMPT_SIZE: Vec2 = Vec2::new(170.0, 14.0);
 const COMPUTER_MESSAGE_BLINK_INTERVAL: f32 = 0.3;
 const COMPUTER_MESSAGE_BLINK_FLIPS: u8 = 10;
 const COMPUTER_MESSAGE_HOLD_TIME: f32 = 5.0;
+const MAX_RENDERABLE_STORED_GUNS: usize = 8;
+const STORED_GUN_ICON_TOP_LEFT: Vec2 = Vec2::new(8.0, 8.0);
+const STORED_GUN_ICON_SIZE: Vec2 = Vec2::new(16.0, 14.0);
+const STORED_GUN_ROW_GAP: f32 = 2.0;
+const STORED_GUN_MULTIPLIER_OFFSET: Vec2 = Vec2::new(20.0, 3.0);
+const VOTE_PANEL_TOP_RIGHT: Vec2 = Vec2::new(4.0, 4.0);
+const VOTE_PANEL_SIZE: Vec2 = Vec2::new(112.0, 73.0);
+const VOTE_PANEL_ALPHA: f32 = 200.0 / 255.0;
+const VOTE_TEXT_FONT_SIZE: f32 = 10.0;
+const VOTE_DESCRIPTION_OFFSET: Vec2 = Vec2::new(57.0, 41.0);
+const VOTE_HAVE_OFFSET: Vec2 = Vec2::new(57.0, 53.0);
+const VOTE_NEEDED_OFFSET: Vec2 = Vec2::new(57.0, 64.0);
+const VOTE_FOR_OFFSET: Vec2 = Vec2::new(22.0, 64.0);
+const VOTE_AGAINST_OFFSET: Vec2 = Vec2::new(91.0, 64.0);
+const NEWS_TEXT_LEFT: f32 = 5.0;
+const NEWS_TEXT_FIRST_BOTTOM: f32 = 51.0;
+const NEWS_TEXT_ROW_GAP: f32 = 15.0;
+const NEWS_TEXT_FONT_SIZE: f32 = 12.0;
+const CHAT_TEXT_LEFT: f32 = 209.0;
+const CHAT_TEXT_BOTTOM: f32 = 19.0;
+const CHAT_TEXT_FONT_SIZE: f32 = 12.0;
+const CHAT_TEXT_MAX_CHARS: usize = 64;
+const ATTACK_ALERT_REPEAT_BASE_DELAY: f32 = 5.0;
+const ATTACK_ALERT_REPEAT_RANDOM_STEPS: usize = 300;
+const ATTACK_ALERT_REPEAT_RANDOM_STEP: f32 = 0.01;
+const ATTACK_ALERT_REPEAT_VARIANTS: usize = 6;
 
 pub(crate) fn spawn_hud(
     commands: &mut Commands,
     map: &ZMap,
     hud_assets: &HudAssets,
+    portrait_assets: &PortraitAssets,
     zone_ownership: &ZoneOwnership,
 ) {
     let layout = HudLayout::for_map(map);
@@ -94,6 +131,12 @@ pub(crate) fn spawn_hud(
     spawn_hud_grenade_indicator(commands, hud_assets);
     spawn_hud_health_bar(commands, hud_assets);
     spawn_hud_computer_message(commands, hud_assets);
+    spawn_hud_resume_prompt(commands, hud_assets);
+    spawn_hud_vote_panel(commands, hud_assets);
+    spawn_hud_news_log(commands, hud_assets);
+    spawn_hud_chat_draft(commands, hud_assets);
+    spawn_hud_stored_gun_indicators(commands, hud_assets);
+    spawn_hud_portrait(commands, portrait_assets);
 
     let minimap_center = layout.render_offset + layout.render_size * 0.5;
     commands.spawn((
@@ -136,30 +179,6 @@ pub(crate) fn spawn_hud(
         ));
     }
 
-    for (ref_id, object) in map.objects.iter().enumerate() {
-        if object.object_type == MapObjectType::MapItem && object.object_id == ItemType::Rock as u8
-        {
-            continue;
-        }
-
-        let local = layout.map_pixel_to_minimap_local(Vec2::new(
-            object.x as f32 * TILE_SIZE,
-            object.y as f32 * TILE_SIZE,
-        ));
-        commands.spawn((
-            Sprite::from_color(object.owner.color(), Vec2::splat(2.0)),
-            Transform::from_xyz(0.0, 0.0, 713.0),
-            RenderLayers::layer(HUD_LAYER),
-            HudAnchor::BottomRight {
-                offset: layout.bottom_right_offset_for_minimap_local(local),
-            },
-            MinimapDot {
-                ref_id: ref_id as u32 + 1,
-            },
-            Name::new("minimap_object"),
-        ));
-    }
-
     commands.spawn((
         Sprite::from_color(Color::srgba(0.78, 0.78, 0.0, 0.35), Vec2::splat(1.0)),
         Transform::from_xyz(0.0, 0.0, 714.0),
@@ -187,8 +206,166 @@ fn spawn_hud_computer_message(commands: &mut Commands, hud_assets: &HudAssets) {
             size: COMPUTER_MESSAGE_SIZE,
         },
         HudComputerMessage,
-        Name::new("hud_computer_message_fort_under_attack"),
+        Name::new("hud_computer_message"),
     ));
+}
+
+fn spawn_hud_resume_prompt(commands: &mut Commands, hud_assets: &HudAssets) {
+    commands.spawn((
+        Sprite {
+            image: hud_assets.click_to_resume_message.clone(),
+            custom_size: Some(RESUME_PROMPT_SIZE),
+            ..default()
+        },
+        Visibility::Hidden,
+        Transform::from_xyz(0.0, 0.0, 732.0),
+        RenderLayers::layer(HUD_LAYER),
+        HudAnchor::ScreenCenter {
+            size: RESUME_PROMPT_SIZE,
+        },
+        HudResumePrompt,
+        Name::new("hud_resume_prompt"),
+    ));
+}
+
+fn spawn_hud_vote_panel(commands: &mut Commands, hud_assets: &HudAssets) {
+    commands.spawn((
+        Sprite {
+            image: hud_assets.vote_in_progress_panel.clone(),
+            color: Color::srgba(1.0, 1.0, 1.0, VOTE_PANEL_ALPHA),
+            custom_size: Some(VOTE_PANEL_SIZE),
+            ..default()
+        },
+        Visibility::Hidden,
+        Transform::from_xyz(0.0, 0.0, 733.0),
+        RenderLayers::layer(HUD_LAYER),
+        HudAnchor::ScreenTopRight {
+            top_right: VOTE_PANEL_TOP_RIGHT,
+            size: VOTE_PANEL_SIZE,
+        },
+        HudVotePanel,
+        Name::new("hud_vote_panel"),
+    ));
+
+    for (field, offset) in [
+        (HudVoteTextField::Description, VOTE_DESCRIPTION_OFFSET),
+        (HudVoteTextField::Have, VOTE_HAVE_OFFSET),
+        (HudVoteTextField::Needed, VOTE_NEEDED_OFFSET),
+        (HudVoteTextField::ForVotes, VOTE_FOR_OFFSET),
+        (HudVoteTextField::AgainstVotes, VOTE_AGAINST_OFFSET),
+    ] {
+        commands.spawn((
+            Text2d::new(""),
+            TextFont {
+                font: hud_assets.font.clone(),
+                font_size: VOTE_TEXT_FONT_SIZE,
+                ..default()
+            },
+            TextColor(vote_text_color()),
+            TextLayout::new_with_justify(Justify::Left),
+            bevy::sprite::Anchor::TOP_LEFT,
+            Visibility::Hidden,
+            Transform::from_xyz(0.0, 0.0, 734.0),
+            RenderLayers::layer(HUD_LAYER),
+            HudAnchor::ScreenTopRight {
+                top_right: vote_text_top_right(offset),
+                size: Vec2::ZERO,
+            },
+            HudVoteText { field },
+            Name::new("hud_vote_text"),
+        ));
+    }
+}
+
+fn spawn_hud_news_log(commands: &mut Commands, hud_assets: &HudAssets) {
+    for slot in 0..NEWS_MAX_HISTORY {
+        commands.spawn((
+            Text2d::new(""),
+            TextFont {
+                font: hud_assets.font.clone(),
+                font_size: NEWS_TEXT_FONT_SIZE,
+                ..default()
+            },
+            TextColor(Color::WHITE),
+            TextLayout::new_with_justify(Justify::Left),
+            bevy::sprite::Anchor::TOP_LEFT,
+            Visibility::Hidden,
+            Transform::from_xyz(0.0, 0.0, 735.0),
+            RenderLayers::layer(HUD_LAYER),
+            HudAnchor::ScreenBottomLeft {
+                bottom_left: news_text_bottom_left(slot),
+                size: Vec2::ZERO,
+            },
+            HudNewsText { slot },
+            Name::new("hud_news_text"),
+        ));
+    }
+}
+
+fn spawn_hud_chat_draft(commands: &mut Commands, hud_assets: &HudAssets) {
+    commands.spawn((
+        Text2d::new(""),
+        TextFont {
+            font: hud_assets.font.clone(),
+            font_size: CHAT_TEXT_FONT_SIZE,
+            ..default()
+        },
+        TextColor(Color::WHITE),
+        TextLayout::new_with_justify(Justify::Left),
+        bevy::sprite::Anchor::TOP_LEFT,
+        Visibility::Hidden,
+        Transform::from_xyz(0.0, 0.0, 736.0),
+        RenderLayers::layer(HUD_LAYER),
+        HudAnchor::ScreenBottomLeft {
+            bottom_left: chat_text_bottom_left(),
+            size: Vec2::ZERO,
+        },
+        HudChatText,
+        Name::new("hud_chat_text"),
+    ));
+}
+
+fn spawn_hud_stored_gun_indicators(commands: &mut Commands, hud_assets: &HudAssets) {
+    for slot in 0..MAX_RENDERABLE_STORED_GUNS {
+        let icon_top_left = stored_gun_icon_top_left(slot);
+        commands.spawn((
+            Sprite {
+                image: hud_assets.stored_gun_indicator.clone(),
+                custom_size: Some(STORED_GUN_ICON_SIZE),
+                ..default()
+            },
+            Visibility::Hidden,
+            Transform::from_xyz(0.0, 0.0, 731.0),
+            RenderLayers::layer(HUD_LAYER),
+            HudAnchor::ScreenTopLeft {
+                top_left: icon_top_left,
+                size: STORED_GUN_ICON_SIZE,
+            },
+            HudStoredGunIcon { slot },
+            Name::new("hud_stored_gun_icon"),
+        ));
+
+        commands.spawn((
+            Text2d::new(""),
+            TextFont {
+                font: hud_assets.font.clone(),
+                font_size: 12.0,
+                ..default()
+            },
+            TextColor(Color::WHITE),
+            TextLayout::new_with_justify(Justify::Left),
+            bevy::sprite::Anchor::TOP_LEFT,
+            Visibility::Hidden,
+            Transform::from_xyz(0.0, 0.0, 732.0),
+            RenderLayers::layer(HUD_LAYER),
+            HudAnchor::ScreenTopLeft {
+                top_left: icon_top_left + STORED_GUN_MULTIPLIER_OFFSET,
+                size: Vec2::ZERO,
+            },
+            HudStoredGunMultiplier { slot },
+            Name::new("hud_stored_gun_multiplier"),
+        ));
+    }
 }
 
 fn spawn_hud_selected_object_sprites(commands: &mut Commands, hud_assets: &HudAssets) {
@@ -510,7 +687,7 @@ pub(crate) fn handle_hud_button_input(
     windows: Query<&Window>,
     hud_assets: Res<HudAssets>,
     attack_alert: Res<HudAttackAlert>,
-    fort_warning: Res<FortUnderAttackWarning>,
+    computer_display: Res<ComputerMessageDisplay>,
     mut command_queue: ResMut<HudCommandQueue>,
     mut button_query: Query<(&mut HudButton, &mut Sprite)>,
 ) {
@@ -565,11 +742,110 @@ pub(crate) fn handle_hud_button_input(
     }
 
     if mouse.just_released(MouseButton::Left)
-        && computer_message_contains(cursor, window_size, fort_warning.message)
+        && computer_message_contains(cursor, window_size, computer_display.message)
     {
-        if let Some(ref_id) = fort_warning.message.target_ref_id {
-            command_queue.pending.push(HudCommand::JumpToObject(ref_id));
+        if let Some(command) = computer_message_focus_command(computer_display.message) {
+            command_queue.pending.push(command);
         }
+    }
+}
+
+pub(crate) fn handle_resume_prompt_input(
+    mouse: Res<ButtonInput<MouseButton>>,
+    windows: Query<&Window>,
+    pause: Res<GamePauseState>,
+    mut click_state: ResMut<ResumePromptClickState>,
+    mut command_queue: ResMut<HudCommandQueue>,
+    mut production_window: ResMut<ProductionWindowState>,
+    login_prompt: Res<LoginPromptState>,
+    account_menu: Res<AccountMenuState>,
+) {
+    if !mouse.just_pressed(MouseButton::Left) && !mouse.just_released(MouseButton::Left) {
+        return;
+    }
+
+    let Ok(window) = windows.single() else {
+        return;
+    };
+    let Some(cursor) = window.cursor_position() else {
+        click_state.pressed = false;
+        return;
+    };
+    if account_menu_contains_cursor(&login_prompt, &account_menu, window, cursor) {
+        click_state.pressed = false;
+        return;
+    }
+
+    let window_size = Vec2::new(window.width(), window.height());
+    let hovered = resume_prompt_contains(cursor, window_size, pause.paused);
+
+    if mouse.just_pressed(MouseButton::Left) {
+        click_state.pressed = hovered;
+        if hovered {
+            production_window.input_captured = true;
+        }
+    }
+
+    if mouse.just_released(MouseButton::Left) {
+        if click_state.pressed && hovered {
+            command_queue.pending.push(HudCommand::ResumeGame);
+            production_window.input_captured = true;
+        }
+        click_state.pressed = false;
+    }
+}
+
+pub(crate) fn handle_stored_gun_hud_input(
+    mouse: Res<ButtonInput<MouseButton>>,
+    windows: Query<&Window>,
+    mut click_state: ResMut<StoredGunHudClickState>,
+    mut command_queue: ResMut<HudCommandQueue>,
+    mut production_window: ResMut<ProductionWindowState>,
+    object_query: Query<(
+        &GameObjectEntity,
+        &ObjectTeam,
+        &ObjectStats,
+        &BuildingProduction,
+    )>,
+) {
+    if !mouse.just_pressed(MouseButton::Left) && !mouse.just_released(MouseButton::Left) {
+        return;
+    }
+
+    let Ok(window) = windows.single() else {
+        return;
+    };
+    let Some(cursor) = window.cursor_position() else {
+        click_state.pressed_ref_id = None;
+        return;
+    };
+
+    let entries = stored_gun_hud_entries_from_query(&object_query, TeamType::Red);
+    let hovered_ref_id = stored_gun_ref_at_cursor(cursor, &entries);
+
+    if mouse.just_pressed(MouseButton::Left) {
+        click_state.pressed_ref_id = hovered_ref_id;
+        if hovered_ref_id.is_some() {
+            production_window.input_captured = true;
+        }
+    }
+
+    if mouse.just_released(MouseButton::Left) {
+        if hovered_ref_id.is_some() || click_state.pressed_ref_id.is_some() {
+            production_window.input_captured = true;
+        }
+        if let (Some(pressed_ref_id), Some(released_ref_id)) =
+            (click_state.pressed_ref_id, hovered_ref_id)
+        {
+            if pressed_ref_id == released_ref_id {
+                command_queue.pending.push(HudCommand::FocusObject {
+                    ref_id: released_ref_id,
+                    select_obj: false,
+                    open_gui: true,
+                });
+            }
+        }
+        click_state.pressed_ref_id = None;
     }
 }
 
@@ -728,7 +1004,6 @@ pub(crate) fn update_hud_button_availability(
 #[derive(Clone, Copy)]
 struct AttackAlertSnapshot {
     ref_id: u32,
-    team: TeamType,
     destroyed: bool,
     attack_target: Option<u32>,
 }
@@ -737,29 +1012,20 @@ pub(crate) fn update_hud_attack_alert(
     time: Res<Time>,
     hud_assets: Res<HudAssets>,
     mut alert: ResMut<HudAttackAlert>,
-    object_query: Query<(
-        &GameObjectEntity,
-        &ObjectTeam,
-        &ObjectStats,
-        Option<&AttackTarget>,
-    )>,
+    mut portrait_state: ResMut<PortraitAnimationState>,
+    mut portrait_sounds: ResMut<PortraitAnimationSoundQueue>,
+    mut rng: ResMut<CombatRng>,
+    object_query: Query<(&GameObjectEntity, &ObjectStats, Option<&AttackTarget>)>,
     mut button_query: Query<(&mut HudButton, &mut Sprite)>,
 ) {
     let snapshots: Vec<AttackAlertSnapshot> = object_query
         .iter()
-        .map(|(object, team, stats, attack)| AttackAlertSnapshot {
+        .map(|(object, stats, attack)| AttackAlertSnapshot {
             ref_id: object.ref_id,
-            team: team.0,
             destroyed: stats.destroyed(),
             attack_target: attack.map(|attack| attack.ref_id),
         })
         .collect();
-
-    if alert.target_ref_id.is_none() {
-        if let Some(ref_id) = first_attack_alert_target(&snapshots, TeamType::Red) {
-            start_attack_alert(&mut alert, ref_id);
-        }
-    }
 
     if let Some(ref_id) = alert.target_ref_id {
         if !object_exists(&snapshots, ref_id) {
@@ -768,16 +1034,24 @@ pub(crate) fn update_hud_attack_alert(
             alert.check_elapsed += time.delta_secs();
             while alert.check_elapsed >= 0.25 {
                 alert.check_elapsed -= 0.25;
-                process_attack_alert_check(
-                    &mut alert,
-                    target_is_under_attack(&snapshots, ref_id, TeamType::Red),
-                );
+                process_attack_alert_check(&mut alert, target_is_under_attack(&snapshots, ref_id));
             }
 
-            alert.flash_elapsed += time.delta_secs();
-            while alert.flash_elapsed >= 0.15 {
-                alert.flash_elapsed -= 0.15;
-                alert.visible = !alert.visible;
+            if alert.target_ref_id == Some(ref_id) {
+                alert.flash_elapsed += time.delta_secs();
+                while alert.flash_elapsed >= 0.15 {
+                    alert.flash_elapsed -= 0.15;
+                    alert.visible = !alert.visible;
+                }
+
+                process_attack_alert_repeat_animation(
+                    &mut alert,
+                    ref_id,
+                    time.delta_secs(),
+                    &mut portrait_state,
+                    &mut portrait_sounds,
+                    &mut rng,
+                );
             }
         }
     }
@@ -798,20 +1072,8 @@ pub(crate) fn update_hud_attack_alert(
     }
 }
 
-fn start_attack_alert(alert: &mut HudAttackAlert, ref_id: u32) {
-    alert.target_ref_id = Some(ref_id);
-    alert.visible = true;
-    alert.not_under_attack_checks = 0;
-    alert.check_elapsed = 0.0;
-    alert.flash_elapsed = 0.0;
-}
-
 fn clear_attack_alert(alert: &mut HudAttackAlert) {
-    alert.target_ref_id = None;
-    alert.visible = false;
-    alert.not_under_attack_checks = 0;
-    alert.check_elapsed = 0.0;
-    alert.flash_elapsed = 0.0;
+    alert.source_clear();
 }
 
 fn process_attack_alert_check(alert: &mut HudAttackAlert, still_under_attack: bool) {
@@ -827,29 +1089,53 @@ fn process_attack_alert_check(alert: &mut HudAttackAlert, still_under_attack: bo
     }
 }
 
-fn first_attack_alert_target(
-    snapshots: &[AttackAlertSnapshot],
-    player_team: TeamType,
-) -> Option<u32> {
-    snapshots
-        .iter()
-        .filter(|snapshot| snapshot.team == player_team && !snapshot.destroyed)
-        .filter(|target| target_is_under_attack(snapshots, target.ref_id, player_team))
-        .map(|target| target.ref_id)
-        .min()
+fn process_attack_alert_repeat_animation(
+    alert: &mut HudAttackAlert,
+    target_ref_id: u32,
+    delta_secs: f32,
+    portrait_state: &mut PortraitAnimationState,
+    portrait_sounds: &mut PortraitAnimationSoundQueue,
+    rng: &mut CombatRng,
+) -> bool {
+    alert.anim_elapsed += delta_secs.max(0.0);
+    if alert.anim_elapsed < alert.anim_delay {
+        return false;
+    }
+
+    let next_delay = attack_alert_next_repeat_delay(rng);
+    alert.source_schedule_next_anim(next_delay);
+    let next_anim = attack_alert_next_repeat_anim(alert.last_anim, rng);
+    if portrait_state.doing_anim() {
+        return false;
+    }
+
+    alert.last_anim = Some(next_anim);
+    let kind = PortraitAnimationKind::UnderAttackRepeat(next_anim);
+    portrait_state.start(PortraitAnimationEvent {
+        ref_id: target_ref_id,
+        kind,
+    });
+    portrait_sounds.pending.push(kind);
+    true
 }
 
-fn target_is_under_attack(
-    snapshots: &[AttackAlertSnapshot],
-    target_ref_id: u32,
-    player_team: TeamType,
-) -> bool {
-    snapshots.iter().any(|attacker| {
-        attacker.team != player_team
-            && attacker.team != TeamType::Null
-            && !attacker.destroyed
-            && attacker.attack_target == Some(target_ref_id)
-    })
+pub(crate) fn attack_alert_next_repeat_delay(rng: &mut CombatRng) -> f32 {
+    ATTACK_ALERT_REPEAT_BASE_DELAY
+        + ATTACK_ALERT_REPEAT_RANDOM_STEP * rng.index(ATTACK_ALERT_REPEAT_RANDOM_STEPS) as f32
+}
+
+fn attack_alert_next_repeat_anim(last_anim: Option<u8>, rng: &mut CombatRng) -> u8 {
+    let mut next_anim = rng.index(ATTACK_ALERT_REPEAT_VARIANTS) as u8;
+    while Some(next_anim) == last_anim {
+        next_anim = rng.index(ATTACK_ALERT_REPEAT_VARIANTS) as u8;
+    }
+    next_anim
+}
+
+fn target_is_under_attack(snapshots: &[AttackAlertSnapshot], target_ref_id: u32) -> bool {
+    snapshots
+        .iter()
+        .any(|attacker| !attacker.destroyed && attacker.attack_target == Some(target_ref_id))
 }
 
 fn object_exists(snapshots: &[AttackAlertSnapshot], ref_id: u32) -> bool {
@@ -858,11 +1144,169 @@ fn object_exists(snapshots: &[AttackAlertSnapshot], ref_id: u32) -> bool {
         .any(|snapshot| snapshot.ref_id == ref_id && !snapshot.destroyed)
 }
 
-pub(crate) fn start_fort_under_attack_message(
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+struct StoredGunHudSnapshot {
+    ref_id: u32,
+    kind: ObjectKind,
+    team: TeamType,
+    destroyed: bool,
+    stored_cannon_count: usize,
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+struct StoredGunHudEntry {
+    ref_id: u32,
+    stored_cannon_count: usize,
+}
+
+pub(crate) fn update_hud_stored_guns(
+    object_query: Query<(
+        &GameObjectEntity,
+        &ObjectTeam,
+        &ObjectStats,
+        &BuildingProduction,
+    )>,
+    mut icon_query: Query<
+        (&HudStoredGunIcon, &mut HudAnchor, &mut Visibility),
+        Without<HudStoredGunMultiplier>,
+    >,
+    mut text_query: Query<
+        (
+            &HudStoredGunMultiplier,
+            &mut HudAnchor,
+            &mut Text2d,
+            &mut Visibility,
+        ),
+        Without<HudStoredGunIcon>,
+    >,
+) {
+    let entries = stored_gun_hud_entries_from_query(&object_query, TeamType::Red);
+
+    for (icon, mut anchor, mut visibility) in &mut icon_query {
+        let top_left = stored_gun_icon_top_left(icon.slot);
+        *anchor = HudAnchor::ScreenTopLeft {
+            top_left,
+            size: STORED_GUN_ICON_SIZE,
+        };
+        *visibility = if entries.get(icon.slot).is_some() {
+            Visibility::Visible
+        } else {
+            Visibility::Hidden
+        };
+    }
+
+    for (multiplier, mut anchor, mut text, mut visibility) in &mut text_query {
+        let top_left = stored_gun_icon_top_left(multiplier.slot) + STORED_GUN_MULTIPLIER_OFFSET;
+        *anchor = HudAnchor::ScreenTopLeft {
+            top_left,
+            size: Vec2::ZERO,
+        };
+
+        let Some(entry) = entries.get(multiplier.slot) else {
+            text.0.clear();
+            *visibility = Visibility::Hidden;
+            continue;
+        };
+
+        if let Some(multiplier_text) = stored_gun_multiplier_text(entry.stored_cannon_count) {
+            text.0 = multiplier_text;
+            *visibility = Visibility::Visible;
+        } else {
+            text.0.clear();
+            *visibility = Visibility::Hidden;
+        }
+    }
+}
+
+fn stored_gun_hud_entries_from_query(
+    object_query: &Query<(
+        &GameObjectEntity,
+        &ObjectTeam,
+        &ObjectStats,
+        &BuildingProduction,
+    )>,
+    player_team: TeamType,
+) -> Vec<StoredGunHudEntry> {
+    let mut snapshots: Vec<_> = object_query
+        .iter()
+        .map(|(object, team, stats, production)| StoredGunHudSnapshot {
+            ref_id: object.ref_id,
+            kind: object.kind,
+            team: team.0,
+            destroyed: stats.destroyed(),
+            stored_cannon_count: production.stored_cannons.len(),
+        })
+        .collect();
+    snapshots.sort_by_key(|snapshot| snapshot.ref_id);
+    stored_gun_hud_entries(&snapshots, player_team)
+}
+
+fn stored_gun_hud_entries(
+    snapshots: &[StoredGunHudSnapshot],
+    player_team: TeamType,
+) -> Vec<StoredGunHudEntry> {
+    snapshots
+        .iter()
+        .filter(|snapshot| {
+            snapshot.team == player_team
+                && !snapshot.destroyed
+                && snapshot.stored_cannon_count > 0
+                && stored_gun_hud_building(snapshot.kind)
+        })
+        .take(MAX_RENDERABLE_STORED_GUNS)
+        .map(|snapshot| StoredGunHudEntry {
+            ref_id: snapshot.ref_id,
+            stored_cannon_count: snapshot.stored_cannon_count,
+        })
+        .collect()
+}
+
+fn stored_gun_hud_building(kind: ObjectKind) -> bool {
+    matches!(
+        kind,
+        ObjectKind::Building(
+            BuildingType::FortFront
+                | BuildingType::FortBack
+                | BuildingType::RobotFactory
+                | BuildingType::VehicleFactory
+        )
+    )
+}
+
+fn stored_gun_ref_at_cursor(cursor: Vec2, entries: &[StoredGunHudEntry]) -> Option<u32> {
+    entries
+        .iter()
+        .enumerate()
+        .find_map(|(slot, entry)| stored_gun_slot_contains(slot, cursor).then_some(entry.ref_id))
+}
+
+fn stored_gun_slot_contains(slot: usize, cursor: Vec2) -> bool {
+    let top_left = stored_gun_icon_top_left(slot);
+    cursor.x >= top_left.x
+        && cursor.x <= top_left.x + STORED_GUN_ICON_SIZE.x
+        && cursor.y >= top_left.y
+        && cursor.y <= top_left.y + STORED_GUN_ICON_SIZE.y
+}
+
+fn stored_gun_multiplier_text(stored_cannon_count: usize) -> Option<String> {
+    (stored_cannon_count > 1 && stored_cannon_count <= MAX_STORED_CANNONS)
+        .then(|| format!("X{stored_cannon_count}"))
+}
+
+fn stored_gun_icon_top_left(slot: usize) -> Vec2 {
+    Vec2::new(
+        STORED_GUN_ICON_TOP_LEFT.x,
+        STORED_GUN_ICON_TOP_LEFT.y + slot as f32 * (STORED_GUN_ICON_SIZE.y + STORED_GUN_ROW_GAP),
+    )
+}
+
+pub(crate) fn start_computer_message(
     message: &mut ComputerMessageState,
+    kind: ComputerMessageKind,
     target_ref_id: u32,
 ) {
     *message = ComputerMessageState {
+        kind: Some(kind),
         target_ref_id: Some(target_ref_id),
         visible: true,
         blink_elapsed: 0.0,
@@ -871,20 +1315,209 @@ pub(crate) fn start_fort_under_attack_message(
     };
 }
 
+pub(crate) fn start_fort_under_attack_message(
+    message: &mut ComputerMessageState,
+    target_ref_id: u32,
+) {
+    start_computer_message(message, ComputerMessageKind::FortUnderAttack, target_ref_id);
+}
+
+pub(crate) fn computer_message_space_bar_event(
+    kind: ComputerMessageKind,
+    ref_id: u32,
+) -> SpaceBarEvent {
+    let (select_obj, open_gui) = computer_message_focus_flags(kind);
+    SpaceBarEvent::new(ref_id, select_obj, open_gui)
+}
+
 pub(crate) fn update_hud_computer_message(
     time: Res<Time>,
-    mut fort_warning: ResMut<FortUnderAttackWarning>,
-    mut message_query: Query<&mut Visibility, With<HudComputerMessage>>,
+    hud_assets: Res<HudAssets>,
+    mut display: ResMut<ComputerMessageDisplay>,
+    mut message_query: Query<(&mut Visibility, &mut Sprite), With<HudComputerMessage>>,
 ) {
-    advance_computer_message_state(&mut fort_warning.message, time.delta_secs());
-    let desired_visibility = if fort_warning.message.active() && fort_warning.message.visible {
+    advance_computer_message_state(&mut display.message, time.delta_secs());
+    let desired_visibility = if display.message.active() && display.message.visible {
         Visibility::Visible
     } else {
         Visibility::Hidden
     };
 
-    for mut visibility in &mut message_query {
+    for (mut visibility, mut sprite) in &mut message_query {
         *visibility = desired_visibility;
+        if let Some(kind) = display.message.kind {
+            sprite.image = computer_message_image(&hud_assets, kind);
+        }
+    }
+}
+
+pub(crate) fn update_hud_resume_prompt(
+    pause: Res<GamePauseState>,
+    mut prompt_query: Query<&mut Visibility, With<HudResumePrompt>>,
+) {
+    let desired_visibility = if pause.paused {
+        Visibility::Visible
+    } else {
+        Visibility::Hidden
+    };
+
+    for mut visibility in &mut prompt_query {
+        *visibility = desired_visibility;
+    }
+}
+
+pub(crate) fn update_hud_vote_display(
+    vote: Res<GameVoteState>,
+    vote_players: Res<LocalVotePlayers>,
+    selectable_maps: Res<SelectableMapListState>,
+    mut panel_query: Query<&mut Visibility, (With<HudVotePanel>, Without<HudVoteText>)>,
+    mut text_query: Query<(&HudVoteText, &mut Text2d, &mut Visibility), Without<HudVotePanel>>,
+) {
+    let snapshot = vote_display_snapshot(&vote, &vote_players, selectable_maps.maps());
+    let desired_visibility = if snapshot.is_some() {
+        Visibility::Visible
+    } else {
+        Visibility::Hidden
+    };
+
+    for mut visibility in &mut panel_query {
+        *visibility = desired_visibility;
+    }
+
+    for (vote_text, mut text, mut visibility) in &mut text_query {
+        if let Some(snapshot) = snapshot.as_ref() {
+            text.0 = vote_text_value(vote_text.field, snapshot);
+            *visibility = Visibility::Visible;
+        } else {
+            text.0.clear();
+            *visibility = Visibility::Hidden;
+        }
+    }
+}
+
+pub(crate) fn update_hud_news_log(
+    time: Res<Time<Real>>,
+    mut news_log: ResMut<NewsLog>,
+    mut text_query: Query<(
+        &HudNewsText,
+        &mut Text2d,
+        &mut TextColor,
+        &mut Visibility,
+        &mut HudAnchor,
+    )>,
+) {
+    news_log.advance(time.delta_secs());
+
+    for (news_text, mut text, mut text_color, mut visibility, mut anchor) in &mut text_query {
+        if let Some(entry) = news_log.display_entry(news_text.slot) {
+            text.0 = entry.message.to_string();
+            text_color.0 = entry.color.to_bevy(entry.alpha);
+            *visibility = Visibility::Visible;
+            *anchor = HudAnchor::ScreenBottomLeft {
+                bottom_left: news_text_bottom_left(news_text.slot),
+                size: Vec2::ZERO,
+            };
+        } else {
+            text.0.clear();
+            *visibility = Visibility::Hidden;
+        }
+    }
+}
+
+pub(crate) fn update_hud_chat_draft(
+    chat: Res<ChatInputState>,
+    mut text_query: Query<
+        (&mut Text2d, &mut Visibility, &mut HudAnchor),
+        (With<HudChatText>, Without<HudNewsText>),
+    >,
+) {
+    for (mut text, mut visibility, mut anchor) in &mut text_query {
+        if chat.collecting() {
+            text.0 = chat_draft_text(chat.message());
+            *visibility = Visibility::Visible;
+            *anchor = HudAnchor::ScreenBottomLeft {
+                bottom_left: chat_text_bottom_left(),
+                size: Vec2::ZERO,
+            };
+        } else {
+            text.0.clear();
+            *visibility = Visibility::Hidden;
+        }
+    }
+}
+
+fn computer_message_image(hud_assets: &HudAssets, kind: ComputerMessageKind) -> Handle<Image> {
+    match kind {
+        ComputerMessageKind::RobotManufactured => hud_assets.robot_manufactured_message.clone(),
+        ComputerMessageKind::VehicleManufactured => hud_assets.vehicle_manufactured_message.clone(),
+        ComputerMessageKind::GunManufactured => hud_assets.gun_manufactured_message.clone(),
+        ComputerMessageKind::FortUnderAttack => hud_assets.fort_under_attack_message.clone(),
+    }
+}
+
+fn vote_text_value(field: HudVoteTextField, snapshot: &VoteDisplaySnapshot) -> String {
+    match field {
+        HudVoteTextField::Description => snapshot.description.clone(),
+        HudVoteTextField::Have => snapshot.have_votes.to_string(),
+        HudVoteTextField::Needed => snapshot.needed_votes.to_string(),
+        HudVoteTextField::ForVotes => snapshot.for_votes.to_string(),
+        HudVoteTextField::AgainstVotes => snapshot.against_votes.to_string(),
+    }
+}
+
+fn vote_text_top_right(offset: Vec2) -> Vec2 {
+    Vec2::new(
+        VOTE_PANEL_TOP_RIGHT.x + VOTE_PANEL_SIZE.x - offset.x,
+        VOTE_PANEL_TOP_RIGHT.y + offset.y,
+    )
+}
+
+fn vote_text_color() -> Color {
+    Color::srgba(1.0, 0.92, 0.2, VOTE_PANEL_ALPHA)
+}
+
+fn news_text_bottom_left(slot: usize) -> Vec2 {
+    Vec2::new(
+        NEWS_TEXT_LEFT,
+        NEWS_TEXT_FIRST_BOTTOM + NEWS_TEXT_ROW_GAP * slot as f32,
+    )
+}
+
+fn chat_text_bottom_left() -> Vec2 {
+    Vec2::new(CHAT_TEXT_LEFT, CHAT_TEXT_BOTTOM)
+}
+
+fn chat_draft_text(message: &str) -> String {
+    let draft = format!("Say:: {message}");
+    let char_count = draft.chars().count();
+    if char_count <= CHAT_TEXT_MAX_CHARS {
+        draft
+    } else {
+        draft
+            .chars()
+            .skip(char_count - CHAT_TEXT_MAX_CHARS)
+            .collect()
+    }
+}
+
+fn computer_message_focus_command(message: ComputerMessageState) -> Option<HudCommand> {
+    let ref_id = message.target_ref_id?;
+    let kind = message.kind?;
+    let (select_obj, open_gui) = computer_message_focus_flags(kind);
+    Some(HudCommand::FocusObject {
+        ref_id,
+        select_obj,
+        open_gui,
+    })
+}
+
+fn computer_message_focus_flags(kind: ComputerMessageKind) -> (bool, bool) {
+    match kind {
+        ComputerMessageKind::RobotManufactured | ComputerMessageKind::VehicleManufactured => {
+            (true, false)
+        }
+        ComputerMessageKind::GunManufactured => (false, true),
+        ComputerMessageKind::FortUnderAttack => (false, false),
     }
 }
 
@@ -940,6 +1573,22 @@ fn computer_message_screen_top_left(window_size: Vec2) -> Vec2 {
     )
 }
 
+fn resume_prompt_contains(cursor: Vec2, window_size: Vec2, paused: bool) -> bool {
+    if !paused {
+        return false;
+    }
+
+    let top_left = resume_prompt_screen_top_left(window_size);
+    cursor.x >= top_left.x
+        && cursor.x <= top_left.x + RESUME_PROMPT_SIZE.x
+        && cursor.y >= top_left.y
+        && cursor.y <= top_left.y + RESUME_PROMPT_SIZE.y
+}
+
+fn resume_prompt_screen_top_left(window_size: Vec2) -> Vec2 {
+    (window_size - RESUME_PROMPT_SIZE) * 0.5
+}
+
 pub(crate) fn update_hud_selected_object(
     asset_server: Res<AssetServer>,
     selection: Res<SelectionState>,
@@ -985,20 +1634,9 @@ pub(crate) fn selected_hud_asset_name(
     team: TeamType,
     slot: HudSelectedObjectSlot,
 ) -> Option<String> {
-    let name = match kind {
-        ObjectKind::Robot(robot) => robot_hud_name(robot),
-        ObjectKind::Vehicle(vehicle) => vehicle.folder(),
-        ObjectKind::Cannon(cannon) => cannon_hud_name(cannon),
-        _ => return None,
-    };
-
     match slot {
-        HudSelectedObjectSlot::Icon => Some(format!(
-            "icon_{}_{}.png",
-            name,
-            team.atlas_team().asset_name()
-        )),
-        HudSelectedObjectSlot::Label => Some(format!("label_{name}.png")),
+        HudSelectedObjectSlot::Icon => units::selected_hud_icon_asset_name(kind, team),
+        HudSelectedObjectSlot::Label => units::selected_hud_label_asset_name(kind),
     }
 }
 
@@ -1093,26 +1731,6 @@ fn hud_grenade_icon(assets: &HudAssets, team: TeamType) -> Handle<Image> {
                 .map(|(_, image)| image.clone())
         })
         .expect("grenade icon assets should include null fallback")
-}
-
-fn robot_hud_name(robot: RobotType) -> &'static str {
-    match robot {
-        RobotType::Grunt => "grunt",
-        RobotType::Psycho => "psycho",
-        RobotType::Sniper => "sniper",
-        RobotType::Tough => "tough",
-        RobotType::Pyro => "pyro",
-        RobotType::Laser => "laser",
-    }
-}
-
-fn cannon_hud_name(cannon: CannonType) -> &'static str {
-    match cannon {
-        CannonType::Gatling => "gatling",
-        CannonType::Gun => "gun",
-        CannonType::Howitzer => "howitzer",
-        CannonType::MissileCannon => "missile_cannon",
-    }
 }
 
 pub(crate) fn update_hud_health_bar(
@@ -1233,6 +1851,7 @@ fn hud_anchor_screen_position(
             }
             base_top_left + top_left + size * 0.5
         }
+        HudAnchor::BasePoint { point } => base_top_left + point,
         HudAnchor::FixedXBaseY { top_left, size } => {
             if let Some(sprite) = sprite.as_deref_mut() {
                 sprite.custom_size = Some(size);
@@ -1242,11 +1861,41 @@ fn hud_anchor_screen_position(
                 base_top_left.y + top_left.y + size.y * 0.5,
             )
         }
+        HudAnchor::ScreenTopLeft { top_left, size } => {
+            if let Some(sprite) = sprite.as_deref_mut() {
+                sprite.custom_size = Some(size);
+            }
+            top_left + size * 0.5
+        }
+        HudAnchor::ScreenTopRight { top_right, size } => {
+            if let Some(sprite) = sprite.as_deref_mut() {
+                sprite.custom_size = Some(size);
+            }
+            Vec2::new(
+                window_size.x - top_right.x - size.x * 0.5,
+                top_right.y + size.y * 0.5,
+            )
+        }
         HudAnchor::ScreenTopCenter { top_y, size } => {
             if let Some(sprite) = sprite.as_deref_mut() {
                 sprite.custom_size = Some(size);
             }
             Vec2::new(window_size.x * 0.5, top_y + size.y * 0.5)
+        }
+        HudAnchor::ScreenCenter { size } => {
+            if let Some(sprite) = sprite.as_deref_mut() {
+                sprite.custom_size = Some(size);
+            }
+            window_size * 0.5
+        }
+        HudAnchor::ScreenBottomLeft { bottom_left, size } => {
+            if let Some(sprite) = sprite.as_deref_mut() {
+                sprite.custom_size = Some(size);
+            }
+            Vec2::new(
+                bottom_left.x + size.x * 0.5,
+                window_size.y - bottom_left.y - size.y * 0.5,
+            )
         }
         HudAnchor::BottomRight { offset } => window_size + offset,
     }
@@ -1262,20 +1911,7 @@ fn hud_screen_to_world(screen_position: Vec2, window_size: Vec2) -> Vec2 {
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    fn alert_snapshot(
-        ref_id: u32,
-        team: TeamType,
-        destroyed: bool,
-        attack_target: Option<u32>,
-    ) -> AttackAlertSnapshot {
-        AttackAlertSnapshot {
-            ref_id,
-            team,
-            destroyed,
-            attack_target,
-        }
-    }
+    use crate::original::objects::RobotType;
 
     #[test]
     fn grenade_indicator_visibility_matches_original_can_have_grenades() {
@@ -1323,36 +1959,9 @@ mod tests {
     }
 
     #[test]
-    fn attack_alert_selects_owned_target_attacked_by_enemy() {
-        let snapshots = [
-            alert_snapshot(1, TeamType::Red, false, None),
-            alert_snapshot(2, TeamType::Blue, false, Some(1)),
-            alert_snapshot(3, TeamType::Red, false, None),
-            alert_snapshot(4, TeamType::Blue, false, Some(3)),
-        ];
-
-        assert_eq!(
-            first_attack_alert_target(&snapshots, TeamType::Red),
-            Some(1)
-        );
-    }
-
-    #[test]
-    fn attack_alert_ignores_destroyed_and_non_owned_targets() {
-        let snapshots = [
-            alert_snapshot(1, TeamType::Red, true, None),
-            alert_snapshot(2, TeamType::Blue, false, Some(1)),
-            alert_snapshot(3, TeamType::Blue, false, None),
-            alert_snapshot(4, TeamType::Red, false, Some(3)),
-        ];
-
-        assert_eq!(first_attack_alert_target(&snapshots, TeamType::Red), None);
-    }
-
-    #[test]
     fn attack_alert_check_counter_matches_original_reset_delay() {
         let mut alert = HudAttackAlert::default();
-        start_attack_alert(&mut alert, 7);
+        alert.source_set_ref_id(7, 5.0);
 
         for expected in 1..=10 {
             process_attack_alert_check(&mut alert, false);
@@ -1373,6 +1982,9 @@ mod tests {
             not_under_attack_checks: 5,
             check_elapsed: 0.0,
             flash_elapsed: 0.0,
+            anim_elapsed: 0.0,
+            anim_delay: 5.0,
+            last_anim: None,
         };
 
         process_attack_alert_check(&mut alert, true);
@@ -1382,10 +1994,104 @@ mod tests {
     }
 
     #[test]
+    fn attack_alert_repeat_delay_matches_source_range() {
+        let mut rng = CombatRng::default();
+        for _ in 0..10 {
+            let delay = attack_alert_next_repeat_delay(&mut rng);
+            assert!((5.0..=7.99).contains(&delay));
+        }
+    }
+
+    #[test]
+    fn attack_alert_repeat_waits_for_scheduled_time() {
+        let mut alert = HudAttackAlert::default();
+        alert.source_set_ref_id(7, 5.0);
+        let mut portrait_state = PortraitAnimationState::default();
+        let mut portrait_sounds = PortraitAnimationSoundQueue::default();
+        let mut rng = CombatRng::default();
+
+        assert!(!process_attack_alert_repeat_animation(
+            &mut alert,
+            7,
+            4.99,
+            &mut portrait_state,
+            &mut portrait_sounds,
+            &mut rng,
+        ));
+        assert!(portrait_sounds.pending.is_empty());
+
+        assert!(process_attack_alert_repeat_animation(
+            &mut alert,
+            7,
+            0.01,
+            &mut portrait_state,
+            &mut portrait_sounds,
+            &mut rng,
+        ));
+        assert!(portrait_state.doing_anim());
+        assert!(matches!(
+            portrait_sounds.pending.as_slice(),
+            [PortraitAnimationKind::UnderAttackRepeat(_)]
+        ));
+        assert!(alert.last_anim.is_some());
+        assert!(alert.anim_delay >= 5.0);
+    }
+
+    #[test]
+    fn attack_alert_repeat_keeps_last_anim_when_portrait_busy() {
+        let mut alert = HudAttackAlert::default();
+        alert.source_set_ref_id(7, 0.0);
+        alert.last_anim = Some(2);
+        let mut portrait_state = PortraitAnimationState::default();
+        portrait_state.start(PortraitAnimationEvent {
+            ref_id: 3,
+            kind: PortraitAnimationKind::TargetDestroyed,
+        });
+        let mut portrait_sounds = PortraitAnimationSoundQueue::default();
+        let mut rng = CombatRng::default();
+
+        assert!(!process_attack_alert_repeat_animation(
+            &mut alert,
+            7,
+            0.0,
+            &mut portrait_state,
+            &mut portrait_sounds,
+            &mut rng,
+        ));
+        assert_eq!(alert.last_anim, Some(2));
+        assert!(portrait_sounds.pending.is_empty());
+        assert!(alert.anim_delay >= 5.0);
+    }
+
+    #[test]
+    fn attack_alert_repeat_does_not_repeat_last_anim() {
+        let mut alert = HudAttackAlert::default();
+        alert.source_set_ref_id(7, 0.0);
+        let mut rng = CombatRng::default();
+
+        for _ in 0..20 {
+            let previous = alert.last_anim;
+            let mut portrait_state = PortraitAnimationState::default();
+            let mut portrait_sounds = PortraitAnimationSoundQueue::default();
+            let delta_secs = alert.anim_delay;
+            assert!(process_attack_alert_repeat_animation(
+                &mut alert,
+                7,
+                delta_secs,
+                &mut portrait_state,
+                &mut portrait_sounds,
+                &mut rng,
+            ));
+            assert_ne!(alert.last_anim, previous);
+        }
+    }
+
+    #[test]
     fn fort_message_blinks_ten_flips_then_holds_visible() {
         let mut message = ComputerMessageState::default();
         start_fort_under_attack_message(&mut message, 42);
 
+        assert_eq!(message.kind, Some(ComputerMessageKind::FortUnderAttack));
         assert_eq!(message.target_ref_id, Some(42));
         assert!(message.visible);
         assert_eq!(message.flips_remaining, 10);
@@ -1429,5 +2135,265 @@ mod tests {
             window_size,
             message
         ));
+    }
+
+    #[test]
+    fn manufactured_computer_message_focus_flags_match_source_events() {
+        assert_eq!(
+            computer_message_space_bar_event(ComputerMessageKind::RobotManufactured, 10),
+            SpaceBarEvent::new(10, true, false)
+        );
+        assert_eq!(
+            computer_message_space_bar_event(ComputerMessageKind::VehicleManufactured, 11),
+            SpaceBarEvent::new(11, true, false)
+        );
+        assert_eq!(
+            computer_message_space_bar_event(ComputerMessageKind::GunManufactured, 12),
+            SpaceBarEvent::new(12, false, true)
+        );
+        assert_eq!(
+            computer_message_space_bar_event(ComputerMessageKind::FortUnderAttack, 13),
+            SpaceBarEvent::new(13, false, false)
+        );
+    }
+
+    #[test]
+    fn resume_prompt_click_rect_uses_original_centering() {
+        let window_size = Vec2::new(800.0, 600.0);
+
+        assert_eq!(
+            resume_prompt_screen_top_left(window_size),
+            Vec2::new(315.0, 293.0)
+        );
+        assert!(resume_prompt_contains(
+            Vec2::new(400.0, 300.0),
+            window_size,
+            true
+        ));
+        assert!(!resume_prompt_contains(
+            Vec2::new(400.0, 292.0),
+            window_size,
+            true
+        ));
+        assert!(!resume_prompt_contains(
+            Vec2::new(400.0, 300.0),
+            window_size,
+            false
+        ));
+    }
+
+    fn stored_gun_snapshot(
+        ref_id: u32,
+        kind: ObjectKind,
+        team: TeamType,
+        destroyed: bool,
+        stored_cannon_count: usize,
+    ) -> StoredGunHudSnapshot {
+        StoredGunHudSnapshot {
+            ref_id,
+            kind,
+            team,
+            destroyed,
+            stored_cannon_count,
+        }
+    }
+
+    #[test]
+    fn stored_gun_slots_match_source_positions_and_icon_hit_rect() {
+        assert_eq!(STORED_GUN_ICON_SIZE, Vec2::new(16.0, 14.0));
+        assert_eq!(stored_gun_icon_top_left(0), Vec2::new(8.0, 8.0));
+        assert_eq!(stored_gun_icon_top_left(1), Vec2::new(8.0, 24.0));
+        assert_eq!(stored_gun_icon_top_left(7), Vec2::new(8.0, 120.0));
+
+        assert!(stored_gun_slot_contains(0, Vec2::new(8.0, 8.0)));
+        assert!(stored_gun_slot_contains(0, Vec2::new(24.0, 22.0)));
+        assert!(!stored_gun_slot_contains(0, Vec2::new(28.0, 11.0)));
+        assert!(!stored_gun_slot_contains(0, Vec2::new(8.0, 23.0)));
+    }
+
+    #[test]
+    fn vote_panel_positions_match_source_top_right_offsets() {
+        let window_size = Vec2::new(1280.0, 720.0);
+        assert_eq!(
+            hud_anchor_screen_position(
+                HudAnchor::ScreenTopRight {
+                    top_right: VOTE_PANEL_TOP_RIGHT,
+                    size: VOTE_PANEL_SIZE,
+                },
+                window_size,
+                None,
+            ),
+            Vec2::new(1220.0, 40.5)
+        );
+        assert_eq!(
+            vote_text_top_right(VOTE_DESCRIPTION_OFFSET),
+            Vec2::new(59.0, 45.0)
+        );
+        assert_eq!(vote_text_top_right(VOTE_FOR_OFFSET), Vec2::new(94.0, 68.0));
+        assert_eq!(
+            vote_text_top_right(VOTE_AGAINST_OFFSET),
+            Vec2::new(25.0, 68.0)
+        );
+    }
+
+    #[test]
+    fn vote_text_values_match_source_setup_images_fields() {
+        let snapshot = VoteDisplaySnapshot {
+            description: "Resume Game".to_string(),
+            have_votes: 1,
+            needed_votes: 3,
+            for_votes: 1,
+            against_votes: 0,
+        };
+
+        assert_eq!(
+            vote_text_value(HudVoteTextField::Description, &snapshot),
+            "Resume Game"
+        );
+        assert_eq!(vote_text_value(HudVoteTextField::Have, &snapshot), "1");
+        assert_eq!(vote_text_value(HudVoteTextField::Needed, &snapshot), "3");
+        assert_eq!(vote_text_value(HudVoteTextField::ForVotes, &snapshot), "1");
+        assert_eq!(
+            vote_text_value(HudVoteTextField::AgainstVotes, &snapshot),
+            "0"
+        );
+    }
+
+    #[test]
+    fn news_text_positions_match_source_bottom_left_stack() {
+        let window_size = Vec2::new(800.0, 600.0);
+
+        assert_eq!(news_text_bottom_left(0), Vec2::new(5.0, 51.0));
+        assert_eq!(news_text_bottom_left(1), Vec2::new(5.0, 66.0));
+        assert_eq!(
+            hud_anchor_screen_position(
+                HudAnchor::ScreenBottomLeft {
+                    bottom_left: news_text_bottom_left(0),
+                    size: Vec2::ZERO,
+                },
+                window_size,
+                None,
+            ),
+            Vec2::new(5.0, 549.0)
+        );
+    }
+
+    #[test]
+    fn chat_text_position_and_prefix_match_source_draft() {
+        let window_size = Vec2::new(800.0, 600.0);
+
+        assert_eq!(chat_text_bottom_left(), Vec2::new(209.0, 19.0));
+        assert_eq!(chat_draft_text("hello"), "Say:: hello");
+        assert_eq!(
+            hud_anchor_screen_position(
+                HudAnchor::ScreenBottomLeft {
+                    bottom_left: chat_text_bottom_left(),
+                    size: Vec2::ZERO,
+                },
+                window_size,
+                None,
+            ),
+            Vec2::new(209.0, 581.0)
+        );
+    }
+
+    #[test]
+    fn chat_text_keeps_tail_when_source_area_would_clip_left() {
+        let long = "a".repeat(CHAT_TEXT_MAX_CHARS + 10);
+        let text = chat_draft_text(&long);
+
+        assert_eq!(text.chars().count(), CHAT_TEXT_MAX_CHARS);
+        assert!(text.chars().all(|character| character == 'a'));
+    }
+
+    #[test]
+    fn stored_gun_entries_filter_and_cap_source_render_list() {
+        let mut snapshots = vec![
+            stored_gun_snapshot(
+                99,
+                ObjectKind::Building(BuildingType::RobotFactory),
+                TeamType::Blue,
+                false,
+                2,
+            ),
+            stored_gun_snapshot(
+                98,
+                ObjectKind::Building(BuildingType::RobotFactory),
+                TeamType::Red,
+                true,
+                2,
+            ),
+            stored_gun_snapshot(
+                97,
+                ObjectKind::Building(BuildingType::Radar),
+                TeamType::Red,
+                false,
+                2,
+            ),
+            stored_gun_snapshot(
+                96,
+                ObjectKind::Building(BuildingType::RobotFactory),
+                TeamType::Red,
+                false,
+                0,
+            ),
+        ];
+        for ref_id in 1..=9 {
+            snapshots.push(stored_gun_snapshot(
+                ref_id,
+                ObjectKind::Building(BuildingType::VehicleFactory),
+                TeamType::Red,
+                false,
+                ref_id as usize,
+            ));
+        }
+        snapshots.sort_by_key(|snapshot| snapshot.ref_id);
+
+        let entries = stored_gun_hud_entries(&snapshots, TeamType::Red);
+        assert_eq!(entries.len(), MAX_RENDERABLE_STORED_GUNS);
+        assert_eq!(
+            entries.iter().map(|entry| entry.ref_id).collect::<Vec<_>>(),
+            vec![1, 2, 3, 4, 5, 6, 7, 8]
+        );
+    }
+
+    #[test]
+    fn stored_gun_multiplier_text_matches_source_count_gate() {
+        assert_eq!(stored_gun_multiplier_text(0), None);
+        assert_eq!(stored_gun_multiplier_text(1), None);
+        assert_eq!(stored_gun_multiplier_text(2), Some("X2".to_string()));
+        assert_eq!(stored_gun_multiplier_text(4), Some("X4".to_string()));
+        assert_eq!(stored_gun_multiplier_text(5), None);
+    }
+
+    #[test]
+    fn stored_gun_click_resolves_icon_slots_to_building_refs() {
+        let entries = [
+            StoredGunHudEntry {
+                ref_id: 11,
+                stored_cannon_count: 1,
+            },
+            StoredGunHudEntry {
+                ref_id: 22,
+                stored_cannon_count: 3,
+            },
+        ];
+
+        assert_eq!(
+            stored_gun_ref_at_cursor(Vec2::new(9.0, 9.0), &entries),
+            Some(11)
+        );
+        assert_eq!(
+            stored_gun_ref_at_cursor(Vec2::new(9.0, 25.0), &entries),
+            Some(22)
+        );
+        assert_eq!(
+            stored_gun_ref_at_cursor(Vec2::new(28.0, 12.0), &entries),
+            None
+        );
+        assert_eq!(
+            stored_gun_ref_at_cursor(Vec2::new(9.0, 41.0), &entries),
+            None
+        );
     }
 }

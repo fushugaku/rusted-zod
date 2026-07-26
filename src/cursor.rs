@@ -11,10 +11,12 @@ use crate::{
         objects::{ItemType, ObjectKind},
         types::TeamType,
     },
+    units::attack::grenade_attack_source,
 };
 
 const CURSOR_FRAMES: usize = 4;
 const CURSOR_FRAME_TIME: f32 = 0.2;
+const PREVIOUS_CURSOR_DURATION: f32 = 3.0;
 const CURSOR_SIZE: Vec2 = Vec2::splat(16.0);
 const PLAYER_TEAM: TeamType = TeamType::Red;
 
@@ -67,6 +69,44 @@ impl Default for ZCursorState {
 #[derive(Component)]
 pub(crate) struct ZCursorSprite;
 
+#[derive(Resource)]
+pub(crate) struct PreviousCursorState {
+    pub(crate) kind: ZCursorKind,
+    pub(crate) position: Vec2,
+    pub(crate) remaining: f32,
+    pub(crate) frame: usize,
+    elapsed: f32,
+}
+
+impl Default for PreviousCursorState {
+    fn default() -> Self {
+        Self {
+            kind: ZCursorKind::Placed,
+            position: Vec2::ZERO,
+            remaining: 0.0,
+            frame: 0,
+            elapsed: 0.0,
+        }
+    }
+}
+
+impl PreviousCursorState {
+    pub(crate) fn show(&mut self, kind: ZCursorKind, position: Vec2) {
+        self.kind = kind;
+        self.position = position;
+        self.remaining = PREVIOUS_CURSOR_DURATION;
+        self.frame = 0;
+        self.elapsed = 0.0;
+    }
+
+    fn visible(&self) -> bool {
+        self.remaining > 0.0
+    }
+}
+
+#[derive(Component)]
+pub(crate) struct PreviousCursorSprite;
+
 #[derive(Clone, Copy, Debug)]
 struct CursorSelectionFacts {
     selected_any: bool,
@@ -117,8 +157,22 @@ pub(crate) fn spawn_zcursor(mut commands: Commands, assets: Res<ZCursorAssets>) 
     ));
 }
 
+pub(crate) fn spawn_previous_cursor(mut commands: Commands, assets: Res<ZCursorAssets>) {
+    commands.spawn((
+        Sprite {
+            image: assets.image(ZCursorKind::Placed, TeamType::Null, 0),
+            custom_size: Some(CURSOR_SIZE),
+            ..default()
+        },
+        Transform::from_xyz(0.0, 0.0, 900.0),
+        Visibility::Hidden,
+        PreviousCursorSprite,
+        Name::new("previous_command_cursor"),
+    ));
+}
+
 pub(crate) fn update_zcursor(
-    time: Res<Time>,
+    time: Res<Time<Real>>,
     assets: Res<ZCursorAssets>,
     mut state: ResMut<ZCursorState>,
     mut window_queries: ParamSet<(Query<&Window>, Query<&mut CursorOptions>)>,
@@ -135,6 +189,7 @@ pub(crate) fn update_zcursor(
             &ObjectTeam,
             &ObjectStats,
             Option<&GrenadeInventory>,
+            Option<&RobotGroup>,
         )>,
         Query<(&mut Sprite, &mut Transform), With<ZCursorSprite>>,
     )>,
@@ -189,6 +244,40 @@ pub(crate) fn update_zcursor(
     transform.translation.y = center.y;
 }
 
+pub(crate) fn update_previous_cursor(
+    time: Res<Time<Real>>,
+    assets: Res<ZCursorAssets>,
+    mut state: ResMut<PreviousCursorState>,
+    mut query: Query<(&mut Sprite, &mut Transform, &mut Visibility), With<PreviousCursorSprite>>,
+) {
+    let Ok((mut sprite, mut transform, mut visibility)) = query.single_mut() else {
+        return;
+    };
+
+    if !state.visible() {
+        *visibility = Visibility::Hidden;
+        return;
+    }
+
+    state.remaining = (state.remaining - time.delta_secs()).max(0.0);
+    if !state.visible() {
+        *visibility = Visibility::Hidden;
+        return;
+    }
+
+    state.elapsed += time.delta_secs();
+    if state.elapsed >= CURSOR_FRAME_TIME {
+        state.elapsed %= CURSOR_FRAME_TIME;
+        state.frame = (state.frame + 1) % CURSOR_FRAMES;
+    }
+
+    sprite.image = assets.image(state.kind, TeamType::Null, state.frame);
+    sprite.custom_size = Some(CURSOR_SIZE);
+    transform.translation.x = state.position.x;
+    transform.translation.y = state.position.y;
+    *visibility = Visibility::Visible;
+}
+
 impl ZCursorAssets {
     fn image(&self, kind: ZCursorKind, team: TeamType, frame: usize) -> Handle<Image> {
         self.frames
@@ -217,6 +306,7 @@ fn cursor_kind_for_current_input(
         &ObjectTeam,
         &ObjectStats,
         Option<&GrenadeInventory>,
+        Option<&RobotGroup>,
     )>,
 ) -> Option<ZCursorKind> {
     if production_window.input_captured || production_window.open.is_some() {
@@ -256,6 +346,7 @@ fn cursor_selection_facts(
         &ObjectTeam,
         &ObjectStats,
         Option<&GrenadeInventory>,
+        Option<&RobotGroup>,
     )>,
 ) -> CursorSelectionFacts {
     let mut facts = CursorSelectionFacts {
@@ -267,8 +358,14 @@ fn cursor_selection_facts(
         have_explosives: false,
         can_pickup_grenades: false,
     };
+    let grenade_amounts: HashMap<u32, u8> = object_query
+        .iter()
+        .filter_map(|(object, _, _, _, stats, inventory, _)| {
+            (!stats.destroyed()).then_some((object.ref_id, inventory.map_or(0, |i| i.amount)))
+        })
+        .collect();
 
-    for (object, _, selectable, team, stats, inventory) in object_query {
+    for (object, _, selectable, team, stats, inventory, group) in object_query {
         if team.0 != PLAYER_TEAM || !selection.selected_refs.contains(&object.ref_id) {
             continue;
         }
@@ -276,8 +373,14 @@ fn cursor_selection_facts(
         facts.selected_any = true;
         facts.can_move |= selectable.mobile;
         facts.can_attack |= stats.can_attack();
-        facts.have_explosives |=
-            stats.has_explosive_damage() || inventory.is_some_and(|inventory| inventory.amount > 0);
+        facts.have_explosives |= cursor_object_has_explosives(
+            object.kind,
+            object.ref_id,
+            *stats,
+            inventory.map(|inventory| inventory.amount),
+            group.map(|group| group.leader_ref_id),
+            &grenade_amounts,
+        );
         facts.can_pickup_grenades |=
             inventory.is_some_and(|inventory| can_pickup_grenades(object.kind, inventory.amount));
     }
@@ -294,11 +397,12 @@ fn cursor_hover_facts(
         &ObjectTeam,
         &ObjectStats,
         Option<&GrenadeInventory>,
+        Option<&RobotGroup>,
     )>,
 ) -> Option<CursorHoverFacts> {
     object_query
         .iter()
-        .filter(|(_, transform, selectable, _, stats, _)| {
+        .filter(|(_, transform, selectable, _, stats, _, _)| {
             !stats.destroyed()
                 && point_in_object_rect(
                     world_pos,
@@ -307,13 +411,13 @@ fn cursor_hover_facts(
                 )
         })
         .min_by(
-            |(_, a_transform, _, _, _, _), (_, b_transform, _, _, _, _)| {
+            |(_, a_transform, _, _, _, _, _), (_, b_transform, _, _, _, _, _)| {
                 let a = world_pos.distance_squared(a_transform.translation.truncate());
                 let b = world_pos.distance_squared(b_transform.translation.truncate());
                 a.total_cmp(&b)
             },
         )
-        .map(|(object, transform, selectable, team, stats, _)| CursorHoverFacts {
+        .map(|(object, transform, selectable, team, stats, _, _)| CursorHoverFacts {
             ref_id: object.ref_id,
             kind: object.kind,
             team: team.0,
@@ -322,6 +426,25 @@ fn cursor_hover_facts(
             can_enter_fort: matches!(object.kind, ObjectKind::Building(building) if can_enter_fort(object.kind, team.0, PLAYER_TEAM, *stats)
                 && point_in_fort_entrance_rect(world_pos, transform.translation.truncate(), selectable.selection_size, building)),
         })
+}
+
+fn cursor_object_has_explosives(
+    kind: ObjectKind,
+    ref_id: u32,
+    stats: ObjectStats,
+    own_grenade_amount: Option<u8>,
+    leader_ref_id: Option<u32>,
+    grenade_amounts: &HashMap<u32, u8>,
+) -> bool {
+    stats.has_explosive_damage()
+        || grenade_attack_source(
+            kind,
+            ref_id,
+            own_grenade_amount,
+            leader_ref_id,
+            leader_ref_id.and_then(|leader_ref_id| grenade_amounts.get(&leader_ref_id).copied()),
+        )
+        .is_some()
 }
 
 fn determine_cursor_kind(
@@ -543,6 +666,21 @@ mod tests {
     }
 
     #[test]
+    fn previous_cursor_show_uses_source_duration_and_resets_animation() {
+        let mut state = PreviousCursorState::default();
+        assert!(!state.visible());
+
+        state.frame = 3;
+        state.show(ZCursorKind::Attacked, Vec2::new(32.0, -48.0));
+
+        assert_eq!(state.kind, ZCursorKind::Attacked);
+        assert_eq!(state.position, Vec2::new(32.0, -48.0));
+        assert_eq!(state.remaining, PREVIOUS_CURSOR_DURATION);
+        assert_eq!(state.frame, 0);
+        assert!(state.visible());
+    }
+
+    #[test]
     fn cursor_decision_matches_original_empty_and_cannon_selection() {
         assert_eq!(
             determine_cursor_kind(
@@ -672,6 +810,30 @@ mod tests {
             ),
             ZCursorKind::Attack
         );
+    }
+
+    #[test]
+    fn cursor_explosive_fact_uses_group_leader_grenades() {
+        let grunt = ObjectKind::Robot(crate::original::objects::RobotType::Grunt);
+        let stats = ObjectStats::from_kind(grunt, 100);
+        let grenade_amounts = HashMap::from([(10, 1), (11, 0)]);
+
+        assert!(cursor_object_has_explosives(
+            grunt,
+            11,
+            stats,
+            Some(0),
+            Some(10),
+            &grenade_amounts
+        ));
+        assert!(!cursor_object_has_explosives(
+            grunt,
+            11,
+            stats,
+            Some(0),
+            Some(12),
+            &grenade_amounts
+        ));
     }
 
     #[test]

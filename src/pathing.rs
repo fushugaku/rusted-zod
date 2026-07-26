@@ -6,9 +6,10 @@ use crate::{
     constants::TILE_SIZE,
     original::{
         map::{MapObjectType, ZMap},
-        objects::{BuildingType, ItemType, ObjectKind},
+        objects::{BuildingType, ObjectKind},
         tileinfo::PaletteTileInfo,
     },
+    units::{self, buildings, cannons, items},
 };
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -34,28 +35,17 @@ impl PassabilityGrid {
 
         for object in &map.objects {
             match object.object_type {
-                MapObjectType::MapItem if object.object_id == ItemType::Rock as u8 => {
-                    Self::block_tile(
-                        &mut walkable,
-                        &mut vehicle_walkable,
-                        map.basics.width,
-                        map.basics.height,
-                        object.x,
-                        object.y.saturating_add(2),
-                    );
-                }
-                MapObjectType::MapItem
-                    if object.object_id == ItemType::Hut as u8
-                        || object.object_id >= ItemType::MapObjectStart as u8 =>
-                {
-                    Self::block_tile(
-                        &mut walkable,
-                        &mut vehicle_walkable,
-                        map.basics.width,
-                        map.basics.height,
-                        object.x,
-                        object.y,
-                    );
+                MapObjectType::MapItem => {
+                    for (dx, dy) in items::map_item_pathing_block_offsets(object.object_id) {
+                        Self::block_tile(
+                            &mut walkable,
+                            &mut vehicle_walkable,
+                            map.basics.width,
+                            map.basics.height,
+                            object.x.saturating_add(*dx),
+                            object.y.saturating_add(*dy),
+                        );
+                    }
                 }
                 MapObjectType::Bridge => {
                     if let Ok(building) = BuildingType::try_from(object.object_id) {
@@ -86,14 +76,16 @@ impl PassabilityGrid {
                     }
                 }
                 MapObjectType::Cannon => {
-                    Self::block_tile(
-                        &mut walkable,
-                        &mut vehicle_walkable,
-                        map.basics.width,
-                        map.basics.height,
-                        object.x,
-                        object.y,
-                    );
+                    for (dx, dy) in cannons::pathing_block_offsets() {
+                        Self::block_tile(
+                            &mut walkable,
+                            &mut vehicle_walkable,
+                            map.basics.width,
+                            map.basics.height,
+                            object.x.saturating_add(*dx),
+                            object.y.saturating_add(*dy),
+                        );
+                    }
                 }
                 _ => {}
             }
@@ -166,7 +158,7 @@ impl PassabilityGrid {
         building: BuildingType,
         extra_links: u16,
     ) -> Option<(u16, u16, u16, u16)> {
-        let (width, height) = Self::bridge_dimensions(building, extra_links)?;
+        let (width, height) = buildings::bridge_pathing_dimensions(building, extra_links)?;
         Some((x, y, width, height))
     }
 
@@ -181,39 +173,19 @@ impl PassabilityGrid {
         extra_links: u16,
         destroyed: bool,
     ) {
-        let Some((bridge_width, bridge_height)) = Self::bridge_dimensions(building, extra_links)
-        else {
+        if buildings::bridge_pathing_dimensions(building, extra_links).is_none() {
             return;
-        };
+        }
 
-        match building {
-            BuildingType::BridgeVert => {
-                for ty in y..y.saturating_add(bridge_height) {
-                    Self::block_tile(walkable, vehicle_walkable, map_width, map_height, x, ty);
-                    Self::block_tile(
-                        walkable,
-                        vehicle_walkable,
-                        map_width,
-                        map_height,
-                        x.saturating_add(3),
-                        ty,
-                    );
-                }
-            }
-            BuildingType::BridgeHorz => {
-                for tx in x..x.saturating_add(bridge_width) {
-                    Self::block_tile(walkable, vehicle_walkable, map_width, map_height, tx, y);
-                    Self::block_tile(
-                        walkable,
-                        vehicle_walkable,
-                        map_width,
-                        map_height,
-                        tx,
-                        y.saturating_add(3),
-                    );
-                }
-            }
-            _ => {}
+        for (dx, dy) in buildings::bridge_edge_block_offsets(building, extra_links) {
+            Self::block_tile(
+                walkable,
+                vehicle_walkable,
+                map_width,
+                map_height,
+                x.saturating_add(dx),
+                y.saturating_add(dy),
+            );
         }
 
         Self::apply_bridge_center_impassables(
@@ -240,65 +212,20 @@ impl PassabilityGrid {
         extra_links: u16,
         impassable: bool,
     ) {
-        let Some((bridge_width, bridge_height)) = Self::bridge_dimensions(building, extra_links)
-        else {
+        if buildings::bridge_pathing_dimensions(building, extra_links).is_none() {
             return;
-        };
-
-        match building {
-            BuildingType::BridgeVert => {
-                for ty in y..y.saturating_add(bridge_height) {
-                    Self::set_walkable(
-                        walkable,
-                        vehicle_walkable,
-                        map_width,
-                        map_height,
-                        x.saturating_add(1),
-                        ty,
-                        !impassable,
-                    );
-                    Self::set_walkable(
-                        walkable,
-                        vehicle_walkable,
-                        map_width,
-                        map_height,
-                        x.saturating_add(2),
-                        ty,
-                        !impassable,
-                    );
-                }
-            }
-            BuildingType::BridgeHorz => {
-                for tx in x..x.saturating_add(bridge_width) {
-                    Self::set_walkable(
-                        walkable,
-                        vehicle_walkable,
-                        map_width,
-                        map_height,
-                        tx,
-                        y.saturating_add(1),
-                        !impassable,
-                    );
-                    Self::set_walkable(
-                        walkable,
-                        vehicle_walkable,
-                        map_width,
-                        map_height,
-                        tx,
-                        y.saturating_add(2),
-                        !impassable,
-                    );
-                }
-            }
-            _ => {}
         }
-    }
 
-    fn bridge_dimensions(building: BuildingType, extra_links: u16) -> Option<(u16, u16)> {
-        match building {
-            BuildingType::BridgeVert => Some((4, 5u16.saturating_add(extra_links))),
-            BuildingType::BridgeHorz => Some((5u16.saturating_add(extra_links), 4)),
-            _ => None,
+        for (dx, dy) in buildings::bridge_center_offsets(building, extra_links) {
+            Self::set_walkable(
+                walkable,
+                vehicle_walkable,
+                map_width,
+                map_height,
+                x.saturating_add(dx),
+                y.saturating_add(dy),
+                !impassable,
+            );
         }
     }
 
@@ -311,97 +238,40 @@ impl PassabilityGrid {
         y: u16,
         building: BuildingType,
     ) {
-        match building {
-            BuildingType::Radar => {
-                Self::block_rect(
-                    walkable,
-                    vehicle_walkable,
-                    map_width,
-                    map_height,
-                    x,
-                    y,
-                    4,
-                    3,
-                );
-                Self::set_walkable(
-                    walkable,
-                    vehicle_walkable,
-                    map_width,
-                    map_height,
-                    x.saturating_add(3),
-                    y.saturating_add(2),
-                    true,
-                );
-            }
-            BuildingType::Repair => {
-                Self::block_rect(
-                    walkable,
-                    vehicle_walkable,
-                    map_width,
-                    map_height,
-                    x,
-                    y,
-                    5,
-                    4,
-                );
-            }
-            BuildingType::RobotFactory | BuildingType::VehicleFactory => {
-                Self::block_rect(
-                    walkable,
-                    vehicle_walkable,
-                    map_width,
-                    map_height,
-                    x,
-                    y,
-                    4,
-                    5,
-                );
-            }
-            BuildingType::FortFront => {
-                Self::apply_building_mask(
-                    walkable,
-                    vehicle_walkable,
-                    map_width,
-                    map_height,
-                    x,
-                    y,
-                    &[
-                        ".##....##.",
-                        ".########.",
-                        ".########.",
-                        "##########",
-                        "##########",
-                        "##########",
-                        "####..####",
-                        ".###..###.",
-                        "..##..##..",
-                        "...#..#...",
-                    ],
-                );
-            }
-            BuildingType::FortBack => {
-                Self::apply_building_mask(
-                    walkable,
-                    vehicle_walkable,
-                    map_width,
-                    map_height,
-                    x,
-                    y,
-                    &[
-                        ".##....##.",
-                        ".###..###.",
-                        ".###..###.",
-                        "##########",
-                        "##########",
-                        "##########",
-                        "##########",
-                        ".########.",
-                        "..#....#..",
-                        "..........",
-                    ],
-                );
-            }
-            BuildingType::BridgeVert | BuildingType::BridgeHorz => {}
+        let spec = buildings::building_pathing_spec(building);
+        for rect in spec.blocked_rects {
+            Self::block_rect(
+                walkable,
+                vehicle_walkable,
+                map_width,
+                map_height,
+                x.saturating_add(rect.dx),
+                y.saturating_add(rect.dy),
+                rect.width,
+                rect.height,
+            );
+        }
+        for rows in spec.blocked_masks {
+            Self::apply_building_mask(
+                walkable,
+                vehicle_walkable,
+                map_width,
+                map_height,
+                x,
+                y,
+                rows,
+            );
+        }
+        for (dx, dy) in spec.unblocked_tiles {
+            Self::set_walkable(
+                walkable,
+                vehicle_walkable,
+                map_width,
+                map_height,
+                x.saturating_add(dx),
+                y.saturating_add(dy),
+                true,
+            );
         }
     }
 
@@ -540,6 +410,30 @@ impl PassabilityGrid {
             tile.x as f32 * TILE_SIZE + TILE_SIZE * 0.5,
             -(tile.y as f32 * TILE_SIZE + TILE_SIZE * 0.5),
         )
+    }
+
+    pub(crate) fn blocked_tile_at_world_for_object_kind(
+        &self,
+        world: Vec2,
+        kind: ObjectKind,
+    ) -> Option<IVec2> {
+        let footprint = route_footprint_for_kind(kind);
+        let tile = self.world_to_route_tile(world, footprint);
+        self.blocked_occupy_tile(tile, footprint)
+    }
+
+    fn blocked_occupy_tile(&self, tile: IVec2, footprint: RouteFootprint) -> Option<IVec2> {
+        match footprint {
+            RouteFootprint::Robot => (!self.tile_passable(tile, footprint)).then_some(tile),
+            RouteFootprint::Vehicle => [
+                tile,
+                IVec2::new(tile.x, tile.y + 1),
+                IVec2::new(tile.x + 1, tile.y),
+                IVec2::new(tile.x + 1, tile.y + 1),
+            ]
+            .into_iter()
+            .find(|tile| !self.tile_passable(*tile, footprint)),
+        }
     }
 
     fn route_point(&self, tile: IVec2, footprint: RouteFootprint) -> Vec2 {
@@ -720,9 +614,10 @@ impl PassabilityGrid {
 }
 
 pub(crate) fn route_footprint_for_kind(kind: ObjectKind) -> RouteFootprint {
-    match kind {
-        ObjectKind::Robot(_) => RouteFootprint::Robot,
-        _ => RouteFootprint::Vehicle,
+    if units::uses_robot_route_footprint(kind) {
+        RouteFootprint::Robot
+    } else {
+        RouteFootprint::Vehicle
     }
 }
 
@@ -760,6 +655,7 @@ mod tests {
     use super::*;
     use crate::original::{
         map::{MapBasics, MapObject, MapTile, ZMap},
+        objects::ItemType,
         tileinfo::PaletteTileInfo,
         types::{PlanetType, TeamType},
     };
@@ -966,6 +862,50 @@ mod tests {
         assert!(grid.is_walkable(IVec2::new(3, 1)));
         assert!(grid.is_walkable(IVec2::new(4, 1)));
         assert!(grid.is_walkable(IVec2::new(5, 1)));
+    }
+
+    #[test]
+    fn blocked_world_tile_reports_first_impassable_footprint_tile() {
+        let mut map = map_with_bridge(BuildingType::BridgeVert, 100);
+        map.objects = vec![
+            MapObject {
+                x: 2,
+                y: 2,
+                owner: TeamType::Null,
+                object_type: MapObjectType::MapItem,
+                object_id: ItemType::Hut as u8,
+                building_level: 0,
+                extra_links: 0,
+                health_percent: 100,
+            },
+            MapObject {
+                x: 4,
+                y: 2,
+                owner: TeamType::Null,
+                object_type: MapObjectType::MapItem,
+                object_id: ItemType::Rock as u8,
+                building_level: 0,
+                extra_links: 0,
+                health_percent: 100,
+            },
+        ];
+
+        let grid = PassabilityGrid::build(&map, &passable_tile_info());
+
+        assert_eq!(
+            grid.blocked_tile_at_world_for_object_kind(
+                Vec2::new(2.0 * 16.0 + 8.0, -(2.0 * 16.0 + 8.0)),
+                ObjectKind::Robot(crate::original::objects::RobotType::Grunt),
+            ),
+            Some(IVec2::new(2, 2))
+        );
+        assert_eq!(
+            grid.blocked_tile_at_world_for_object_kind(
+                Vec2::new(4.0 * 16.0 + 8.0, -(4.0 * 16.0 + 8.0)),
+                ObjectKind::Vehicle(crate::original::objects::VehicleType::Jeep),
+            ),
+            Some(IVec2::new(4, 4))
+        );
     }
 
     #[test]

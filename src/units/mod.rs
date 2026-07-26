@@ -1,18 +1,29 @@
-use bevy::prelude::Vec2;
+use bevy::prelude::{Color, Vec2};
 
 use crate::{
-    components::{DamageCrater, DamageMissileVisual},
-    original::{
-        objects::{ObjectKind, VehicleType},
-        settings::UnitSettings,
-    },
+    components::{CombatRng, DamageCrater, DamageMissileVisual, PortraitAnimationKind},
+    original::objects::ObjectKind,
+    render::atlas::MobileSpriteRole,
 };
 
+pub(crate) mod attack;
 pub(crate) mod buildings;
 pub(crate) mod cannons;
 pub(crate) mod items;
 pub(crate) mod robots;
+pub(crate) mod unit_behavior;
+pub(crate) mod unit_driver;
+pub(crate) mod unit_enter;
+pub(crate) mod unit_sound;
+pub(crate) mod unit_stats;
+pub(crate) mod unit_ui;
 pub(crate) mod vehicles;
+
+pub(crate) use attack::attack_sound_for_attack;
+#[cfg(test)]
+pub(crate) use attack::attack_sound_for_kind;
+pub(crate) use attack::unit_rating_will_die;
+pub use unit_stats::UnitSettings;
 
 const RUN_PAST_RADIUS: f32 = 1.3;
 
@@ -33,11 +44,26 @@ pub(crate) enum UnitAttackSound {
     ThrowGrenade,
 }
 
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub(crate) enum UnitImpactSound {
+    RandomExplosion,
+    TurrentExplosion,
+}
+
 #[derive(Clone, Debug, PartialEq)]
 pub(crate) struct DamageMissileVisualGeometry {
     pub(crate) primary_offset: Vec2,
     pub(crate) replica_offsets: Vec<Vec2>,
     pub(crate) smoke_offsets: Vec<Vec2>,
+}
+
+#[derive(Clone, Debug, PartialEq)]
+pub(crate) struct DamageMissileLaunchEffectProfile {
+    pub(crate) frame_path: String,
+    pub(crate) map_top_left_offset: Vec2,
+    pub(crate) z: f32,
+    pub(crate) frame_time: f32,
+    pub(crate) name: &'static str,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -49,18 +75,97 @@ pub(crate) struct RocketImpactProfile {
     pub(crate) unit_particle_amount: usize,
 }
 
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub(crate) enum DamageMissileImpactEffectProfile {
+    Rocket(RocketImpactProfile),
+    ToughRocket,
+    MapObjectTurrent,
+    Generic,
+}
+
 pub(crate) fn combat_object_default_size(kind: ObjectKind) -> Vec2 {
+    unit_ui::combat_object_default_size(kind)
+}
+
+pub(crate) fn source_mobile_dimensions(kind: ObjectKind) -> Option<Vec2> {
     match kind {
-        ObjectKind::Robot(robot) => robots::default_selection_size(robot),
-        ObjectKind::Vehicle(vehicle) => vehicles::default_selection_size(vehicle),
-        ObjectKind::Cannon(cannon) => cannons::default_selection_size(cannon),
-        ObjectKind::Building(building) | ObjectKind::Bridge(building) => {
-            buildings::default_selection_size(building)
-        }
-        ObjectKind::Rock => items::rock::default_selection_size(),
-        ObjectKind::Animal(_) => items::animal::default_selection_size(),
-        ObjectKind::MapItem(item_id) => items::default_selection_size(item_id),
+        ObjectKind::Robot(robot) => Some(robots::source_dimensions(robot)),
+        ObjectKind::Vehicle(vehicle) => Some(vehicles::source_dimensions(vehicle)),
+        ObjectKind::Cannon(_) => Some(Vec2::splat(32.0)),
+        _ => None,
     }
+}
+
+pub(crate) fn requires_activation(kind: ObjectKind) -> bool {
+    match kind {
+        ObjectKind::Robot(robot) => robots::requires_activation(robot),
+        ObjectKind::Vehicle(vehicle) => vehicles::requires_activation(vehicle),
+        _ => false,
+    }
+}
+
+pub(crate) fn selected_hud_icon_asset_name(
+    kind: ObjectKind,
+    team: crate::original::types::TeamType,
+) -> Option<String> {
+    unit_ui::selected_hud_icon_asset_name(kind, team)
+}
+
+pub(crate) fn selected_hud_label_asset_name(kind: ObjectKind) -> Option<String> {
+    unit_ui::selected_hud_label_asset_name(kind)
+}
+
+pub(crate) fn queue_item_text(unit: ObjectKind) -> String {
+    unit_ui::queue_item_text(unit)
+}
+
+pub(crate) fn object_kind_to_map_parts(
+    kind: ObjectKind,
+) -> Option<(crate::original::map::MapObjectType, u8)> {
+    unit_ui::object_kind_to_map_parts(kind)
+}
+
+pub(crate) fn mobile_frame_time(role: MobileSpriteRole) -> f32 {
+    unit_ui::mobile_frame_time(role)
+}
+
+pub(crate) fn mobile_frame_count(kind: ObjectKind, role: MobileSpriteRole) -> usize {
+    unit_ui::mobile_frame_count(kind, role)
+}
+
+pub(crate) fn mobile_frame_delta_seconds(
+    kind: ObjectKind,
+    role: MobileSpriteRole,
+    delta_secs: f32,
+    speed_offset_percent: f32,
+) -> f32 {
+    unit_ui::mobile_frame_delta_seconds(kind, role, delta_secs, speed_offset_percent)
+}
+
+pub(crate) fn mobile_sprite_role(kind: ObjectKind, layer_index: usize) -> Option<MobileSpriteRole> {
+    unit_ui::mobile_sprite_role(kind, layer_index)
+}
+
+pub(crate) fn selectable_for(
+    kind: ObjectKind,
+    selection_size: Vec2,
+) -> Option<crate::components::Selectable> {
+    unit_ui::selectable_for(kind, selection_size)
+}
+
+pub(crate) fn fallback_marker_size(kind: ObjectKind) -> Option<Vec2> {
+    unit_ui::fallback_marker_size(kind)
+}
+
+pub(crate) fn fallback_collision_size(kind: ObjectKind) -> Vec2 {
+    unit_ui::fallback_collision_size(kind)
+}
+
+pub(crate) fn fallback_marker_color(
+    kind: ObjectKind,
+    owner: crate::original::types::TeamType,
+) -> Color {
+    unit_ui::fallback_marker_color(kind, owner)
 }
 
 pub(crate) fn unit_settings(kind: ObjectKind) -> Option<UnitSettings> {
@@ -72,36 +177,253 @@ pub(crate) fn unit_settings(kind: ObjectKind) -> Option<UnitSettings> {
     }
 }
 
-pub(crate) fn attack_sound_for_kind(
-    kind: ObjectKind,
-    consumes_grenade: bool,
-) -> Option<UnitAttackSound> {
-    if consumes_grenade {
-        return Some(UnitAttackSound::ThrowGrenade);
-    }
+pub(crate) fn object_max_health(kind: ObjectKind) -> f32 {
+    unit_stats::object_max_health(kind)
+}
 
+pub(crate) fn object_move_speed(kind: ObjectKind) -> f32 {
+    unit_stats::object_move_speed(kind)
+}
+
+pub(crate) fn object_attack_radius(kind: ObjectKind) -> f32 {
+    unit_stats::object_attack_radius(kind)
+}
+
+pub(crate) fn object_attack_damage(kind: ObjectKind) -> f32 {
+    unit_stats::object_attack_damage(kind)
+}
+
+pub(crate) fn object_damage_chance(kind: ObjectKind) -> f32 {
+    unit_stats::object_damage_chance(kind)
+}
+
+pub(crate) fn object_damage_radius(kind: ObjectKind) -> f32 {
+    unit_stats::object_damage_radius(kind)
+}
+
+pub(crate) fn object_missile_speed(kind: ObjectKind) -> f32 {
+    unit_stats::object_missile_speed(kind)
+}
+
+pub(crate) fn object_attack_speed(kind: ObjectKind) -> f32 {
+    unit_stats::object_attack_speed(kind)
+}
+
+pub(crate) fn object_snipe_chance(kind: ObjectKind) -> f32 {
+    unit_stats::object_snipe_chance(kind)
+}
+
+pub(crate) fn selected_portrait_animation_for_object(
+    kind: ObjectKind,
+    has_driver: bool,
+    rng: &mut CombatRng,
+) -> Option<PortraitAnimationKind> {
     match kind {
-        ObjectKind::Robot(robot) => robots::attack_sound(robot),
-        ObjectKind::Vehicle(vehicle) => vehicles::attack_sound(vehicle),
-        ObjectKind::Cannon(cannon) => cannons::attack_sound(cannon),
+        ObjectKind::Robot(robot) => Some(robots::selected_portrait_animation(robot, rng)),
+        ObjectKind::Vehicle(_) | ObjectKind::Cannon(_) if has_driver => {
+            Some(unit_sound::selected_common_portrait_animation(rng))
+        }
         _ => None,
     }
 }
 
-pub(crate) fn attack_sound_for_attack(
-    source_kind: ObjectKind,
-    effective_kind: ObjectKind,
-    consumes_grenade: bool,
-) -> Option<UnitAttackSound> {
-    if consumes_grenade {
-        return Some(UnitAttackSound::ThrowGrenade);
-    }
+pub(crate) fn selected_common_voice_asset_path(
+    anim_index: u8,
+    rng: Option<&mut CombatRng>,
+) -> String {
+    unit_sound::selected_common_voice_asset_path(anim_index, rng)
+}
 
-    if matches!(source_kind, ObjectKind::Vehicle(VehicleType::Apc)) {
-        return vehicles::apc::driver_attack_sound(effective_kind);
-    }
+pub(crate) fn acknowledge_portrait_animation(
+    no_way: bool,
+    rng: &mut CombatRng,
+) -> PortraitAnimationKind {
+    unit_sound::acknowledge_portrait_animation(no_way, rng)
+}
 
-    attack_sound_for_kind(effective_kind, false)
+pub(crate) fn attack_sound_asset_path(sound: UnitAttackSound) -> &'static str {
+    unit_sound::attack_sound_asset_path(sound)
+}
+
+pub(crate) fn impact_sound_asset_path(
+    sound: UnitImpactSound,
+    rng: Option<&mut CombatRng>,
+) -> String {
+    unit_sound::impact_sound_asset_path(sound, rng)
+}
+
+pub(crate) fn can_be_entered_target(
+    kind: ObjectKind,
+    team: crate::original::types::TeamType,
+    stats: crate::components::ObjectStats,
+) -> bool {
+    unit_enter::can_be_entered_target(kind, team, stats)
+}
+
+pub(crate) fn can_enter_target(
+    kind: ObjectKind,
+    team: crate::original::types::TeamType,
+    stats: crate::components::ObjectStats,
+) -> bool {
+    unit_enter::can_enter_target(kind, team, stats)
+}
+
+pub(crate) fn can_enter_fort_unit(
+    kind: ObjectKind,
+    team: crate::original::types::TeamType,
+    stats: crate::components::ObjectStats,
+) -> bool {
+    unit_enter::can_enter_fort_unit(kind, team, stats)
+}
+
+pub(crate) fn can_enter_fort(
+    kind: ObjectKind,
+    fort_team: crate::original::types::TeamType,
+    entering_team: crate::original::types::TeamType,
+    stats: crate::components::ObjectStats,
+) -> bool {
+    unit_enter::can_enter_fort(kind, fort_team, entering_team, stats)
+}
+
+pub(crate) fn attacked_only_by_explosives(kind: ObjectKind) -> bool {
+    unit_driver::attacked_only_by_explosives(kind)
+}
+
+pub(crate) fn initial_driver_health(
+    kind: ObjectKind,
+    team: crate::original::types::TeamType,
+) -> Option<crate::components::DriverHealth> {
+    unit_driver::initial_driver_health(kind, team)
+}
+
+pub(crate) fn can_eject_drivers(kind: ObjectKind, stats: crate::components::ObjectStats) -> bool {
+    unit_driver::can_eject_drivers(kind, stats)
+}
+
+pub(crate) fn cannon_ejectable_on_spawn(kind: ObjectKind, fort_turret_tile: bool) -> bool {
+    unit_driver::cannon_ejectable_on_spawn(kind, fort_turret_tile)
+}
+
+pub(crate) fn cannon_ejectable_for_runtime_spawn(
+    kind: ObjectKind,
+    requested_ejectable: bool,
+) -> bool {
+    unit_driver::cannon_ejectable_for_runtime_spawn(kind, requested_ejectable)
+}
+
+pub(crate) fn enter_removes_group_member(
+    target_kind: ObjectKind,
+    entrant_ref_id: u32,
+    member_ref_id: u32,
+    member_leader_ref_id: u32,
+    member_destroyed: bool,
+    member_health: f32,
+) -> bool {
+    vehicles::enter_removes_group_member(
+        target_kind,
+        entrant_ref_id,
+        member_ref_id,
+        member_leader_ref_id,
+        member_destroyed,
+        member_health,
+    )
+}
+
+pub(crate) fn apply_apc_driver_attack_stats(
+    stats: &mut crate::components::ObjectStats,
+    robot_kind: crate::original::objects::RobotType,
+) {
+    vehicles::apply_apc_driver_attack_stats(stats, robot_kind)
+}
+
+pub(crate) fn can_passively_engage(
+    kind: ObjectKind,
+    team: crate::original::types::TeamType,
+    stats: crate::components::ObjectStats,
+    mobile: bool,
+    is_moving: bool,
+) -> bool {
+    unit_behavior::can_passively_engage(kind, team, stats, mobile, is_moving)
+}
+
+pub(crate) fn uses_robot_route_footprint(kind: ObjectKind) -> bool {
+    unit_behavior::uses_robot_route_footprint(kind)
+}
+
+pub(crate) fn passive_auto_enter_allows_available_target(kind: ObjectKind) -> bool {
+    unit_behavior::passive_auto_enter_allows_available_target(kind)
+}
+
+pub(crate) fn is_flag(kind: ObjectKind) -> bool {
+    unit_behavior::is_flag(kind)
+}
+
+pub(crate) fn can_capture_zone(
+    kind: ObjectKind,
+    team: crate::original::types::TeamType,
+    destroyed: bool,
+) -> bool {
+    unit_behavior::can_capture_zone(kind, team, destroyed)
+}
+
+pub(crate) fn eliminated_team_for_destroyed_fort(
+    kind: ObjectKind,
+    team: crate::original::types::TeamType,
+    destroyed: bool,
+) -> Option<crate::original::types::TeamType> {
+    unit_behavior::eliminated_team_for_destroyed_fort(kind, team, destroyed)
+}
+
+pub(crate) fn is_alive_combat_unit(
+    kind: ObjectKind,
+    team: crate::original::types::TeamType,
+    object_team: crate::original::types::TeamType,
+    destroyed: bool,
+) -> bool {
+    unit_behavior::is_alive_combat_unit(kind, team, object_team, destroyed)
+}
+
+pub(crate) fn is_alive_fort(
+    kind: ObjectKind,
+    team: crate::original::types::TeamType,
+    object_team: crate::original::types::TeamType,
+    destroyed: bool,
+) -> bool {
+    unit_behavior::is_alive_fort(kind, team, object_team, destroyed)
+}
+
+pub(crate) fn object_should_be_destroyed_by_fort_elimination(
+    kind: ObjectKind,
+    team: crate::original::types::TeamType,
+    destroyed: bool,
+    eliminated_team: crate::original::types::TeamType,
+) -> bool {
+    unit_behavior::object_should_be_destroyed_by_fort_elimination(
+        kind,
+        team,
+        destroyed,
+        eliminated_team,
+    )
+}
+
+pub(crate) fn movement_speed_multiplier(
+    kind: ObjectKind,
+    stats: crate::components::ObjectStats,
+    running: bool,
+) -> f32 {
+    unit_behavior::movement_speed_multiplier(kind, stats, running)
+}
+
+pub(crate) fn speed_offset_percent(
+    moving: bool,
+    base_move_speed: f32,
+    actual_move_speed: f32,
+) -> f32 {
+    unit_behavior::speed_offset_percent(moving, base_move_speed, actual_move_speed)
+}
+
+pub(crate) fn missile_object_particle_amount(kind: ObjectKind, amount: usize) -> usize {
+    unit_behavior::missile_object_particle_amount(kind, amount)
 }
 
 pub(crate) fn special_projectile_kind_for_attack(
@@ -142,71 +464,28 @@ pub(crate) fn damage_crater_for_attack(
         });
     }
 
-    damage_crater_for_visual(damage_missile_visual_for_attack(attacker, false))
+    unit_ui::damage_crater_for_visual(damage_missile_visual_for_attack(attacker, false))
 }
 
-pub(crate) fn damage_crater_for_visual(visual: DamageMissileVisual) -> Option<DamageCrater> {
-    match visual {
-        DamageMissileVisual::MissileLauncher => Some(DamageCrater {
-            is_big: true,
-            chance: 0.75,
-            big_chance: None,
-        }),
-        DamageMissileVisual::MissileCannon => Some(DamageCrater {
-            is_big: false,
-            chance: 1.0,
-            big_chance: None,
-        }),
-        DamageMissileVisual::ToughRocket => Some(DamageCrater {
-            is_big: false,
-            chance: 0.35,
-            big_chance: None,
-        }),
-        DamageMissileVisual::LightRocket {
-            extra_large,
-            xx_large,
-            ..
-        } => Some(DamageCrater {
-            is_big: false,
-            chance: 0.75,
-            big_chance: light_rocket_big_crater_chance(extra_large, xx_large),
-        }),
-        _ => Some(DamageCrater {
-            is_big: false,
-            chance: 0.75,
-            big_chance: None,
-        }),
-    }
-}
-
+#[cfg(test)]
 pub(crate) fn light_rocket_big_crater_chance(extra_large: u8, xx_large: u8) -> Option<f32> {
-    if xx_large > 0 {
-        Some(0.35)
-    } else if extra_large > 0 {
-        Some(0.15)
-    } else {
-        None
-    }
+    vehicles::light_ui::big_crater_chance(extra_large, xx_large)
 }
 
 pub(crate) fn damage_missile_frame_paths(visual: DamageMissileVisual) -> Vec<String> {
-    match visual {
-        DamageMissileVisual::Generic => Vec::new(),
-        DamageMissileVisual::Grenade => items::grenades::projectile_frame_paths(),
-        DamageMissileVisual::ToughRocket => robots::tough::damage_missile_frame_paths(),
-        DamageMissileVisual::LightRocket { .. } => vehicles::light::damage_missile_frame_paths(),
-        DamageMissileVisual::MissileCannon => cannons::missile_cannon::damage_missile_frame_paths(),
-        DamageMissileVisual::MissileLauncher => {
-            vehicles::missile_launcher::damage_missile_frame_paths()
-        }
-        DamageMissileVisual::MapObjectTurrent(object_i) => {
-            items::map_object::turrent_frame_paths(object_i)
-        }
-    }
+    unit_ui::damage_missile_frame_paths(visual)
 }
 
+#[cfg(test)]
 pub(crate) fn light_rocket_init_fire_frame_path(frame: usize) -> String {
-    vehicles::light::init_fire_frame_path(frame)
+    unit_ui::light_rocket_init_fire_frame_path(frame)
+}
+
+pub(crate) fn damage_missile_launch_effect_profile(
+    visual: DamageMissileVisual,
+    rng: &mut CombatRng,
+) -> Option<DamageMissileLaunchEffectProfile> {
+    unit_ui::damage_missile_launch_effect_profile(visual, rng)
 }
 
 pub(crate) fn damage_missile_visual_geometry(
@@ -214,90 +493,73 @@ pub(crate) fn damage_missile_visual_geometry(
     start: Vec2,
     target: Vec2,
 ) -> DamageMissileVisualGeometry {
-    let direction = missile_direction(start, target);
-    match visual {
-        DamageMissileVisual::ToughRocket => DamageMissileVisualGeometry {
-            primary_offset: Vec2::ZERO,
-            replica_offsets: Vec::new(),
-            smoke_offsets: vec![Vec2::ZERO],
-        },
-        DamageMissileVisual::MissileCannon => {
-            let primary_offset = cannons::missile_cannon::primary_offset(direction);
-            let other_offset = primary_offset + cannons::missile_cannon::other_offset(direction);
-            DamageMissileVisualGeometry {
-                primary_offset,
-                replica_offsets: vec![other_offset],
-                smoke_offsets: vec![primary_offset, other_offset],
-            }
-        }
-        DamageMissileVisual::MissileLauncher => {
-            let left = vehicles::missile_launcher::left_offset(direction);
-            let right = vehicles::missile_launcher::right_offset(direction);
-            DamageMissileVisualGeometry {
-                primary_offset: Vec2::ZERO,
-                replica_offsets: vec![left, right],
-                smoke_offsets: vec![Vec2::ZERO, left, right],
-            }
-        }
-        _ => DamageMissileVisualGeometry {
-            primary_offset: Vec2::ZERO,
-            replica_offsets: Vec::new(),
-            smoke_offsets: Vec::new(),
-        },
-    }
+    unit_ui::damage_missile_visual_geometry(visual, start, target)
+}
+
+pub(crate) fn damage_missile_rotates(visual: DamageMissileVisual) -> bool {
+    unit_ui::damage_missile_rotates(visual)
 }
 
 pub(crate) fn damage_missile_muzzle_offset(
     visual: DamageMissileVisual,
     direction: usize,
 ) -> Option<Vec2> {
-    match visual {
-        DamageMissileVisual::ToughRocket => Some(robots::tough::rocket_muzzle_offset(direction)),
-        DamageMissileVisual::LightRocket { .. }
-        | DamageMissileVisual::MissileCannon
-        | DamageMissileVisual::MissileLauncher => Some(vehicles::rocket_muzzle_offset(direction)),
-        _ => None,
-    }
+    unit_ui::damage_missile_muzzle_offset(visual, direction)
 }
 
 #[cfg(test)]
 pub(crate) fn vehicle_rocket_muzzle_offset(direction: usize) -> Vec2 {
-    vehicles::rocket_muzzle_offset(direction)
+    unit_ui::vehicle_rocket_muzzle_offset(direction)
 }
 
 #[cfg(test)]
 pub(crate) fn tough_rocket_muzzle_offset(direction: usize) -> Vec2 {
-    robots::tough::rocket_muzzle_offset(direction)
+    unit_ui::tough_rocket_muzzle_offset(direction)
 }
 
+#[cfg(test)]
 pub(crate) fn rocket_impact_profile(visual: DamageMissileVisual) -> Option<RocketImpactProfile> {
-    match visual {
-        DamageMissileVisual::LightRocket {
-            extra_small,
-            extra_large,
-            xx_large,
-        } => Some(vehicles::light::rocket_impact_profile(
-            extra_small,
-            extra_large,
-            xx_large,
-        )),
-        DamageMissileVisual::MissileCannon => {
-            Some(cannons::missile_cannon::rocket_impact_profile())
+    unit_ui::rocket_impact_profile(visual)
+}
+
+pub(crate) fn damage_missile_impact_effect_profile(
+    visual: DamageMissileVisual,
+) -> DamageMissileImpactEffectProfile {
+    unit_ui::damage_missile_impact_effect_profile(visual)
+}
+
+pub(crate) fn damage_missile_impact_sound(visual: DamageMissileVisual) -> Option<UnitImpactSound> {
+    unit_ui::damage_missile_impact_sound(visual)
+}
+
+pub(crate) fn object_destroyable(kind: ObjectKind) -> bool {
+    match kind {
+        ObjectKind::Building(_) | ObjectKind::Bridge(_) => false,
+        ObjectKind::Cannon(_) | ObjectKind::Vehicle(_) | ObjectKind::Robot(_) => true,
+        ObjectKind::Animal(_) => true,
+        ObjectKind::Rock | ObjectKind::MapItem(_) => {
+            items::item_object_destroyable(kind).expect("item object destroyable policy exists")
         }
-        DamageMissileVisual::MissileLauncher => {
-            Some(vehicles::missile_launcher::rocket_impact_profile())
-        }
-        _ => None,
     }
 }
 
-fn missile_direction(start: Vec2, target: Vec2) -> Vec2 {
-    let delta = target - start;
-    let mag = delta.length();
-    if mag <= f32::EPSILON {
-        Vec2::X
-    } else {
-        delta / mag
+pub(crate) fn object_blocks_tile_when_destroyed(kind: ObjectKind) -> bool {
+    match kind {
+        ObjectKind::MapItem(item_id) => items::map_item_blocks_tile(item_id),
+        _ => false,
+    }
+}
+
+pub(crate) fn destroyed_asset_name(
+    kind: ObjectKind,
+    team: crate::original::types::TeamType,
+    planet: crate::original::types::PlanetType,
+) -> Option<String> {
+    match kind {
+        ObjectKind::Building(building) => buildings::destroyed_asset_path(building, planet),
+        ObjectKind::Vehicle(vehicle) => vehicles::destroyed_asset_path(vehicle, team),
+        ObjectKind::Cannon(cannon) => cannons::destroyed_asset_path(cannon, team),
+        _ => None,
     }
 }
 
@@ -324,6 +586,7 @@ pub(crate) fn run_time(radius: f32, move_speed: f32) -> f32 {
 mod tests {
     use super::*;
     use crate::original::objects::{BuildingType, CannonType, ItemType, RobotType, VehicleType};
+    use crate::render::atlas::MobileSpriteRole;
 
     #[test]
     fn combat_object_default_sizes_keep_original_rust_port_groups() {
@@ -403,6 +666,85 @@ mod tests {
         assert_eq!(
             combat_object_default_size(ObjectKind::MapItem(ItemType::MapObjectStart as u8 + 3)),
             Vec2::splat(16.0)
+        );
+    }
+
+    #[test]
+    fn fallback_collision_sizes_keep_placement_geometry_in_units() {
+        assert_eq!(
+            fallback_collision_size(ObjectKind::Building(BuildingType::FortFront)),
+            Vec2::new(160.0, 80.0)
+        );
+        assert_eq!(
+            fallback_collision_size(ObjectKind::Building(BuildingType::Radar)),
+            Vec2::splat(48.0)
+        );
+        assert_eq!(
+            fallback_collision_size(ObjectKind::Bridge(BuildingType::BridgeHorz)),
+            Vec2::splat(48.0)
+        );
+        assert_eq!(
+            fallback_collision_size(ObjectKind::Cannon(CannonType::Gun)),
+            Vec2::splat(32.0)
+        );
+        assert_eq!(
+            fallback_collision_size(ObjectKind::MapItem(ItemType::Grenades as u8)),
+            Vec2::splat(16.0)
+        );
+        assert_eq!(
+            fallback_collision_size(ObjectKind::Vehicle(VehicleType::Jeep)),
+            Vec2::ZERO
+        );
+    }
+
+    #[test]
+    fn mobile_animation_frame_policy_lives_on_unit_ui() {
+        assert_eq!(mobile_frame_time(MobileSpriteRole::Robot), 0.3);
+        assert_eq!(mobile_frame_time(MobileSpriteRole::VehicleBase), 0.1);
+        assert_eq!(mobile_frame_time(MobileSpriteRole::VehicleTop), 0.0);
+        assert_eq!(
+            mobile_frame_count(ObjectKind::Robot(RobotType::Grunt), MobileSpriteRole::Robot),
+            4
+        );
+        assert_eq!(
+            mobile_frame_count(
+                ObjectKind::Vehicle(VehicleType::Jeep),
+                MobileSpriteRole::VehicleBase
+            ),
+            2
+        );
+        assert_eq!(
+            mobile_frame_count(
+                ObjectKind::Vehicle(VehicleType::Heavy),
+                MobileSpriteRole::VehicleBase
+            ),
+            3
+        );
+        assert_eq!(
+            mobile_frame_count(
+                ObjectKind::Vehicle(VehicleType::Heavy),
+                MobileSpriteRole::VehicleTop
+            ),
+            1
+        );
+        assert!(
+            (mobile_frame_delta_seconds(
+                ObjectKind::Robot(RobotType::Grunt),
+                MobileSpriteRole::Robot,
+                0.1,
+                1.8
+            ) - 0.18)
+                .abs()
+                < f32::EPSILON
+        );
+        assert_eq!(
+            mobile_frame_delta_seconds(
+                ObjectKind::Vehicle(VehicleType::Jeep),
+                MobileSpriteRole::VehicleBase,
+                0.1,
+                1.8
+            ),
+            0.1
         );
     }
 
@@ -664,6 +1006,50 @@ mod tests {
     }
 
     #[test]
+    fn damage_missile_impact_policy_lives_on_units() {
+        assert_eq!(
+            damage_missile_impact_effect_profile(DamageMissileVisual::MissileLauncher),
+            DamageMissileImpactEffectProfile::Rocket(RocketImpactProfile {
+                xx_large_mushrooms: 3,
+                large_mushrooms: 0,
+                small_mushrooms: 2,
+                unit_particle_radius: 80.0,
+                unit_particle_amount: 23,
+            })
+        );
+        assert_eq!(
+            damage_missile_impact_effect_profile(DamageMissileVisual::ToughRocket),
+            DamageMissileImpactEffectProfile::ToughRocket
+        );
+        assert_eq!(
+            damage_missile_impact_effect_profile(DamageMissileVisual::MapObjectTurrent(0)),
+            DamageMissileImpactEffectProfile::MapObjectTurrent
+        );
+        assert_eq!(
+            damage_missile_impact_effect_profile(DamageMissileVisual::Grenade),
+            DamageMissileImpactEffectProfile::Generic
+        );
+        assert!(damage_missile_rotates(DamageMissileVisual::LightRocket {
+            extra_small: 0,
+            extra_large: 0,
+            xx_large: 0,
+        }));
+        assert!(!damage_missile_rotates(DamageMissileVisual::Grenade));
+        assert_eq!(
+            damage_missile_impact_sound(DamageMissileVisual::MapObjectTurrent(0)),
+            Some(UnitImpactSound::TurrentExplosion)
+        );
+        assert_eq!(
+            damage_missile_impact_sound(DamageMissileVisual::LightRocket {
+                extra_small: 0,
+                extra_large: 0,
+                xx_large: 0,
+            }),
+            Some(UnitImpactSound::RandomExplosion)
+        );
+    }
+
+    #[test]
     fn multi_rocket_visual_offsets_live_on_projectile_units() {
         let start = Vec2::ZERO;
         let target = Vec2::new(100.0, 0.0);
@@ -701,5 +1087,48 @@ mod tests {
         assert_eq!(tough_rocket_muzzle_offset(2), Vec2::new(0.0, 8.0));
         assert_eq!(tough_rocket_muzzle_offset(4), Vec2::new(-8.0, 0.0));
         assert_eq!(tough_rocket_muzzle_offset(6), Vec2::new(0.0, -8.0));
+    }
+
+    #[test]
+    fn selected_portrait_animation_follows_source_object_and_robot_branches() {
+        let mut vehicle_rng = CombatRng(0);
+        assert_eq!(
+            selected_portrait_animation_for_object(
+                ObjectKind::Vehicle(VehicleType::Jeep),
+                false,
+                &mut vehicle_rng,
+            ),
+            None
+        );
+        assert_eq!(
+            selected_portrait_animation_for_object(
+                ObjectKind::Vehicle(VehicleType::Jeep),
+                true,
+                &mut vehicle_rng,
+            ),
+            Some(PortraitAnimationKind::SelectedCommon(0))
+        );
+
+        let mut robot_reporting_rng = CombatRng(0);
+        assert_eq!(
+            selected_portrait_animation_for_object(
+                ObjectKind::Robot(RobotType::Grunt),
+                false,
+                &mut robot_reporting_rng,
+            ),
+            Some(PortraitAnimationKind::SelectedRobotReporting(
+                RobotType::Grunt
+            ))
+        );
+
+        let mut robot_common_rng = CombatRng(1);
+        assert_eq!(
+            selected_portrait_animation_for_object(
+                ObjectKind::Robot(RobotType::Pyro),
+                false,
+                &mut robot_common_rng,
+            ),
+            Some(PortraitAnimationKind::SelectedCommon(2))
+        );
     }
 }

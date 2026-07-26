@@ -3,12 +3,17 @@ use crate::constants::TILE_SIZE;
 use crate::original::map::{MapObjectType, ZMap};
 use crate::original::objects::{BuildingType, ItemType, ObjectKind};
 use crate::original::types::TeamType;
-use crate::production::initial_spawn_count;
+use crate::settings_sync::SourceSettingsState;
 
 impl ZoneOwnership {
+    #[cfg(test)]
     pub(crate) fn from_map(map: &ZMap) -> Self {
+        Self::from_map_with_settings(map, &SourceSettingsState::default())
+    }
+
+    pub(crate) fn from_map_with_settings(map: &ZMap, settings: &SourceSettingsState) -> Self {
         let mut owners = vec![TeamType::Null; map.zones.len()];
-        let object_ref_ids = initial_map_object_ref_ids(map);
+        let object_ref_ids = initial_map_object_ref_ids(map, settings);
 
         for object in &map.objects {
             if object.object_type != MapObjectType::Building
@@ -84,15 +89,15 @@ impl ZoneOwnership {
     }
 }
 
-fn initial_map_object_ref_ids(map: &ZMap) -> Vec<u32> {
+fn initial_map_object_ref_ids(map: &ZMap, settings: &SourceSettingsState) -> Vec<u32> {
     let mut ref_ids = Vec::with_capacity(map.objects.len());
-    let mut next_ref_id = 1;
+    let mut next_ref_id = 0;
 
     for object in &map.objects {
         ref_ids.push(next_ref_id);
         let kind = ObjectKind::from_map_parts(object.object_type, object.object_id)
             .unwrap_or(ObjectKind::MapItem(object.object_id));
-        next_ref_id += initial_spawn_count(kind);
+        next_ref_id += settings.initial_spawn_count(kind);
     }
 
     ref_ids
@@ -187,11 +192,12 @@ mod tests {
                 TeamType::Red,
             ),
         ]);
-        let grunt_count = initial_spawn_count(ObjectKind::Robot(RobotType::Grunt));
+        let settings = SourceSettingsState::default();
+        let grunt_count = settings.initial_spawn_count(ObjectKind::Robot(RobotType::Grunt));
 
         assert_eq!(
-            initial_map_object_ref_ids(&map),
-            vec![1, 1 + grunt_count, 2 + grunt_count]
+            initial_map_object_ref_ids(&map, &settings),
+            vec![0, grunt_count, 1 + grunt_count]
         );
     }
 
@@ -220,11 +226,12 @@ mod tests {
                 TeamType::Red,
             ),
         ]);
-        let grunt_count = initial_spawn_count(ObjectKind::Robot(RobotType::Grunt));
+        let grunt_count =
+            SourceSettingsState::default().initial_spawn_count(ObjectKind::Robot(RobotType::Grunt));
         let zones = ZoneOwnership::from_map(&map);
 
         assert_eq!(zones.links.len(), 1);
-        assert_eq!(zones.links[0].flag_ref_id, 1 + grunt_count);
-        assert_eq!(zones.links[0].building_refs, vec![2 + grunt_count]);
+        assert_eq!(zones.links[0].flag_ref_id, grunt_count);
+        assert_eq!(zones.links[0].building_refs, vec![1 + grunt_count]);
     }
 }

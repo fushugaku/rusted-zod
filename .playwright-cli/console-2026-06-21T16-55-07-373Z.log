@@ -1,0 +1,4 @@
+[      74ms] [WARNING] using deprecated parameters for the initialization function; pass a single object instead @ http://127.0.0.1:4173/pkg/zod-source-rust.js?v=1782060907443:2144
+[     131ms] [WARNING] The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio @ http://127.0.0.1:4173/pkg/zod-source-rust.js?v=1782060907443:1179
+[     256ms] [WARNING] The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio @ http://127.0.0.1:4173/pkg/zod-source-rust.js?v=1782060907443:1288
+[     283ms] [WARNING] The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio @ http://127.0.0.1:4173/pkg/zod-source-rust.js?v=1782060907443:1288

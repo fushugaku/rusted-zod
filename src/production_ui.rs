@@ -1,20 +1,21 @@
 use bevy::prelude::*;
 
+#[cfg(test)]
+use crate::production::{production_duration, start_production};
 use crate::{
     camera::cursor_world_position,
     components::*,
     constants::TILE_SIZE,
-    original::{
-        map::{MapObject, MapObjectType},
-        objects::{BuildingType, ItemType, ObjectKind},
-        types::TeamType,
-    },
+    network_commands::{CommandPayload, ComputerMessagePacket},
+    original::{map::MapObject, objects::ObjectKind, types::TeamType},
     placement::first_stored_cannon,
     production::{
-        add_production_queue, cancel_production_queue_item, default_build_list,
-        default_production_unit, production_duration, start_production, stop_production,
+        add_production_queue, cancel_production_queue_item, production_duration_from_source,
+        start_production_from_source, stop_production,
     },
     render::atlas::{GameAtlases, SpriteFrame},
+    settings_sync::SourceSettingsState,
+    units::{self, buildings},
 };
 
 const WINDOW_SIZE: Vec2 = Vec2::new(112.0, 80.0);
@@ -36,8 +37,9 @@ const FUS_SELECTOR_CENTER_OFFSET: Vec2 = Vec2::new(24.0, 21.0);
 const FUS_SIDE_SIZE: f32 = 4.0;
 const FUS_TOP_HEIGHT: f32 = 20.0;
 const FUS_MARGIN: f32 = 2.0;
+const STARTING_MANUFACTURE_SOUND: &str = "sounds/comp_starting_manufacture.wav";
+const MANUFACTURING_CANCELED_SOUND: &str = "sounds/comp_manufacturing_canceled.wav";
 const FUS_OBJECT_SIZE: Vec2 = Vec2::new(45.0, 51.0);
-const FUS_OBJECT_STEP: Vec2 = Vec2::new(47.0, 53.0);
 const FUS_OBJECT_PREVIEW_CENTER: Vec2 = Vec2::new(22.0, 19.0);
 const FUS_OBJECT_NAME_OFFSET: Vec2 = Vec2::new(3.0, 39.0);
 const SELECTOR_ARROW_SIZE: Vec2 = Vec2::new(16.0, 8.0);
@@ -62,11 +64,14 @@ pub(crate) fn load_production_ui_assets(asset_server: &AssetServer) -> Productio
     ProductionUiAssets {
         base: asset_server.load("other/production_gui/base_image.png"),
         base_expanded: asset_server.load("other/production_gui/base_image_expanded.png"),
-        labels: vec![
-            asset_server.load("other/production_gui/robot_factory_label.png"),
-            asset_server.load("other/production_gui/vehicle_factory_label.png"),
-            asset_server.load("other/production_gui/fort_factory_label.png"),
-        ],
+        labels: [
+            ProductionWindowKind::Robot,
+            ProductionWindowKind::Vehicle,
+            ProductionWindowKind::Fort,
+        ]
+        .into_iter()
+        .map(|kind| asset_server.load(buildings::production_label_asset_path(kind)))
+        .collect(),
         state_labels: vec![
             [
                 asset_server.load("other/production_gui/place_label.png"),
@@ -126,19 +131,6 @@ fn load_production_button(asset_server: &AssetServer, name: &str) -> ProductionB
     }
 }
 
-pub(crate) fn production_window_kind_for_building(
-    kind: ObjectKind,
-) -> Option<ProductionWindowKind> {
-    match kind {
-        ObjectKind::Building(BuildingType::RobotFactory) => Some(ProductionWindowKind::Robot),
-        ObjectKind::Building(BuildingType::VehicleFactory) => Some(ProductionWindowKind::Vehicle),
-        ObjectKind::Building(BuildingType::FortFront | BuildingType::FortBack) => {
-            Some(ProductionWindowKind::Fort)
-        }
-        _ => None,
-    }
-}
-
 pub(crate) fn open_debug_production_window(
     debug: Res<ProductionDebugOpen>,
     mut window_state: ResMut<ProductionWindowState>,
@@ -166,7 +158,7 @@ pub(crate) fn open_debug_production_window(
                 return None;
             }
 
-            production_window_kind_for_building(object.kind)
+            buildings::production_window_kind(object.kind)
                 .map(|window_kind| (object.ref_id, window_kind, *grid))
         })
         .next();
@@ -261,15 +253,10 @@ pub(crate) fn selected_production_unit_for_window(
         return None;
     }
 
-    let ObjectKind::Building(building) = kind else {
-        return None;
-    };
-    default_build_list(building, level)
-        .get(selected_index)
-        .copied()
-        .or_else(|| default_production_unit(kind, level))
+    buildings::selected_production_unit(kind, level, selected_index)
 }
 
+#[cfg(test)]
 pub(crate) fn apply_production_ok(
     kind: ObjectKind,
     level: impl Into<ProductionLevel> + Copy,
@@ -285,27 +272,28 @@ pub(crate) fn apply_production_ok(
     start_production(production, unit, stats)
 }
 
+fn apply_production_ok_from_source(
+    kind: ObjectKind,
+    level: impl Into<ProductionLevel> + Copy,
+    selected_index: usize,
+    production: &mut BuildingProduction,
+    stats: ObjectStats,
+    settings: &SourceSettingsState,
+) -> bool {
+    let state = building_production_window_state(production, stats);
+    let Some(unit) = selected_production_unit_for_window(kind, level, state, selected_index) else {
+        return false;
+    };
+    start_production_from_source(production, unit, stats, settings)
+}
+
 pub(crate) fn cycle_production_selection(
     kind: ObjectKind,
     level: impl Into<ProductionLevel> + Copy,
     selected_index: usize,
     direction: i32,
 ) -> usize {
-    let ObjectKind::Building(building) = kind else {
-        return selected_index;
-    };
-    let len = default_build_list(building, level).len();
-    if len == 0 {
-        return 0;
-    }
-
-    if direction >= 0 {
-        (selected_index + 1) % len
-    } else if selected_index == 0 {
-        len - 1
-    } else {
-        selected_index - 1
-    }
+    buildings::cycle_production_selection(kind, level, selected_index, direction)
 }
 
 fn selected_queue_unit_for_window(
@@ -313,13 +301,7 @@ fn selected_queue_unit_for_window(
     level: impl Into<ProductionLevel> + Copy,
     selected_index: usize,
 ) -> Option<ObjectKind> {
-    let ObjectKind::Building(building) = kind else {
-        return None;
-    };
-    default_build_list(building, level)
-        .get(selected_index)
-        .copied()
-        .or_else(|| default_production_unit(kind, level))
+    buildings::selected_production_unit(kind, level, selected_index)
 }
 
 fn build_list_index_for_unit(
@@ -327,14 +309,10 @@ fn build_list_index_for_unit(
     level: impl Into<ProductionLevel> + Copy,
     unit: ObjectKind,
 ) -> Option<usize> {
-    let ObjectKind::Building(building) = kind else {
-        return None;
-    };
-    default_build_list(building, level)
-        .into_iter()
-        .position(|candidate| candidate == unit)
+    buildings::production_selector_unit_index(kind, level, unit)
 }
 
+#[cfg(test)]
 pub(crate) fn apply_production_queue_add(
     kind: ObjectKind,
     level: impl Into<ProductionLevel> + Copy,
@@ -352,7 +330,28 @@ pub(crate) fn apply_production_queue_add(
     if production.current.is_none() {
         start_production(production, unit, stats)
     } else {
-        add_production_queue(production, building, level, unit, false)
+        add_production_queue(production, building, level, unit, true)
+    }
+}
+
+fn apply_production_queue_add_from_source(
+    kind: ObjectKind,
+    level: impl Into<ProductionLevel> + Copy,
+    queue_selected_index: usize,
+    production: &mut BuildingProduction,
+    stats: ObjectStats,
+    settings: &SourceSettingsState,
+) -> bool {
+    let Some(unit) = selected_queue_unit_for_window(kind, level, queue_selected_index) else {
+        return false;
+    };
+    let ObjectKind::Building(building) = kind else {
+        return false;
+    };
+    if production.current.is_none() {
+        start_production_from_source(production, unit, stats, settings)
+    } else {
+        add_production_queue(production, building, level, unit, true)
     }
 }
 
@@ -368,38 +367,7 @@ fn full_selector_units(
     kind: ObjectKind,
     level: impl Into<ProductionLevel> + Copy,
 ) -> Vec<(ObjectKind, Vec2)> {
-    let ObjectKind::Building(building) = kind else {
-        return Vec::new();
-    };
-    let list = default_build_list(building, level);
-    let mut rows: [Vec<ObjectKind>; 3] = [Vec::new(), Vec::new(), Vec::new()];
-    for unit in list {
-        match unit {
-            ObjectKind::Robot(_) => rows[0].push(unit),
-            ObjectKind::Vehicle(_) => rows[1].push(unit),
-            ObjectKind::Cannon(_) => rows[2].push(unit),
-            _ => {}
-        }
-    }
-
-    let mut units = Vec::new();
-    let mut row = 0;
-    for row_units in rows {
-        if row_units.is_empty() {
-            continue;
-        }
-        for (col, unit) in row_units.into_iter().enumerate() {
-            units.push((
-                unit,
-                Vec2::new(
-                    FUS_SIDE_SIZE + FUS_MARGIN + col as f32 * FUS_OBJECT_STEP.x,
-                    FUS_TOP_HEIGHT + FUS_MARGIN + row as f32 * FUS_OBJECT_STEP.y,
-                ),
-            ));
-        }
-        row += 1;
-    }
-    units
+    buildings::production_selector_units(kind, level)
 }
 
 fn full_selector_size(kind: ObjectKind, level: impl Into<ProductionLevel> + Copy) -> Vec2 {
@@ -505,6 +473,7 @@ pub(crate) fn production_progress_yellow_size(progress: f32) -> Vec2 {
     )
 }
 
+#[cfg(test)]
 pub(crate) fn production_time_text(
     kind: ObjectKind,
     level: impl Into<ProductionLevel> + Copy,
@@ -531,6 +500,36 @@ pub(crate) fn production_time_text(
         | BuildingProductionStatus::Paused => (production.duration - production.elapsed).max(0.0),
     };
 
+    format_production_time(seconds as i32)
+}
+
+fn production_time_text_from_source(
+    kind: ObjectKind,
+    level: impl Into<ProductionLevel> + Copy,
+    selected_index: usize,
+    state: BuildingProductionStatus,
+    production: &BuildingProduction,
+    stats: ObjectStats,
+    settings: &SourceSettingsState,
+) -> String {
+    let seconds = match state {
+        BuildingProductionStatus::Select => {
+            selected_production_unit_for_window(kind, level, state, selected_index)
+                .and_then(|unit| {
+                    production_duration_from_source(
+                        unit,
+                        stats.health,
+                        stats.max_health,
+                        production.zone_ownage,
+                        settings,
+                    )
+                })
+                .unwrap_or(0.0)
+        }
+        BuildingProductionStatus::Building
+        | BuildingProductionStatus::Place
+        | BuildingProductionStatus::Paused => (production.duration - production.elapsed).max(0.0),
+    };
     format_production_time(seconds as i32)
 }
 
@@ -578,6 +577,7 @@ pub(crate) fn update_production_window(
     assets: Res<ProductionUiAssets>,
     game_atlases: Res<GameAtlases>,
     map: Res<CurrentMap>,
+    settings: Res<SourceSettingsState>,
     window_state: Res<ProductionWindowState>,
     existing: Query<Entity, With<ProductionWindowEntity>>,
     building_query: Query<(
@@ -659,13 +659,14 @@ pub(crate) fn update_production_window(
 
     spawn_window_text(
         &mut commands,
-        production_time_text(
+        production_time_text_from_source(
             object.kind,
             level.0,
             window.selected_index,
             state,
             production,
             *stats,
+            &settings,
         ),
         assets.font.clone(),
         top_left,
@@ -1012,7 +1013,7 @@ fn spawn_production_preview(
     top_left: Vec2,
     center_offset: Vec2,
 ) {
-    let Some((object_type, object_id)) = production_object_map_parts(kind) else {
+    let Some((object_type, object_id)) = units::object_kind_to_map_parts(kind) else {
         return;
     };
     let object = MapObject {
@@ -1065,15 +1066,7 @@ fn queue_item_at(local_pos: Vec2, queue: &std::collections::VecDeque<ObjectKind>
 }
 
 fn queue_item_text(unit: ObjectKind) -> String {
-    match unit {
-        ObjectKind::Robot(robot) => format!("{robot:?}"),
-        ObjectKind::Vehicle(vehicle) => format!("{vehicle:?}"),
-        ObjectKind::Cannon(cannon) => format!("{cannon:?}"),
-        ObjectKind::Building(building) => format!("{building:?}"),
-        ObjectKind::Bridge(bridge) => format!("{bridge:?}"),
-        ObjectKind::Animal(id) | ObjectKind::MapItem(id) => id.to_string(),
-        ObjectKind::Rock => "Rock".to_string(),
-    }
+    crate::units::queue_item_text(unit)
 }
 
 fn full_selector_anchor_offset(target: ProductionFullSelectorTarget) -> Vec2 {
@@ -1105,19 +1098,6 @@ fn preview_bounds(layers: &[SpriteFrame]) -> Option<PreviewBounds> {
         min,
         size: max - min,
     })
-}
-
-fn production_object_map_parts(kind: ObjectKind) -> Option<(MapObjectType, u8)> {
-    match kind {
-        ObjectKind::Bridge(building) => Some((MapObjectType::Bridge, building as u8)),
-        ObjectKind::Building(building) => Some((MapObjectType::Building, building as u8)),
-        ObjectKind::Cannon(cannon) => Some((MapObjectType::Cannon, cannon as u8)),
-        ObjectKind::Vehicle(vehicle) => Some((MapObjectType::Vehicle, vehicle as u8)),
-        ObjectKind::Robot(robot) => Some((MapObjectType::Robot, robot as u8)),
-        ObjectKind::Animal(id) => Some((MapObjectType::Animal, id)),
-        ObjectKind::MapItem(id) => Some((MapObjectType::MapItem, id)),
-        ObjectKind::Rock => Some((MapObjectType::MapItem, ItemType::Rock as u8)),
-    }
 }
 
 fn spawn_window_text(
@@ -1171,10 +1151,13 @@ fn spawn_window_piece<'a>(
 }
 
 pub(crate) fn handle_production_window_input(
+    mut commands: Commands,
     mouse: Res<ButtonInput<MouseButton>>,
+    asset_server: Res<AssetServer>,
     windows: Query<&Window>,
     camera_query: Query<(&Camera, &GlobalTransform), With<MainCamera>>,
     map: Res<CurrentMap>,
+    settings: Res<SourceSettingsState>,
     mut window_state: ResMut<ProductionWindowState>,
     mut cannon_placement: ResMut<CannonPlacementState>,
     building_query: Query<(
@@ -1254,22 +1237,30 @@ pub(crate) fn handle_production_window_input(
                 match target {
                     ProductionFullSelectorTarget::Main => {
                         window.selected_index = index;
-                        apply_production_ok(
+                        if apply_production_ok_from_source(
                             object.kind,
                             level.0,
                             window.selected_index,
                             &mut production,
                             *stats,
-                        );
+                            &settings,
+                        ) {
+                            play_starting_manufacture_sound(
+                                &mut commands,
+                                &asset_server,
+                                object.ref_id,
+                            );
+                        }
                     }
                     ProductionFullSelectorTarget::Queue => {
                         window.queue_selected_index = index;
-                        apply_production_queue_add(
+                        apply_production_queue_add_from_source(
                             object.kind,
                             level.0,
                             window.queue_selected_index,
                             &mut production,
                             *stats,
+                            &settings,
                         );
                     }
                 }
@@ -1305,6 +1296,11 @@ pub(crate) fn handle_production_window_input(
                 }
                 Some(ProductionButtonKind::Cancel) => {
                     if apply_production_cancel(&mut production, *stats) {
+                        play_manufacturing_canceled_sound(
+                            &mut commands,
+                            &asset_server,
+                            window.building_ref_id,
+                        );
                         window_state.open = Some(window);
                     } else {
                         window_state.open = None;
@@ -1312,13 +1308,19 @@ pub(crate) fn handle_production_window_input(
                     return;
                 }
                 Some(ProductionButtonKind::Ok) => {
-                    if apply_production_ok(
+                    if apply_production_ok_from_source(
                         object.kind,
                         level.0,
                         window.selected_index,
                         &mut production,
                         *stats,
+                        &settings,
                     ) {
+                        play_starting_manufacture_sound(
+                            &mut commands,
+                            &asset_server,
+                            window.building_ref_id,
+                        );
                         window_state.open = Some(window);
                     } else {
                         window_state.open = None;
@@ -1348,12 +1350,13 @@ pub(crate) fn handle_production_window_input(
                     return;
                 }
                 Some(ProductionButtonKind::Queue) => {
-                    apply_production_queue_add(
+                    apply_production_queue_add_from_source(
                         object.kind,
                         level.0,
                         window.queue_selected_index,
                         &mut production,
                         *stats,
+                        &settings,
                     );
                     window_state.open = Some(window);
                     return;
@@ -1415,6 +1418,84 @@ pub(crate) fn handle_production_window_input(
         }
         window_state.open = Some(window);
     }
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+enum ProductionComputerSound {
+    StartingManufacture,
+    ManufacturingCanceled,
+}
+
+impl ProductionComputerSound {
+    const fn wire_id(self) -> i32 {
+        match self {
+            Self::StartingManufacture => 22,
+            Self::ManufacturingCanceled => 23,
+        }
+    }
+
+    const fn from_wire_id(sound: i32) -> Option<Self> {
+        match sound {
+            22 => Some(Self::StartingManufacture),
+            23 => Some(Self::ManufacturingCanceled),
+            _ => None,
+        }
+    }
+}
+
+fn production_computer_sound_asset_path(sound: ProductionComputerSound) -> &'static str {
+    match sound {
+        ProductionComputerSound::StartingManufacture => STARTING_MANUFACTURE_SOUND,
+        ProductionComputerSound::ManufacturingCanceled => MANUFACTURING_CANCELED_SOUND,
+    }
+}
+
+fn relay_production_computer_sound(
+    ref_id: u32,
+    sound: ProductionComputerSound,
+) -> Option<&'static str> {
+    let packet = ComputerMessagePacket {
+        ref_id: i32::try_from(ref_id).ok()?,
+        sound: sound.wire_id(),
+    };
+    let wire_packet = packet.encode_packet();
+    let payload = wire_packet.get(8..)?;
+    let decoded_packet = ComputerMessagePacket::decode_payload(payload)?;
+    let decoded_sound = ProductionComputerSound::from_wire_id(decoded_packet.sound)?;
+    Some(production_computer_sound_asset_path(decoded_sound))
+}
+
+fn play_starting_manufacture_sound(
+    commands: &mut Commands,
+    asset_server: &AssetServer,
+    ref_id: u32,
+) {
+    let Some(path) =
+        relay_production_computer_sound(ref_id, ProductionComputerSound::StartingManufacture)
+    else {
+        return;
+    };
+    play_production_computer_sound(commands, asset_server, path);
+}
+
+fn play_manufacturing_canceled_sound(
+    commands: &mut Commands,
+    asset_server: &AssetServer,
+    ref_id: u32,
+) {
+    let Some(path) =
+        relay_production_computer_sound(ref_id, ProductionComputerSound::ManufacturingCanceled)
+    else {
+        return;
+    };
+    play_production_computer_sound(commands, asset_server, path);
+}
+
+fn play_production_computer_sound(commands: &mut Commands, asset_server: &AssetServer, path: &str) {
+    commands.spawn((
+        AudioPlayer::new(asset_server.load::<AudioSource>(path.to_string())),
+        PlaybackSettings::DESPAWN,
+    ));
 }
 
 fn production_button_at(
@@ -1507,7 +1588,7 @@ mod tests {
     use std::collections::VecDeque;
 
     use super::*;
-    use crate::original::objects::{CannonType, RobotType};
+    use crate::original::objects::{BuildingType, CannonType, RobotType};
 
     #[test]
     fn production_window_position_matches_original_set_cords() {
@@ -1675,7 +1756,6 @@ mod tests {
             duration: 10.0,
             zone_ownage: 0.0,
             unit_limit_reached: false,
-            ready_units: Vec::new(),
             stored_cannons: Vec::new(),
         };
 
@@ -1725,7 +1805,6 @@ mod tests {
             duration: 0.0,
             zone_ownage: 0.0,
             unit_limit_reached: false,
-            ready_units: Vec::new(),
             stored_cannons: Vec::new(),
         };
 
@@ -1782,7 +1861,6 @@ mod tests {
             duration: 10.0,
             zone_ownage: 0.0,
             unit_limit_reached: false,
-            ready_units: Vec::new(),
             stored_cannons: Vec::new(),
         };
 
@@ -1867,6 +1945,23 @@ mod tests {
     }
 
     #[test]
+    fn robot_factory_level1_selector_order_matches_original_build_list() {
+        let robot_factory = ObjectKind::Building(BuildingType::RobotFactory);
+
+        let next = cycle_production_selection(robot_factory, 1, 0, 1);
+        assert_eq!(next, 1);
+        assert_eq!(
+            selected_production_unit_for_window(
+                robot_factory,
+                1,
+                BuildingProductionStatus::Select,
+                next,
+            ),
+            Some(ObjectKind::Robot(RobotType::Psycho))
+        );
+    }
+
+    #[test]
     fn production_ok_starts_selected_unit_only_from_select_state() {
         let stats = ObjectStats::from_kind(ObjectKind::Building(BuildingType::RobotFactory), 100);
         let mut production = BuildingProduction {
@@ -1877,7 +1972,6 @@ mod tests {
             duration: 0.0,
             zone_ownage: 0.0,
             unit_limit_reached: false,
-            ready_units: Vec::new(),
             stored_cannons: Vec::new(),
         };
 
@@ -1904,6 +1998,43 @@ mod tests {
     }
 
     #[test]
+    fn production_start_cancel_sounds_match_original_assets() {
+        assert_eq!(
+            STARTING_MANUFACTURE_SOUND,
+            "sounds/comp_starting_manufacture.wav"
+        );
+        assert_eq!(
+            MANUFACTURING_CANCELED_SOUND,
+            "sounds/comp_manufacturing_canceled.wav"
+        );
+        assert_eq!(
+            production_computer_sound_asset_path(ProductionComputerSound::StartingManufacture),
+            STARTING_MANUFACTURE_SOUND
+        );
+        assert_eq!(
+            production_computer_sound_asset_path(ProductionComputerSound::ManufacturingCanceled),
+            MANUFACTURING_CANCELED_SOUND
+        );
+    }
+
+    #[test]
+    fn production_start_cancel_sounds_round_trip_through_comp_msg() {
+        assert_eq!(
+            relay_production_computer_sound(7, ProductionComputerSound::StartingManufacture),
+            Some(STARTING_MANUFACTURE_SOUND)
+        );
+        assert_eq!(
+            relay_production_computer_sound(7, ProductionComputerSound::ManufacturingCanceled),
+            Some(MANUFACTURING_CANCELED_SOUND)
+        );
+        assert_eq!(
+            relay_production_computer_sound(u32::MAX, ProductionComputerSound::StartingManufacture,),
+            None
+        );
+        assert_eq!(ProductionComputerSound::from_wire_id(21), None);
+    }
+
+    #[test]
     fn production_queue_add_matches_original_idle_or_active_rules() {
         let stats = ObjectStats::from_kind(ObjectKind::Building(BuildingType::RobotFactory), 100);
         let mut production = BuildingProduction {
@@ -1914,7 +2045,6 @@ mod tests {
             duration: 0.0,
             zone_ownage: 0.0,
             unit_limit_reached: false,
-            ready_units: Vec::new(),
             stored_cannons: Vec::new(),
         };
 
@@ -1944,9 +2074,52 @@ mod tests {
         assert_eq!(
             production.queue,
             VecDeque::from([
-                ObjectKind::Robot(RobotType::Grunt),
                 ObjectKind::Cannon(CannonType::Gatling),
+                ObjectKind::Robot(RobotType::Grunt),
             ])
+        );
+    }
+
+    #[test]
+    fn queued_item_added_from_ui_builds_next_like_original_server_event() {
+        let stats = ObjectStats::from_kind(ObjectKind::Building(BuildingType::RobotFactory), 100);
+        let mut production = BuildingProduction {
+            status: BuildingProductionStatus::Select,
+            current: None,
+            queue: VecDeque::new(),
+            elapsed: 0.0,
+            duration: 0.0,
+            zone_ownage: 0.0,
+            unit_limit_reached: false,
+            stored_cannons: Vec::new(),
+        };
+
+        assert!(apply_production_queue_add(
+            ObjectKind::Building(BuildingType::RobotFactory),
+            0,
+            0,
+            &mut production,
+            stats,
+        ));
+        assert!(apply_production_queue_add(
+            ObjectKind::Building(BuildingType::RobotFactory),
+            0,
+            1,
+            &mut production,
+            stats,
+        ));
+
+        let duration = production.duration;
+        let completed = crate::production::advance_production(&mut production, duration, stats);
+
+        assert_eq!(completed, vec![ObjectKind::Robot(RobotType::Grunt)]);
+        assert_eq!(
+            production.current,
+            Some(ObjectKind::Cannon(CannonType::Gatling))
+        );
+        assert_eq!(
+            production.queue,
+            VecDeque::from([ObjectKind::Robot(RobotType::Grunt)])
         );
     }
 
@@ -1963,7 +2136,6 @@ mod tests {
             duration: 10.0,
             zone_ownage: 0.0,
             unit_limit_reached: false,
-            ready_units: Vec::new(),
             stored_cannons: Vec::new(),
         };
 
@@ -2046,7 +2218,6 @@ mod tests {
             duration: 10.0,
             zone_ownage: 0.0,
             unit_limit_reached: false,
-            ready_units: Vec::new(),
             stored_cannons: Vec::new(),
         };
 

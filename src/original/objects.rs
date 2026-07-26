@@ -56,20 +56,6 @@ impl TryFrom<u8> for VehicleType {
     }
 }
 
-impl VehicleType {
-    pub fn folder(self) -> &'static str {
-        match self {
-            Self::Jeep => "jeep",
-            Self::Light => "light",
-            Self::Medium => "medium",
-            Self::Heavy => "heavy",
-            Self::Apc => "apc",
-            Self::MissileLauncher => "missile_launcher",
-            Self::Crane => "crane",
-        }
-    }
-}
-
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 #[repr(u8)]
 pub enum CannonType {

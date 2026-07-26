@@ -3,21 +3,20 @@ use bevy::prelude::*;
 use crate::{
     camera::cursor_world_position,
     components::{
-        BuildingProduction, CannonPlacementState, CurrentMap, GameObjectEntity, HudLayout,
-        MainCamera, MapGridPosition, NextObjectRefId, ObjectStats, ObjectTeam,
-        ProductionWindowState, Selectable, area_is_fort_turret_tile,
+        BuildingProduction, CannonPlacementState, CurrentMap, GameObjectEntity, MainCamera,
+        MapGridPosition, NextObjectRefId, ObjectStats, ObjectTeam, ProductionWindowState,
+        Selectable,
     },
     constants::{HUD_HEIGHT, HUD_WIDTH, TILE_SIZE},
-    original::{
-        map::{MapObjectType, ZMap},
-        objects::{BuildingType, ObjectKind},
-        types::TeamType,
-    },
-    production::remove_stored_cannon,
-    render::atlas::GameAtlases,
-    world_objects::spawn_runtime_object,
+    local_player::LocalPlayerState,
+    object_sync::{SourceObjectEventQueue, relay_built_cannon_list, relay_new_object},
+    original::{map::ZMap, objects::ObjectKind, types::TeamType},
+    units::{self, buildings},
     zones::zone_at_tile,
 };
+
+#[cfg(test)]
+use crate::production::remove_stored_cannon;
 
 #[derive(Clone, Copy, Debug)]
 pub(crate) struct PlacementObstacle {
@@ -53,6 +52,7 @@ pub(crate) fn cannon_spawn_center(tx: i32, ty: i32) -> Vec2 {
     )
 }
 
+#[cfg(test)]
 pub(crate) fn place_stored_cannon(
     production: &mut BuildingProduction,
     cannon: ObjectKind,
@@ -145,7 +145,7 @@ pub(crate) fn placement_obstacle_from_object(
 
     let size = selectable
         .map(|selectable| selectable.selection_size)
-        .unwrap_or_else(|| fallback_collision_size(object.kind))
+        .unwrap_or_else(|| units::fallback_collision_size(object.kind))
         .max(Vec2::splat(TILE_SIZE));
     let _ = team;
     Some(PlacementObstacle {
@@ -157,16 +157,15 @@ pub(crate) fn placement_obstacle_from_object(
 }
 
 pub(crate) fn process_cannon_placement(
-    mut commands: Commands,
     mouse: Res<ButtonInput<MouseButton>>,
     keys: Res<ButtonInput<KeyCode>>,
     windows: Query<&Window>,
     camera_query: Query<(&Camera, &GlobalTransform), With<MainCamera>>,
-    game_atlases: Res<GameAtlases>,
     map: Res<CurrentMap>,
-    hud_layout: Res<HudLayout>,
+    local_player: Res<LocalPlayerState>,
     production_window: Res<ProductionWindowState>,
     mut next_ref: ResMut<NextObjectRefId>,
+    mut object_events: ResMut<SourceObjectEventQueue>,
     mut placement: ResMut<CannonPlacementState>,
     mut queries: ParamSet<(
         Query<(
@@ -180,7 +179,7 @@ pub(crate) fn process_cannon_placement(
             &GameObjectEntity,
             &MapGridPosition,
             &ObjectTeam,
-            &mut BuildingProduction,
+            &BuildingProduction,
         )>,
     )>,
 ) {
@@ -200,6 +199,7 @@ pub(crate) fn process_cannon_placement(
     if !mouse.just_released(MouseButton::Left) {
         return;
     }
+    placement.pending = None;
 
     let Ok(window) = windows.single() else {
         return;
@@ -232,16 +232,26 @@ pub(crate) fn process_cannon_placement(
             )
         })
         .collect();
+    let existing_ref_ids: Vec<u32> = queries
+        .p0()
+        .iter()
+        .map(|(object, _, _, _, _)| object.ref_id)
+        .collect();
 
-    let mut placed = false;
-    for (object, grid, team, mut production) in &mut queries.p1() {
+    for (object, grid, team, production) in &queries.p1() {
         if object.ref_id != request.source_ref_id {
             continue;
         }
+        if team.0 == TeamType::Null
+            || team.0 != local_player.team()
+            || existing_ref_ids.contains(&next_ref.0)
+        {
+            break;
+        }
 
         let source_zone = zone_at_tile(&map.0, grid.x, grid.y);
-        if place_stored_cannon(
-            &mut production,
+        if can_place_stored_cannon(
+            &production,
             request.cannon,
             request.source_ref_id,
             team.0,
@@ -250,29 +260,44 @@ pub(crate) fn process_cannon_placement(
             &map.0,
             &obstacles,
         ) {
+            let mut next_stored_cannons = production.stored_cannons.clone();
+            let Some(remove_index) = next_stored_cannons
+                .iter()
+                .position(|stored| *stored == request.cannon)
+            else {
+                break;
+            };
+            next_stored_cannons.remove(remove_index);
             let ref_id = next_ref.0;
-            next_ref.0 += 1;
-            placed = spawn_runtime_object(
-                &mut commands,
-                &game_atlases,
-                map.0.basics.terrain_type,
-                &hud_layout,
+            let spawn_center = cannon_spawn_center(target_tile.0, target_tile.1);
+            let source_map_position =
+                Vec2::new(spawn_center.x - TILE_SIZE, -spawn_center.y - TILE_SIZE);
+            let event_checkpoint = object_events.pending.len();
+            let new_object_queued = relay_new_object(
+                &mut object_events,
                 ref_id,
                 request.cannon,
                 team.0,
-                cannon_spawn_center(target_tile.0, target_tile.1),
+                source_map_position,
+                0,
+                0,
                 100,
-                !area_is_fort_turret_tile(&map.0, target_tile.0, target_tile.1),
                 false,
-                None,
-                None,
             );
+            let cannon_list_queued = new_object_queued
+                && relay_built_cannon_list(
+                    &mut object_events,
+                    object.ref_id,
+                    &next_stored_cannons,
+                    Some(ref_id),
+                );
+            if new_object_queued && cannon_list_queued {
+                next_ref.0 += 1;
+            } else {
+                object_events.pending.truncate(event_checkpoint);
+            }
         }
         break;
-    }
-
-    if placed {
-        placement.pending = None;
     }
 }
 
@@ -300,20 +325,13 @@ fn cannon_not_placable_for_obstacle(
 }
 
 fn fort_turret_slot_allows(obstacle: &PlacementObstacle, map_left: f32, map_top: f32) -> bool {
-    if !matches!(
+    buildings::fort_turret_slot_allows(
         obstacle.kind,
-        ObjectKind::Building(BuildingType::FortFront | BuildingType::FortBack)
-    ) {
-        return false;
-    }
-
-    let obstacle_left = obstacle.center.x - obstacle.size.x * 0.5;
-    let obstacle_top = -obstacle.center.y - obstacle.size.y * 0.5;
-    let local_x = (map_left - obstacle_left).round();
-    let local_y = (map_top - obstacle_top).round();
-
-    (local_x == TILE_SIZE && (local_y == 0.0 || local_y == TILE_SIZE * 3.0))
-        || (local_x == TILE_SIZE * 7.0 && (local_y == 0.0 || local_y == TILE_SIZE * 3.0))
+        obstacle.center,
+        obstacle.size,
+        map_left,
+        map_top,
+    )
 }
 
 fn rects_overlap_top_left(
@@ -327,27 +345,4 @@ fn rects_overlap_top_left(
     b_bottom: f32,
 ) -> bool {
     a_left < b_right && a_right > b_left && a_top < b_bottom && a_bottom > b_top
-}
-
-fn fallback_collision_size(kind: ObjectKind) -> Vec2 {
-    match kind {
-        ObjectKind::Building(BuildingType::FortFront | BuildingType::FortBack) => {
-            Vec2::new(TILE_SIZE * 10.0, TILE_SIZE * 5.0)
-        }
-        ObjectKind::Building(_) | ObjectKind::Bridge(_) => Vec2::splat(TILE_SIZE * 3.0),
-        ObjectKind::Cannon(_) => Vec2::splat(TILE_SIZE * 2.0),
-        ObjectKind::Rock | ObjectKind::MapItem(_) => Vec2::splat(TILE_SIZE),
-        ObjectKind::Vehicle(_) | ObjectKind::Robot(_) | ObjectKind::Animal(_) => Vec2::ZERO,
-    }
-}
-
-#[allow(dead_code)]
-fn map_object_type_for_collision(kind: ObjectKind) -> Option<MapObjectType> {
-    match kind {
-        ObjectKind::Bridge(_) => Some(MapObjectType::Bridge),
-        ObjectKind::Building(_) => Some(MapObjectType::Building),
-        ObjectKind::Cannon(_) => Some(MapObjectType::Cannon),
-        ObjectKind::Rock | ObjectKind::MapItem(_) => Some(MapObjectType::MapItem),
-        ObjectKind::Vehicle(_) | ObjectKind::Robot(_) | ObjectKind::Animal(_) => None,
-    }
 }

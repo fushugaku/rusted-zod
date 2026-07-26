@@ -1,0 +1,5 @@
+[      58ms] [WARNING] using deprecated parameters for the initialization function; pass a single object instead @ http://127.0.0.1:4173/pkg/zod-source-rust.js?v=1781866054789:2144
+[      60ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:4173/favicon.ico:0
+[     355ms] [WARNING] The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio @ http://127.0.0.1:4173/pkg/zod-source-rust.js?v=1781866054789:1179
+[     645ms] [WARNING] The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio @ http://127.0.0.1:4173/pkg/zod-source-rust.js?v=1781866054789:1288
+[     645ms] [WARNING] The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio @ http://127.0.0.1:4173/pkg/zod-source-rust.js?v=1781866054789:1288

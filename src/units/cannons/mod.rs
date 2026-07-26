@@ -2,206 +2,174 @@ use bevy::prelude::Vec2;
 
 use crate::{
     components::{CombatRng, DamageMissileVisual},
-    original::{objects::CannonType, settings::UnitSettings, types::TeamType},
-    units::UnitAttackSound,
+    original::{objects::CannonType, types::TeamType},
+    units::{UnitAttackSound, UnitSettings},
 };
 
+pub(crate) mod cannon_ui;
+#[path = "gatling/gatling_mod.rs"]
 pub(crate) mod gatling;
-pub(crate) mod gatling_ui;
+#[path = "gun/gun_mod.rs"]
 pub(crate) mod gun;
-pub(crate) mod gun_ui;
+#[path = "howitzer/howitzer_mod.rs"]
 pub(crate) mod howitzer;
-pub(crate) mod howitzer_ui;
+#[path = "missile_cannon/missile_cannon_mod.rs"]
 pub(crate) mod missile_cannon;
-pub(crate) mod missile_cannon_ui;
 
-pub(crate) const CANNON_ROTATIONS: [u16; 8] = [0, 45, 90, 135, 180, 225, 270, 315];
-pub(crate) const INIT_PLACE_FRAME_COUNT: usize = 3;
-pub(crate) const PLACE_FRAME_COUNT: usize = 4;
-pub(crate) const PLACE_FRAME_TIME: f32 = 0.1;
-pub(crate) const PASSIVE_ROTATION_INTERVAL: f32 = 1.0;
-
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
-pub(crate) enum CannonFrameRole {
-    Empty,
-    Passive,
-    Fire,
-    Equipped,
-    Place,
-    DeathWreck,
-    Destroyed,
+pub(crate) mod gatling_ui {
+    pub(crate) use super::gatling::gatling_ui::*;
 }
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub(crate) struct CannonFrameProfile {
-    pub(crate) role: CannonFrameRole,
-    pub(crate) atlas_team: TeamType,
-    pub(crate) atlas_frame_name: String,
-    pub(crate) asset_path: String,
+pub(crate) mod gun_ui {
+    pub(crate) use super::gun::gun_ui::*;
 }
 
-#[derive(Clone, Debug, PartialEq)]
-pub(crate) struct CannonRenderProfile {
-    pub(crate) unit_offset: Vec2,
-    pub(crate) direction_offsets: [Vec2; 8],
-    pub(crate) place_frames: usize,
-    pub(crate) place_frame_time: f32,
-    pub(crate) passive_rotation_interval: f32,
-    pub(crate) fire_flash_base_time: Option<f32>,
-    pub(crate) fire_flash_random_steps: usize,
-    pub(crate) fire_flash_step: f32,
+pub(crate) mod howitzer_ui {
+    pub(crate) use super::howitzer::howitzer_ui::*;
 }
 
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub(crate) struct CannonTurrentProfile {
-    pub(crate) target_center_offset: Vec2,
-    pub(crate) max_horizontal_distance: f32,
-    pub(crate) max_vertical_distance: f32,
-    pub(crate) damage: i32,
-    pub(crate) radius: i32,
-    pub(crate) offset_time_base: f32,
-    pub(crate) offset_time_random_steps: usize,
-    pub(crate) offset_time_step: f32,
-    pub(crate) rise_base: f32,
-    pub(crate) rise_random_steps: usize,
-    pub(crate) rise_step: f32,
-    pub(crate) start_jitter_center: f32,
-    pub(crate) start_jitter_steps: usize,
-    pub(crate) arc_lift_pixels: f32,
-    pub(crate) spin_base_degrees_per_sec: f32,
-    pub(crate) spin_random_steps: usize,
+pub(crate) mod missile_cannon_ui {
+    pub(crate) use super::missile_cannon::missile_cannon_ui::*;
 }
 
-fn frame_profile(
+pub(crate) use cannon_ui::{
+    CannonDeathVisualPolicy, CannonFrameProfile, CannonFrameRole, CannonPlacementAnimation,
+    CannonTurrentProfile, INIT_PLACE_FRAME_COUNT, PLACE_FRAME_COUNT,
+};
+#[cfg(test)]
+pub(crate) use cannon_ui::{CannonRenderProfile, PASSIVE_ROTATION_INTERVAL, PLACE_FRAME_TIME};
+
+const PATHING_BLOCK_OFFSETS: &[(u16, u16)] = &[(0, 0)];
+
+pub(crate) fn frame_profile(
     role: CannonFrameRole,
     atlas_team: TeamType,
     asset_path: String,
 ) -> CannonFrameProfile {
-    let atlas_frame_name = asset_path
-        .strip_suffix(".png")
-        .unwrap_or(&asset_path)
-        .strip_prefix("units/cannons/")
-        .unwrap_or(&asset_path)
-        .replace('/', "_");
-    CannonFrameProfile {
-        role,
-        atlas_team,
-        atlas_frame_name: format!("cannon_{atlas_frame_name}"),
-        asset_path,
-    }
+    cannon_ui::frame_profile(role, atlas_team, asset_path)
 }
 
+#[cfg(test)]
 pub(crate) fn init_place_frame_path(frame: usize) -> String {
-    format!(
-        "units/cannons/init-place_n{:02}.png",
-        frame.min(INIT_PLACE_FRAME_COUNT - 1)
-    )
+    cannon_ui::init_place_frame_path(frame)
 }
 
+#[cfg(test)]
+pub(crate) fn init_place_frame_profile(frame: usize) -> CannonFrameProfile {
+    cannon_ui::init_place_frame_profile(frame)
+}
+
+pub(crate) fn placement_frame_profile(
+    cannon: CannonType,
+    team: TeamType,
+    frame: usize,
+) -> Option<CannonFrameProfile> {
+    cannon_ui::placement_frame_profile(cannon, team, frame)
+}
+
+#[cfg(test)]
 pub(crate) fn render_profile(cannon: CannonType) -> CannonRenderProfile {
-    match cannon {
-        CannonType::Gatling => gatling_ui::render_profile(),
-        CannonType::Gun => gun_ui::render_profile(),
-        CannonType::Howitzer => howitzer_ui::render_profile(),
-        CannonType::MissileCannon => missile_cannon_ui::render_profile(),
-    }
+    cannon_ui::render_profile(cannon)
+}
+
+pub(crate) fn hud_name(cannon: CannonType) -> &'static str {
+    cannon_ui::hud_name(cannon)
 }
 
 pub(crate) fn render_offset(cannon: CannonType, direction: usize) -> Vec2 {
-    let profile = render_profile(cannon);
-    profile.unit_offset + profile.direction_offsets[direction.min(7)]
+    cannon_ui::render_offset(cannon, direction)
 }
 
+#[cfg(test)]
 pub(crate) fn empty_frame_profile(
     cannon: CannonType,
     team: TeamType,
     rotation: u16,
 ) -> CannonFrameProfile {
-    match cannon {
-        CannonType::Gatling => gatling_ui::empty_frame_profile(rotation),
-        CannonType::Gun => gun_ui::empty_frame_profile(),
-        CannonType::Howitzer => howitzer_ui::empty_frame_profile(rotation),
-        CannonType::MissileCannon => missile_cannon_ui::empty_frame_profile(team, rotation),
-    }
+    cannon_ui::empty_frame_profile(cannon, team, rotation)
 }
 
+#[cfg(test)]
 pub(crate) fn passive_frame_profile(
     cannon: CannonType,
     team: TeamType,
     rotation: u16,
 ) -> CannonFrameProfile {
-    match cannon {
-        CannonType::Gatling => gatling_ui::passive_frame_profile(team, rotation),
-        CannonType::Gun => gun_ui::passive_frame_profile(team, rotation),
-        CannonType::Howitzer => howitzer_ui::passive_frame_profile(team, rotation),
-        CannonType::MissileCannon => missile_cannon_ui::passive_frame_profile(team, rotation),
-    }
+    cannon_ui::passive_frame_profile(cannon, team, rotation)
 }
 
+pub(crate) fn spawn_frame_profile(
+    cannon: CannonType,
+    team: TeamType,
+    rotation: u16,
+) -> CannonFrameProfile {
+    cannon_ui::spawn_frame_profile(cannon, team, rotation)
+}
+
+pub(crate) fn captured_frame_profile(
+    cannon: CannonType,
+    team: TeamType,
+    rotation: u16,
+) -> CannonFrameProfile {
+    cannon_ui::captured_frame_profile(cannon, team, rotation)
+}
+
+#[cfg(test)]
 pub(crate) fn fire_frame_profile(
     cannon: CannonType,
     team: TeamType,
     rotation: u16,
 ) -> CannonFrameProfile {
-    match cannon {
-        CannonType::Gatling => gatling_ui::fire_frame_profile(team, rotation),
-        CannonType::Gun => gun_ui::fire_frame_profile(team, rotation),
-        CannonType::Howitzer => howitzer_ui::fire_frame_profile(team, rotation),
-        CannonType::MissileCannon => missile_cannon_ui::fire_frame_profile(team, rotation),
-    }
+    cannon_ui::fire_frame_profile(cannon, team, rotation)
 }
 
+#[cfg(test)]
 pub(crate) fn equipped_frame_profile(
     cannon: CannonType,
     team: TeamType,
     rotation: u16,
 ) -> Option<CannonFrameProfile> {
-    match cannon {
-        CannonType::Gatling => gatling_ui::equipped_frame_profile(team, rotation),
-        CannonType::Gun => gun_ui::equipped_frame_profile(team, rotation),
-        CannonType::Howitzer => howitzer_ui::equipped_frame_profile(team, rotation),
-        CannonType::MissileCannon => missile_cannon_ui::equipped_frame_profile(team, rotation),
-    }
+    cannon_ui::equipped_frame_profile(cannon, team, rotation)
 }
 
+#[cfg(test)]
 pub(crate) fn place_frame_profile(
     cannon: CannonType,
     team: TeamType,
     frame: usize,
 ) -> CannonFrameProfile {
-    match cannon {
-        CannonType::Gatling => gatling_ui::place_frame_profile(team, frame),
-        CannonType::Gun => gun_ui::place_frame_profile(team, frame),
-        CannonType::Howitzer => howitzer_ui::place_frame_profile(team, frame),
-        CannonType::MissileCannon => missile_cannon_ui::place_frame_profile(team, frame),
-    }
+    cannon_ui::place_frame_profile(cannon, team, frame)
 }
 
+#[cfg(test)]
 pub(crate) fn death_wreck_frame_profile(cannon: CannonType) -> CannonFrameProfile {
-    match cannon {
-        CannonType::Gatling => gatling_ui::death_wreck_frame_profile(),
-        CannonType::Gun => gun_ui::death_wreck_frame_profile(),
-        CannonType::Howitzer => howitzer_ui::death_wreck_frame_profile(),
-        CannonType::MissileCannon => missile_cannon_ui::death_wreck_frame_profile(),
-    }
+    cannon_ui::death_wreck_frame_profile(cannon)
 }
 
+#[cfg(test)]
 pub(crate) fn destroyed_frame_profile(cannon: CannonType, team: TeamType) -> CannonFrameProfile {
-    match cannon {
-        CannonType::Gatling => gatling_ui::destroyed_frame_profile(),
-        CannonType::Gun => gun_ui::destroyed_frame_profile(),
-        CannonType::Howitzer => howitzer_ui::destroyed_frame_profile(),
-        CannonType::MissileCannon => missile_cannon_ui::destroyed_frame_profile(team),
-    }
+    cannon_ui::destroyed_frame_profile(cannon, team)
+}
+
+#[cfg(test)]
+pub(crate) fn atlas_team_for_frame(
+    cannon: CannonType,
+    role: CannonFrameRole,
+    team: TeamType,
+) -> Option<TeamType> {
+    cannon_ui::atlas_team_for_frame(cannon, role, team)
 }
 
 pub(crate) fn default_selection_size(cannon: CannonType) -> Vec2 {
-    match cannon {
-        CannonType::Gatling => gatling::default_selection_size(),
-        CannonType::Gun => gun::default_selection_size(),
-        CannonType::Howitzer => howitzer::default_selection_size(),
-        CannonType::MissileCannon => missile_cannon::default_selection_size(),
-    }
+    cannon_ui::default_selection_size(cannon)
+}
+
+pub(crate) fn fallback_collision_size() -> Vec2 {
+    cannon_ui::fallback_collision_size()
+}
+
+pub(crate) fn pathing_block_offsets() -> &'static [(u16, u16)] {
+    PATHING_BLOCK_OFFSETS
 }
 
 pub(crate) fn settings(cannon: CannonType) -> UnitSettings {
@@ -223,131 +191,71 @@ pub(crate) fn attack_sound(cannon: CannonType) -> Option<UnitAttackSound> {
 }
 
 pub(crate) fn damage_missile_visual(cannon: CannonType) -> Option<DamageMissileVisual> {
-    match cannon {
-        CannonType::Gun => gun::damage_missile_visual(),
-        CannonType::Howitzer => howitzer::damage_missile_visual(),
-        CannonType::MissileCannon => missile_cannon::damage_missile_visual(),
-        CannonType::Gatling => None,
-    }
+    cannon_ui::damage_missile_visual(cannon)
 }
 
+#[cfg(test)]
 pub(crate) fn death_wreck_asset_path(cannon: CannonType) -> Option<String> {
-    Some(match cannon {
-        CannonType::Gatling => gatling_ui::death_wreck_asset_path(),
-        CannonType::Gun => gun_ui::death_wreck_asset_path(),
-        CannonType::Howitzer => howitzer_ui::death_wreck_asset_path(),
-        CannonType::MissileCannon => missile_cannon_ui::death_wreck_asset_path(),
-    })
+    cannon_ui::death_wreck_asset_path(cannon)
+}
+
+pub(crate) fn death_visual_policy(
+    cannon: CannonType,
+    team: TeamType,
+    center: Vec2,
+    end_map: Vec2,
+    missile_offset_time: f32,
+    rng: &mut CombatRng,
+) -> Option<CannonDeathVisualPolicy> {
+    cannon_ui::death_visual_policy(cannon, team, center, end_map, missile_offset_time, rng)
 }
 
 pub(crate) fn destroyed_asset_path(cannon: CannonType, team: TeamType) -> Option<String> {
-    Some(match cannon {
-        CannonType::Gatling => gatling_ui::destroyed_asset_path(),
-        CannonType::Gun => gun_ui::destroyed_asset_path(),
-        CannonType::Howitzer => howitzer_ui::destroyed_asset_path(),
-        CannonType::MissileCannon => missile_cannon_ui::destroyed_asset_path(team),
-    })
+    cannon_ui::destroyed_asset_path(cannon, team)
 }
 
+#[cfg(test)]
 pub(crate) fn death_top_left_world_for(cannon: CannonType, center: Vec2) -> Vec2 {
-    match cannon {
-        CannonType::Gatling => gatling_ui::death_top_left_world(center),
-        CannonType::Gun => gun_ui::death_top_left_world(center),
-        CannonType::Howitzer => howitzer_ui::death_top_left_world(center),
-        CannonType::MissileCannon => missile_cannon_ui::death_top_left_world(center),
-    }
+    cannon_ui::death_top_left_world_for(cannon, center)
 }
 
+#[cfg(test)]
 pub(crate) fn death_top_left_world(center: Vec2) -> Vec2 {
     death_top_left_world_for(CannonType::Gatling, center)
 }
 
+#[cfg(test)]
 pub(crate) fn death_delay_for(cannon: CannonType, rng: &mut CombatRng) -> f32 {
-    match cannon {
-        CannonType::Gatling => gatling_ui::death_delay(rng),
-        CannonType::Gun => gun_ui::death_delay(rng),
-        CannonType::Howitzer => howitzer_ui::death_delay(rng),
-        CannonType::MissileCannon => missile_cannon_ui::death_delay(rng),
-    }
-}
-
-pub(crate) fn death_delay(rng: &mut CombatRng) -> f32 {
-    death_delay_for(CannonType::Gatling, rng)
+    cannon_ui::death_delay_for(cannon, rng)
 }
 
 pub(crate) fn death_spark_count_for(cannon: CannonType, rng: &mut CombatRng) -> usize {
-    match cannon {
-        CannonType::Gatling => gatling_ui::death_spark_count(rng),
-        CannonType::Gun => gun_ui::death_spark_count(rng),
-        CannonType::Howitzer => howitzer_ui::death_spark_count(rng),
-        CannonType::MissileCannon => missile_cannon_ui::death_spark_count(rng),
-    }
-}
-
-pub(crate) fn death_spark_count(rng: &mut CombatRng) -> usize {
-    death_spark_count_for(CannonType::Gatling, rng)
+    cannon_ui::death_spark_count_for(cannon, rng)
 }
 
 pub(crate) fn death_missile_offset_time_for(cannon: CannonType, rng: &mut CombatRng) -> f32 {
-    match cannon {
-        CannonType::Gatling => gatling_ui::death_missile_offset_time(rng),
-        CannonType::Gun => gun_ui::death_missile_offset_time(rng),
-        CannonType::Howitzer => howitzer_ui::death_missile_offset_time(rng),
-        CannonType::MissileCannon => missile_cannon_ui::death_missile_offset_time(rng),
-    }
-}
-
-pub(crate) fn death_missile_offset_time(rng: &mut CombatRng) -> f32 {
-    death_missile_offset_time_for(CannonType::Gatling, rng)
+    cannon_ui::death_missile_offset_time_for(cannon, rng)
 }
 
 pub(crate) fn turrent_profile(cannon: CannonType) -> CannonTurrentProfile {
-    match cannon {
-        CannonType::Gatling => gatling_ui::turrent_profile(),
-        CannonType::Gun => gun_ui::turrent_profile(),
-        CannonType::Howitzer => howitzer_ui::turrent_profile(),
-        CannonType::MissileCannon => missile_cannon_ui::turrent_profile(),
-    }
+    cannon_ui::turrent_profile(cannon)
 }
 
 pub(crate) fn turrent_target_offset_for(cannon: CannonType, rng: &mut CombatRng) -> Vec2 {
-    match cannon {
-        CannonType::Gatling => gatling_ui::turrent_target_offset(rng),
-        CannonType::Gun => gun_ui::turrent_target_offset(rng),
-        CannonType::Howitzer => howitzer_ui::turrent_target_offset(rng),
-        CannonType::MissileCannon => missile_cannon_ui::turrent_target_offset(rng),
-    }
+    cannon_ui::turrent_target_offset_for(cannon, rng)
 }
 
-pub(crate) fn turrent_target_offset(rng: &mut CombatRng) -> Vec2 {
-    turrent_target_offset_for(CannonType::Gatling, rng)
-}
-
+#[cfg(test)]
 pub(crate) fn turrent_rise(cannon: CannonType, rng: &mut CombatRng) -> f32 {
-    match cannon {
-        CannonType::Gatling => gatling_ui::turrent_rise(rng),
-        CannonType::Gun => gun_ui::turrent_rise(rng),
-        CannonType::Howitzer => howitzer_ui::turrent_rise(rng),
-        CannonType::MissileCannon => missile_cannon_ui::turrent_rise(rng),
-    }
+    cannon_ui::turrent_rise(cannon, rng)
 }
 
 pub(crate) fn turrent_start_jitter(cannon: CannonType, rng: &mut CombatRng) -> Vec2 {
-    match cannon {
-        CannonType::Gatling => gatling_ui::turrent_start_jitter(rng),
-        CannonType::Gun => gun_ui::turrent_start_jitter(rng),
-        CannonType::Howitzer => howitzer_ui::turrent_start_jitter(rng),
-        CannonType::MissileCannon => missile_cannon_ui::turrent_start_jitter(rng),
-    }
+    cannon_ui::turrent_start_jitter(cannon, rng)
 }
 
 pub(crate) fn turrent_spin_degrees_per_sec(cannon: CannonType, rng: &mut CombatRng) -> f32 {
-    match cannon {
-        CannonType::Gatling => gatling_ui::turrent_spin_degrees_per_sec(rng),
-        CannonType::Gun => gun_ui::turrent_spin_degrees_per_sec(rng),
-        CannonType::Howitzer => howitzer_ui::turrent_spin_degrees_per_sec(rng),
-        CannonType::MissileCannon => missile_cannon_ui::turrent_spin_degrees_per_sec(rng),
-    }
+    cannon_ui::turrent_spin_degrees_per_sec(cannon, rng)
 }
 
 pub(crate) fn turrent_arc_lift_pixels(cannon: CannonType) -> f32 {
@@ -355,41 +263,26 @@ pub(crate) fn turrent_arc_lift_pixels(cannon: CannonType) -> f32 {
 }
 
 pub(crate) fn turrent_arc_size_for(cannon: CannonType, rise: f32, final_time: f32, t: f32) -> f32 {
-    match cannon {
-        CannonType::Gatling => gatling_ui::turrent_arc_size(rise, final_time, t),
-        CannonType::Gun => gun_ui::turrent_arc_size(rise, final_time, t),
-        CannonType::Howitzer => howitzer_ui::turrent_arc_size(rise, final_time, t),
-        CannonType::MissileCannon => missile_cannon_ui::turrent_arc_size(rise, final_time, t),
-    }
+    cannon_ui::turrent_arc_size_for(cannon, rise, final_time, t)
 }
 
 pub(crate) fn turrent_arc_size(rise: f32, final_time: f32, t: f32) -> f32 {
     turrent_arc_size_for(CannonType::Gatling, rise, final_time, t)
 }
 
+#[cfg(test)]
 pub(crate) fn rocket_muzzle_offset(cannon: CannonType, direction: usize) -> Option<Vec2> {
-    match cannon {
-        CannonType::Gatling => None,
-        CannonType::Gun => Some(gun::rocket_muzzle_offset(direction)),
-        CannonType::Howitzer => Some(howitzer::rocket_muzzle_offset(direction)),
-        CannonType::MissileCannon => Some(missile_cannon::rocket_muzzle_offset(direction)),
-    }
+    cannon_ui::rocket_muzzle_offset(cannon, direction)
 }
 
+#[cfg(test)]
 pub(crate) fn direct_fire_muzzle_offset(cannon: CannonType, direction: usize) -> Option<Vec2> {
-    match cannon {
-        CannonType::Gatling => Some(gatling::direct_fire_muzzle_offset(direction)),
-        CannonType::Gun | CannonType::Howitzer | CannonType::MissileCannon => None,
-    }
+    cannon_ui::direct_fire_muzzle_offset(cannon, direction)
 }
 
+#[cfg(test)]
 pub(crate) fn fire_flash_duration(cannon: CannonType, rng: &mut CombatRng) -> Option<f32> {
-    match cannon {
-        CannonType::Gatling => gatling_ui::fire_flash_duration(rng),
-        CannonType::Gun => gun_ui::fire_flash_duration(rng),
-        CannonType::Howitzer => howitzer_ui::fire_flash_duration(rng),
-        CannonType::MissileCannon => missile_cannon_ui::fire_flash_duration(rng),
-    }
+    cannon_ui::fire_flash_duration(cannon, rng)
 }
 
 #[cfg(test)]
@@ -406,6 +299,11 @@ mod tests {
     #[test]
     fn cannon_frame_profiles_match_original_asset_families() {
         assert_eq!(init_place_frame_path(2), "units/cannons/init-place_n02.png");
+        let init_place = init_place_frame_profile(99);
+        assert_eq!(init_place.role, CannonFrameRole::Place);
+        assert_eq!(init_place.atlas_team, TeamType::Red);
+        assert_eq!(init_place.asset_path, "units/cannons/init-place_n02.png");
+        assert_eq!(init_place.atlas_frame_name, "cannon_init_place_n02");
 
         let gatling_passive = passive_frame_profile(CannonType::Gatling, TeamType::Blue, 180);
         assert_eq!(gatling_passive.role, CannonFrameRole::Passive);
@@ -422,12 +320,31 @@ mod tests {
             fire_frame_profile(CannonType::Gatling, TeamType::Yellow, 45).asset_path,
             "units/cannons/gatling/fire_yellow_r045_n01.png"
         );
+        assert_eq!(
+            spawn_frame_profile(CannonType::Gatling, TeamType::Blue, 180),
+            empty_frame_profile(CannonType::Gatling, TeamType::Blue, 180)
+        );
+        assert_eq!(
+            captured_frame_profile(CannonType::Gatling, TeamType::Blue, 180).atlas_team,
+            TeamType::Blue
+        );
 
         let gun_equipped = equipped_frame_profile(CannonType::Gun, TeamType::Green, 225).unwrap();
         assert_eq!(gun_equipped.role, CannonFrameRole::Equipped);
         assert_eq!(
             gun_equipped.asset_path,
             "units/cannons/gun/equiped_green_r225.png"
+        );
+        assert_eq!(
+            spawn_frame_profile(CannonType::Gun, TeamType::Green, 225),
+            gun_equipped
+        );
+        let captured_gun = captured_frame_profile(CannonType::Gun, TeamType::Green, 225);
+        assert_eq!(captured_gun.role, CannonFrameRole::Passive);
+        assert_eq!(captured_gun.asset_path, gun_equipped.asset_path);
+        assert_eq!(
+            spawn_frame_profile(CannonType::Gun, TeamType::Null, 225).asset_path,
+            "units/cannons/gun/empty.png"
         );
         assert_eq!(
             passive_frame_profile(CannonType::Gun, TeamType::Null, 225).asset_path,
@@ -458,13 +375,124 @@ mod tests {
             "units/cannons/missile_cannon/equiped_blue_r090.png"
         );
         assert_eq!(
-            place_frame_profile(CannonType::Howitzer, TeamType::Green, 3).asset_path,
+            captured_frame_profile(CannonType::MissileCannon, TeamType::Null, 90).asset_path,
+            "units/cannons/missile_cannon/empty_null.png"
+        );
+        assert_eq!(
+            place_frame_profile(CannonType::Howitzer, TeamType::Green, 99).asset_path,
             "units/cannons/howitzer/place_green_n03.png"
         );
     }
 
     #[test]
+    fn cannon_placement_sequence_uses_three_shared_and_four_unit_frames() {
+        for cannon in ALL_CANNONS {
+            assert_eq!(
+                placement_frame_profile(cannon, TeamType::Blue, 0)
+                    .unwrap()
+                    .asset_path,
+                "units/cannons/init-place_n00.png"
+            );
+            assert_eq!(
+                placement_frame_profile(cannon, TeamType::Blue, 2)
+                    .unwrap()
+                    .asset_path,
+                "units/cannons/init-place_n02.png"
+            );
+            assert!(
+                placement_frame_profile(cannon, TeamType::Blue, 3)
+                    .unwrap()
+                    .asset_path
+                    .ends_with("_blue_n00.png")
+            );
+            assert!(
+                placement_frame_profile(cannon, TeamType::Blue, 6)
+                    .unwrap()
+                    .asset_path
+                    .ends_with("_blue_n03.png")
+            );
+            assert!(placement_frame_profile(cannon, TeamType::Blue, 7).is_none());
+        }
+
+        let mut animation = CannonPlacementAnimation::new(
+            CannonType::Howitzer,
+            TeamType::Blue,
+            Vec2::new(32.0, 48.0),
+        );
+        assert!(!animation.process(1.0));
+        assert_eq!(animation.frame, 0);
+        assert_eq!(animation.elapsed, 0.0);
+        assert!(!animation.process(0.09));
+        assert_eq!(animation.frame, 0);
+        assert!(!animation.process(0.02));
+        assert_eq!(animation.frame, 1);
+        assert_eq!(animation.elapsed, 0.0);
+        for _ in 0..5 {
+            assert!(!animation.process(1.0));
+        }
+        assert!(animation.process(1.0));
+        assert_eq!(animation.frame, 7);
+    }
+
+    #[test]
+    fn cannon_atlas_team_choice_is_owned_by_cannon_ui_profiles() {
+        assert_eq!(
+            atlas_team_for_frame(CannonType::Gatling, CannonFrameRole::Empty, TeamType::Blue),
+            Some(TeamType::Red)
+        );
+        assert_eq!(
+            atlas_team_for_frame(
+                CannonType::Gatling,
+                CannonFrameRole::Passive,
+                TeamType::Blue
+            ),
+            Some(TeamType::Blue)
+        );
+        assert_eq!(
+            atlas_team_for_frame(CannonType::Gun, CannonFrameRole::Equipped, TeamType::White),
+            Some(TeamType::Red)
+        );
+        assert_eq!(
+            atlas_team_for_frame(CannonType::Gun, CannonFrameRole::Equipped, TeamType::Null),
+            None
+        );
+        assert_eq!(
+            atlas_team_for_frame(
+                CannonType::MissileCannon,
+                CannonFrameRole::Empty,
+                TeamType::Blue
+            ),
+            Some(TeamType::Blue)
+        );
+        assert_eq!(
+            atlas_team_for_frame(
+                CannonType::MissileCannon,
+                CannonFrameRole::Empty,
+                TeamType::Null
+            ),
+            Some(TeamType::Red)
+        );
+        assert_eq!(
+            atlas_team_for_frame(
+                CannonType::MissileCannon,
+                CannonFrameRole::Destroyed,
+                TeamType::Yellow
+            ),
+            Some(TeamType::Yellow)
+        );
+    }
+
+    #[test]
     fn cannon_render_profiles_keep_original_offsets_and_timing() {
+        assert_eq!(
+            cannon_ui::CANNON_ROTATIONS,
+            [0, 45, 90, 135, 180, 225, 270, 315]
+        );
+        assert_eq!(cannon_ui::INIT_PLACE_FRAME_COUNT, 3);
+        assert_eq!(PLACE_FRAME_COUNT, 4);
+        assert_eq!(PLACE_FRAME_TIME, 0.1);
+        assert_eq!(PASSIVE_ROTATION_INTERVAL, 1.0);
+
         assert_eq!(render_offset(CannonType::Gatling, 0), Vec2::new(1.0, -7.0));
         assert_eq!(render_offset(CannonType::Howitzer, 5), Vec2::new(0.0, -9.0));
         assert_eq!(
@@ -579,7 +607,7 @@ mod tests {
     }
 
     #[test]
-    fn cannon_projectile_muzzle_offsets_live_on_cannon_modules() {
+    fn cannon_projectile_muzzle_offsets_live_on_cannon_ui_modules() {
         assert_eq!(
             rocket_muzzle_offset(CannonType::Gun, 0),
             Some(Vec2::new(21.0, 2.0))

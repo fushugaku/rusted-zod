@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+aes = "0.8"
 bevy = { version = "0.18.1", default-features = false, features = [
     "bevy_asset",
     "bevy_audio",
@@ -29,6 +30,7 @@ pathfinding = "4"
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 console_error_panic_hook = "0.1"
+web-sys = { version = "0.3", features = ["Storage", "Window"] }
 
 [profile.dev]
 opt-level = 1

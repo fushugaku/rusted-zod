@@ -17,7 +17,10 @@ impl StartupScreenshot {
             if let Ok(path) = std::env::var("ZOD_SCREENSHOT") {
                 return Self {
                     path: Some(path),
-                    frames_remaining: 30,
+                    frames_remaining: std::env::var("ZOD_SCREENSHOT_FRAMES")
+                        .ok()
+                        .and_then(|value| value.parse().ok())
+                        .unwrap_or(30),
                     requested: false,
                 };
             }
@@ -83,6 +86,17 @@ pub(crate) fn clamp_camera_center(center: Vec2, map_size: Vec2, view_size: Vec2)
     };
 
     Vec2::new(x, y)
+}
+
+pub(crate) fn focus_camera_to_world_point(
+    transform: &mut Transform,
+    map: &ZMap,
+    window: &Window,
+    world_point: Vec2,
+) {
+    let clamped = clamp_camera_center(world_point, map_pixel_size(map), game_view_size(window));
+    transform.translation.x = clamped.x;
+    transform.translation.y = clamped.y;
 }
 
 pub(crate) fn cursor_world_position(
@@ -155,7 +169,7 @@ pub(crate) fn sync_game_camera_viewport(
 }
 
 pub(crate) fn camera_controls(
-    time: Res<Time>,
+    time: Res<Time<Real>>,
     keys: Res<ButtonInput<KeyCode>>,
     mut query: Query<&mut Transform, With<MainCamera>>,
 ) {

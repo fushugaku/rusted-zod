@@ -2,16 +2,22 @@ use bevy::prelude::*;
 
 use crate::{
     components::*,
+    local_player::LocalPlayerState,
+    network_commands::ObjectTeamPacket,
+    object_sync::{
+        apply_object_team_packet, apply_portrait_anim_packet, relay_object_team_update,
+        relay_portrait_anim,
+    },
     original::{
         objects::{BuildingType, ObjectKind, RobotType, VehicleType},
         types::TeamType,
     },
-    production::production_world_points,
     render::atlas::GameAtlases,
     robot_groups::{
         RobotGroupMemberSnapshot, remap_selected_refs_for_group_promotions,
         robot_group_promotions_for_removed_refs,
     },
+    units::{self, buildings},
 };
 
 #[derive(Clone, Copy)]
@@ -48,20 +54,15 @@ pub(crate) struct EnterFortTargetInfo {
 }
 
 pub(crate) fn can_be_entered(kind: ObjectKind, team: TeamType, stats: ObjectStats) -> bool {
-    team == TeamType::Null
-        && !stats.destroyed()
-        && matches!(kind, ObjectKind::Vehicle(_) | ObjectKind::Cannon(_))
+    units::can_be_entered_target(kind, team, stats)
 }
 
 fn can_enter_target(kind: ObjectKind, team: TeamType, stats: ObjectStats) -> bool {
-    team != TeamType::Null && !stats.destroyed() && matches!(kind, ObjectKind::Robot(_))
+    units::can_enter_target(kind, team, stats)
 }
 
 fn can_enter_fort_unit(kind: ObjectKind, team: TeamType, stats: ObjectStats) -> bool {
-    team != TeamType::Null
-        && !stats.destroyed()
-        && stats.move_speed > 0.0
-        && matches!(kind, ObjectKind::Robot(_) | ObjectKind::Vehicle(_))
+    units::can_enter_fort_unit(kind, team, stats)
 }
 
 pub(crate) fn can_enter_fort(
@@ -70,11 +71,7 @@ pub(crate) fn can_enter_fort(
     entering_team: TeamType,
     stats: ObjectStats,
 ) -> bool {
-    matches!(
-        kind,
-        ObjectKind::Building(BuildingType::FortFront | BuildingType::FortBack)
-    ) && fort_team != entering_team
-        && !stats.destroyed()
+    units::can_enter_fort(kind, fort_team, entering_team, stats)
 }
 
 pub(crate) fn enter_target_for_right_click(
@@ -233,6 +230,10 @@ pub(crate) fn process_enter_targets(
     mut commands: Commands,
     game_atlases: Res<GameAtlases>,
     mut selection: ResMut<SelectionState>,
+    local_player: Res<LocalPlayerState>,
+    mut portrait_state: ResMut<PortraitAnimationState>,
+    mut portrait_sounds: ResMut<PortraitAnimationSoundQueue>,
+    mut space_bar_events: ResMut<SpaceBarEventQueue>,
     mut queries: ParamSet<(
         Query<
             (
@@ -332,36 +333,45 @@ pub(crate) fn process_enter_targets(
         })
         .collect();
 
+    let mut completed_enter_waypoints = Vec::new();
     let enter_events: Vec<EnterEvent> = entrants
         .iter()
         .filter_map(|entrant| {
-            if entrant
-                .leader_ref_id
-                .is_some_and(|leader_ref_id| leader_ref_id != entrant.robot_ref_id)
-            {
-                return None;
-            }
-
-            let target = targets
+            let Some(target) = targets
                 .iter()
-                .find(|target| target.ref_id == entrant.target_ref_id)?;
-
-            if !point_in_enter_rect(entrant.position, target.position, target.selection_size) {
+                .find(|target| target.ref_id == entrant.target_ref_id)
+            else {
+                completed_enter_waypoints.push(entrant.entity);
                 return None;
+            };
+
+            match source_enter_waypoint_action(
+                point_in_enter_rect(entrant.position, target.position, target.selection_size),
+                entrant.is_minion(),
+            ) {
+                SourceEnterWaypointAction::KeepMoving => return None,
+                SourceEnterWaypointAction::KillWaypoint => {
+                    completed_enter_waypoints.push(entrant.entity);
+                    return None;
+                }
+                SourceEnterWaypointAction::ApplyEnter => {
+                    completed_enter_waypoints.push(entrant.entity);
+                }
             }
 
             let removed_robots = removed_robots_for_enter(entrant, target.kind, &group_members);
             let driver_healths: Vec<f32> =
                 removed_robots.iter().map(|robot| robot.health).collect();
+            let driver_health =
+                DriverHealth::with_driver_healths(entrant.robot_kind, driver_healths);
+            let object_team_packet =
+                relay_object_team_update(target.ref_id, entrant.team, Some(&driver_health))?;
             Some(EnterEvent {
                 target_ref_id: target.ref_id,
                 target_kind: target.kind,
                 robot_kind: entrant.robot_kind,
                 new_team: entrant.team,
-                driver_health: DriverHealth::with_driver_healths(
-                    entrant.robot_kind,
-                    driver_healths,
-                ),
+                object_team_packet,
                 removed_robot_refs: removed_robots.iter().map(|robot| robot.ref_id).collect(),
             })
         })
@@ -425,8 +435,7 @@ pub(crate) fn process_enter_targets(
                 event.target_ref_id,
                 event.target_kind,
                 event.robot_kind,
-                event.new_team,
-                event.driver_health,
+                &event.object_team_packet,
             );
             for robot_ref_id in &event.removed_robot_refs {
                 remove_robot_after_enter(
@@ -452,10 +461,31 @@ pub(crate) fn process_enter_targets(
                 }
             }
         }
+
+        if let Some(kind) = capture_portrait_kind(event.target_kind) {
+            if let Some(packet) = relay_portrait_anim(event.target_ref_id, kind) {
+                if let Some(applied_portrait) = apply_portrait_anim_packet(
+                    &packet,
+                    event.target_ref_id,
+                    event.new_team,
+                    local_player.team(),
+                    portrait_state.doing_anim(),
+                ) {
+                    if let Some(kind) = applied_portrait.kind {
+                        portrait_state.start(PortraitAnimationEvent {
+                            ref_id: applied_portrait.ref_id,
+                            kind,
+                        });
+                        portrait_sounds.pending.push(kind);
+                    }
+                    space_bar_events.add(SpaceBarEvent::new(applied_portrait.ref_id, true, false));
+                }
+            }
+        }
     }
 
-    for entrant in entrants {
-        commands.entity(entrant.entity).remove::<EnterTarget>();
+    for entity in completed_enter_waypoints {
+        commands.entity(entity).remove::<EnterTarget>();
     }
 }
 
@@ -481,7 +511,7 @@ pub(crate) fn process_enter_fort_targets(
     let fort_steps: Vec<FortEnterStep> = entrants
         .iter()
         .filter_map(|(entity, object, team, stats, target, movement)| {
-            if movement.is_some() || !can_enter_fort_unit(object.kind, team.0, *stats) {
+            if !can_enter_fort_unit(object.kind, team.0, *stats) {
                 return None;
             }
 
@@ -494,13 +524,33 @@ pub(crate) fn process_enter_fort_targets(
                 inside_point: target.inside_point,
                 exit_point: target.exit_point,
                 move_speed: stats.move_speed,
+                movement_active: movement.is_some(),
             })
         })
         .collect();
 
     for step in fort_steps {
-        match step.stage {
-            EnterFortStage::GotoEntrance => {
+        let target_state = targets
+            .iter_mut()
+            .find(|(object, _, _)| object.ref_id == step.fort_ref_id)
+            .map(|(object, team, stats)| FortTargetState {
+                kind: object.kind,
+                team: team.0,
+                stats: *stats,
+            });
+        let action = source_enter_fort_waypoint_action(
+            step.stage,
+            step.movement_active,
+            target_state
+                .map(|target| can_enter_fort(target.kind, target.team, step.team, target.stats)),
+        );
+
+        match action {
+            SourceEnterFortWaypointAction::KeepMoving => {}
+            SourceEnterFortWaypointAction::KillWaypoint => {
+                commands.entity(step.entity).remove::<EnterFortTarget>();
+            }
+            SourceEnterFortWaypointAction::StageEnterBuilding => {
                 commands.entity(step.entity).insert(EnterFortTarget {
                     ref_id: step.fort_ref_id,
                     stage: EnterFortStage::EnterBuilding,
@@ -515,18 +565,15 @@ pub(crate) fn process_enter_fort_targets(
                     step.move_speed,
                 );
             }
-            EnterFortStage::EnterBuilding => {
-                let Some((_, _, mut fort_stats)) =
-                    targets.iter_mut().find(|(object, team, stats)| {
-                        object.ref_id == step.fort_ref_id
-                            && can_enter_fort(object.kind, team.0, step.team, **stats)
-                    })
-                else {
-                    commands.entity(step.entity).remove::<EnterFortTarget>();
-                    continue;
-                };
-
-                fort_stats.health = 0.0;
+            SourceEnterFortWaypointAction::StageExitBuilding { destroy_fort } => {
+                if destroy_fort {
+                    if let Some((_, _, mut fort_stats)) = targets
+                        .iter_mut()
+                        .find(|(object, _, _)| object.ref_id == step.fort_ref_id)
+                    {
+                        fort_stats.health = 0.0;
+                    }
+                }
                 commands.entity(step.entity).insert(EnterFortTarget {
                     ref_id: step.fort_ref_id,
                     stage: EnterFortStage::ExitBuilding,
@@ -540,9 +587,6 @@ pub(crate) fn process_enter_fort_targets(
                     step.exit_point,
                     step.move_speed,
                 );
-            }
-            EnterFortStage::ExitBuilding => {
-                commands.entity(step.entity).remove::<EnterFortTarget>();
             }
         }
     }
@@ -558,6 +602,60 @@ struct FortEnterStep {
     inside_point: Vec2,
     exit_point: Vec2,
     move_speed: f32,
+    movement_active: bool,
+}
+
+#[derive(Clone, Copy)]
+struct FortTargetState {
+    kind: ObjectKind,
+    team: TeamType,
+    stats: ObjectStats,
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+enum SourceEnterFortWaypointAction {
+    KeepMoving,
+    KillWaypoint,
+    StageEnterBuilding,
+    StageExitBuilding { destroy_fort: bool },
+}
+
+fn source_enter_fort_waypoint_action(
+    stage: EnterFortStage,
+    movement_active: bool,
+    target_can_enter: Option<bool>,
+) -> SourceEnterFortWaypointAction {
+    let Some(target_can_enter) = target_can_enter else {
+        return SourceEnterFortWaypointAction::KillWaypoint;
+    };
+
+    if !target_can_enter {
+        return match stage {
+            EnterFortStage::GotoEntrance => SourceEnterFortWaypointAction::KillWaypoint,
+            EnterFortStage::EnterBuilding => SourceEnterFortWaypointAction::StageExitBuilding {
+                destroy_fort: false,
+            },
+            EnterFortStage::ExitBuilding => {
+                if movement_active {
+                    SourceEnterFortWaypointAction::KeepMoving
+                } else {
+                    SourceEnterFortWaypointAction::KillWaypoint
+                }
+            }
+        };
+    }
+
+    if movement_active {
+        return SourceEnterFortWaypointAction::KeepMoving;
+    }
+
+    match stage {
+        EnterFortStage::GotoEntrance => SourceEnterFortWaypointAction::StageEnterBuilding,
+        EnterFortStage::EnterBuilding => {
+            SourceEnterFortWaypointAction::StageExitBuilding { destroy_fort: true }
+        }
+        EnterFortStage::ExitBuilding => SourceEnterFortWaypointAction::KillWaypoint,
+    }
 }
 
 fn insert_layer_paths_for_ref(
@@ -595,6 +693,13 @@ struct EnterRequestSnapshot {
     health: f32,
 }
 
+impl EnterRequestSnapshot {
+    fn is_minion(self) -> bool {
+        self.leader_ref_id
+            .is_some_and(|leader_ref_id| leader_ref_id != self.robot_ref_id)
+    }
+}
+
 #[derive(Clone, Copy)]
 struct EnterTargetSnapshot {
     ref_id: u32,
@@ -609,7 +714,7 @@ struct EnterEvent {
     target_kind: ObjectKind,
     robot_kind: RobotType,
     new_team: TeamType,
-    driver_health: DriverHealth,
+    object_team_packet: ObjectTeamPacket,
     removed_robot_refs: Vec<u32>,
 }
 
@@ -619,6 +724,28 @@ struct EnterGroupMemberSnapshot {
     leader_ref_id: u32,
     health: f32,
     destroyed: bool,
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+enum SourceEnterWaypointAction {
+    KeepMoving,
+    KillWaypoint,
+    ApplyEnter,
+}
+
+fn source_enter_waypoint_action(
+    target_under_cursor: bool,
+    is_minion: bool,
+) -> SourceEnterWaypointAction {
+    if !target_under_cursor {
+        return SourceEnterWaypointAction::KeepMoving;
+    }
+
+    if is_minion {
+        SourceEnterWaypointAction::KillWaypoint
+    } else {
+        SourceEnterWaypointAction::ApplyEnter
+    }
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -636,15 +763,16 @@ fn removed_robots_for_enter(
         ref_id: entrant.robot_ref_id,
         health: entrant.health,
     }];
-    if !matches!(target_kind, ObjectKind::Vehicle(VehicleType::Apc)) {
-        return robots;
-    }
 
     for member in group_members.iter().filter(|member| {
-        member.ref_id != entrant.robot_ref_id
-            && member.leader_ref_id == entrant.robot_ref_id
-            && !member.destroyed
-            && member.health > 0.0
+        units::enter_removes_group_member(
+            target_kind,
+            entrant.robot_ref_id,
+            member.ref_id,
+            member.leader_ref_id,
+            member.destroyed,
+            member.health,
+        )
     }) {
         robots.push(RemovedRobotForEnter {
             ref_id: member.ref_id,
@@ -655,14 +783,15 @@ fn removed_robots_for_enter(
 }
 
 fn apply_apc_driver_attack_stats(stats: &mut ObjectStats, robot_kind: RobotType) {
-    let driver_stats = ObjectStats::from_kind(ObjectKind::Robot(robot_kind), 100);
-    stats.attack_radius = driver_stats.attack_radius;
-    stats.attack_damage = driver_stats.attack_damage;
-    stats.damage_chance = driver_stats.damage_chance;
-    stats.damage_radius = driver_stats.damage_radius;
-    stats.missile_speed = driver_stats.missile_speed;
-    stats.attack_speed = driver_stats.attack_speed;
-    stats.snipe_chance = driver_stats.snipe_chance;
+    units::apply_apc_driver_attack_stats(stats, robot_kind);
+}
+
+fn capture_portrait_kind(kind: ObjectKind) -> Option<PortraitAnimationKind> {
+    match kind {
+        ObjectKind::Vehicle(_) => Some(PortraitAnimationKind::VehicleCaptured),
+        ObjectKind::Cannon(_) => Some(PortraitAnimationKind::GunCaptured),
+        _ => None,
+    }
 }
 
 fn point_in_enter_rect(point: Vec2, center: Vec2, size: Vec2) -> bool {
@@ -679,29 +808,15 @@ pub(crate) fn point_in_fort_entrance_rect(
     size: Vec2,
     building: BuildingType,
 ) -> bool {
-    let top_left = Vec2::new(center.x - size.x * 0.5, center.y + size.y * 0.5);
-    let (x, y, w, h) = fort_entrance_rect(building);
-    let min_x = top_left.x + x;
-    let max_x = min_x + w;
-    let max_y = top_left.y - y;
-    let min_y = max_y - h;
-
-    point.x >= min_x && point.x <= max_x && point.y >= min_y && point.y <= max_y
+    buildings::point_in_fort_entrance_rect(point, center, size, building)
 }
 
-fn fort_entry_points(center: Vec2, size: Vec2, building: BuildingType) -> Option<(Vec2, Vec2)> {
-    let top_left = Vec2::new(center.x - size.x * 0.5, center.y + size.y * 0.5);
-    let tile_x = (top_left.x / 16.0).round().max(0.0) as u16;
-    let tile_y = (-top_left.y / 16.0).round().max(0.0) as u16;
-    production_world_points(building, tile_x, tile_y)
-}
-
-fn fort_entrance_rect(building: BuildingType) -> (f32, f32, f32, f32) {
-    match building {
-        BuildingType::FortFront => (64.0, 32.0, 32.0, 96.0),
-        BuildingType::FortBack => (64.0, 16.0, 32.0, 64.0),
-        _ => (0.0, 0.0, 0.0, 0.0),
-    }
+pub(crate) fn fort_entry_points(
+    center: Vec2,
+    size: Vec2,
+    building: BuildingType,
+) -> Option<(Vec2, Vec2)> {
+    buildings::fort_entry_points(center, size, building)
 }
 
 fn capture_target_layers(
@@ -719,9 +834,12 @@ fn capture_target_layers(
     target_ref_id: u32,
     target_kind: ObjectKind,
     robot_kind: RobotType,
-    new_team: TeamType,
-    driver_health: DriverHealth,
+    object_team_packet: &ObjectTeamPacket,
 ) {
+    let Some(applied_team) = apply_object_team_packet(object_team_packet, target_ref_id) else {
+        return;
+    };
+    let new_team = applied_team.owner;
     for (entity, layer_ref, maybe_object, maybe_team, maybe_stats, maybe_sprite, maybe_mobile) in
         layers.iter_mut()
     {
@@ -734,11 +852,17 @@ fn capture_target_layers(
         }
 
         if maybe_object.is_some() {
-            commands.entity(entity).insert(driver_health.clone());
+            if let Some(driver_health) = applied_team.driver.clone() {
+                commands.entity(entity).insert(driver_health);
+            }
+            let driver_kind = applied_team
+                .driver
+                .as_ref()
+                .map_or(robot_kind, |driver| driver.driver_kind);
             if let (ObjectKind::Vehicle(VehicleType::Apc), Some(mut stats)) =
                 (target_kind, maybe_stats)
             {
-                apply_apc_driver_attack_stats(&mut stats, robot_kind);
+                apply_apc_driver_attack_stats(&mut stats, driver_kind);
             }
         }
 
@@ -759,12 +883,13 @@ fn capture_target_layers(
             continue;
         }
 
-        if maybe_object.is_some() {
-            if let (ObjectKind::Cannon(cannon), Some(mut sprite)) = (target_kind, maybe_sprite) {
-                if let Some(frame) = game_atlases.captured_cannon_frame(cannon, new_team, 180) {
-                    apply_sprite_frame(&mut sprite, frame);
-                }
-            }
+        if let (ObjectKind::Cannon(cannon), Some(mut sprite)) = (target_kind, maybe_sprite)
+            && let Some(frame) = game_atlases.captured_cannon_frame(cannon, new_team, 180)
+        {
+            apply_sprite_frame(&mut sprite, frame);
+            commands
+                .entity(entity)
+                .remove::<crate::units::cannons::CannonPlacementAnimation>();
         }
     }
 }
@@ -873,6 +998,26 @@ mod tests {
     }
 
     #[test]
+    fn capture_portrait_kind_matches_robot_enter_object_source_branch() {
+        assert_eq!(
+            capture_portrait_kind(ObjectKind::Vehicle(VehicleType::Jeep)),
+            Some(PortraitAnimationKind::VehicleCaptured)
+        );
+        assert_eq!(
+            capture_portrait_kind(ObjectKind::Cannon(CannonType::Gun)),
+            Some(PortraitAnimationKind::GunCaptured)
+        );
+        assert_eq!(
+            capture_portrait_kind(ObjectKind::Robot(RobotType::Grunt)),
+            None
+        );
+        assert_eq!(
+            capture_portrait_kind(ObjectKind::Building(BuildingType::Radar)),
+            None
+        );
+    }
+
+    #[test]
     fn enter_hit_test_uses_target_rectangle_like_original_under_cursor() {
         assert!(point_in_enter_rect(
             Vec2::new(15.0, 0.0),
@@ -884,6 +1029,60 @@ mod tests {
             Vec2::ZERO,
             Vec2::new(32.0, 16.0)
         ));
+    }
+
+    #[test]
+    fn enter_waypoint_action_matches_source_minion_arrival_rule() {
+        assert_eq!(
+            source_enter_waypoint_action(false, false),
+            SourceEnterWaypointAction::KeepMoving
+        );
+        assert_eq!(
+            source_enter_waypoint_action(true, true),
+            SourceEnterWaypointAction::KillWaypoint
+        );
+        assert_eq!(
+            source_enter_waypoint_action(true, false),
+            SourceEnterWaypointAction::ApplyEnter
+        );
+    }
+
+    #[test]
+    fn enter_fort_waypoint_action_matches_source_stage_rules() {
+        assert_eq!(
+            source_enter_fort_waypoint_action(EnterFortStage::GotoEntrance, false, None),
+            SourceEnterFortWaypointAction::KillWaypoint
+        );
+        assert_eq!(
+            source_enter_fort_waypoint_action(EnterFortStage::GotoEntrance, true, Some(false)),
+            SourceEnterFortWaypointAction::KillWaypoint
+        );
+        assert_eq!(
+            source_enter_fort_waypoint_action(EnterFortStage::GotoEntrance, true, Some(true)),
+            SourceEnterFortWaypointAction::KeepMoving
+        );
+        assert_eq!(
+            source_enter_fort_waypoint_action(EnterFortStage::GotoEntrance, false, Some(true)),
+            SourceEnterFortWaypointAction::StageEnterBuilding
+        );
+        assert_eq!(
+            source_enter_fort_waypoint_action(EnterFortStage::EnterBuilding, false, Some(false)),
+            SourceEnterFortWaypointAction::StageExitBuilding {
+                destroy_fort: false
+            }
+        );
+        assert_eq!(
+            source_enter_fort_waypoint_action(EnterFortStage::EnterBuilding, false, Some(true)),
+            SourceEnterFortWaypointAction::StageExitBuilding { destroy_fort: true }
+        );
+        assert_eq!(
+            source_enter_fort_waypoint_action(EnterFortStage::ExitBuilding, true, Some(false)),
+            SourceEnterFortWaypointAction::KeepMoving
+        );
+        assert_eq!(
+            source_enter_fort_waypoint_action(EnterFortStage::ExitBuilding, false, Some(true)),
+            SourceEnterFortWaypointAction::KillWaypoint
+        );
     }
 
     #[test]
